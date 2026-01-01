@@ -1,10 +1,13 @@
+@import "tailwindcss";
+@plugin "daisyui";
 :root {
   --background-body: #fff;
   --text-main: #36393b;
-  --text-secondary: #6b6f72;
+  --text-primary: #ea580c;
+  --text-secondary: #16a34a;
   --primary-color: #548e9b;
   --font-family-serif: Merriweather, serif;
-  --font-family-sans: 'Fira Sans', sans-serif;
+  --font-family-sans: "Fira Sans", sans-serif;
 }
 
 :root.theme-dark {
@@ -13,7 +16,22 @@
   --text-secondary: #ccc;
   --primary-color: #548e9b;
 }
+/* === Tailwind color bridge === */
+.text-primary {
+  color: var(--text-primary);
+}
 
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.bg-primary {
+  background-color: var(--text-primary);
+}
+
+.bg-secondary {
+  background-color: var(--text-secondary);
+}
 html {
   overflow-y: scroll;
 }
@@ -138,7 +156,7 @@ hr {
 }
 
 code {
-  font-family: 'SF Mono', menlo, inconsolata, monospace;
+  font-family: "SF Mono", menlo, inconsolata, monospace;
   font-size: calc(1em - 2px);
   color: #555;
   padding: 0.2em 0.4em;
@@ -247,7 +265,7 @@ td {
   opacity: 1;
 }
 
-input[name='theme-toggle'] {
+input[name="theme-toggle"] {
   position: absolute;
   opacity: 0;
   top: 0;
