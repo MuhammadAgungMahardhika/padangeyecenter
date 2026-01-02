@@ -297,3 +297,11 @@ input[name="theme-toggle"] {
     margin: 1em 0;
   }
 }
+@layer components {
+  .bg-pec-5-5 {
+    @apply bg-gradient-to-br
+      from-orange-500/5
+      via-white
+      to-green-500/5;
+  }
+}
