@@ -1,7 +1,7 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 export interface Props {
   title: string;
@@ -11,21 +11,33 @@ export interface Props {
 }
 const { title, description, permalink, current } = Astro.props;
 ---
+
 <html lang="en">
-<head>
-  <BaseHead title={title} description={description} permalink={permalink} />
-</head>
-<body>
-  <div class="layout">
-    <Header current={current} />
+  <head>
+    <BaseHead title={title} description={description} permalink={permalink} />
+  </head>
+  <body>
+    <div class="layout">
+      <Header current={current} />
 
-    <main>
-      <slot />
-    </main>
+      <main>
+        <slot />
+      </main>
 
-    <Footer />
-  </div>
-</body>
+      <Footer />
+    </div>
+    <div class="fab">
+      <!-- a focusable div with tabindex is necessary to work on all browsers. role="button" is necessary for accessibility -->
+      <div tabindex="0" role="button" class="btn btn-lg btn-circle btn-primary">
+        F
+      </div>
+
+      <!-- buttons that show up when FAB is open -->
+      <button class="btn btn-lg btn-circle">A</button>
+      <button class="btn btn-lg btn-circle">B</button>
+      <button class="btn btn-lg btn-circle">C</button>
+    </div>
+  </body>
 </html>
 
 <style>
