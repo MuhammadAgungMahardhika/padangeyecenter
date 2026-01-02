@@ -3,6 +3,7 @@ import ServiceSection from '../components/sections/ServiceSection.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTASection from "../components/sections/CTASection.astro";
 import VisiMissionSection from "../components/sections/VisiMissionSection.astro";
+import MaintenanceSection from '../components/sections/MaintenanceSection.astro';
 const title = 'Padang Eye Center - Pusat Kesehatan Mata Terpercaya';
 const description = 'Klinik mata terpercaya di Padang dengan layanan lengkap dan dokter spesialis mata berpengalaman.';
 const permalink = Astro.site.href;
@@ -96,7 +97,7 @@ const services = [
   <!-- HERO SECTION with 3D Effect -->
   <div class="relative min-h-screen flex overflow-hidden">
     <!-- Animated Background -->
-    <div class="absolute inset-0 bg-pec-5-5">
+    <div class="absolute inset-0 ">
       <!-- Floating Shapes -->
       <div class="absolute top-20 left-10 w-72 h-72 bg-orange-400/10 rounded-full blur-3xl animate-float"></div>
       <div class="absolute bottom-20 right-10 w-96 h-96 bg-green-400/10 rounded-full blur-3xl animate-float-delayed"></div>
@@ -104,7 +105,7 @@ const services = [
     </div>
 
     <!-- Content -->
-    <div class="relative z-10 max-w-7xl mx-auto px-4 py-20">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 py-10">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         
         <!-- LEFT CONTENT -->
@@ -198,9 +199,10 @@ const services = [
 
        <VisiMissionSection/>
     </div>   
-       
   </div>
- 
+
+  <MaintenanceSection/>
+
    <!-- PROMO CARDS SECTION -->
   <div class="py-20 px-4 ">
     <div class="max-w-7xl mx-auto">

@@ -5,7 +5,56 @@ import { visionMissionData } from "../../data/visionMission";
 const { vision, mission } = visionMissionData;
 ---
 
-<section class="py-12 px-4 relative overflow-hidden">
+<!-- Spacer (tinggi otomatis via JS) -->
+<div id="banner-spacer"></div>
+
+<script>
+  const banner = document.getElementById("maintenance-banner");
+  const spacer = document.getElementById("banner-spacer");
+  const closeBtn = document.getElementById("close-banner");
+
+  if (banner && spacer) {
+    const bannerClosed = sessionStorage.getItem("maintenanceBannerClosed");
+
+    if (bannerClosed === "true") {
+      banner.style.display = "none";
+      spacer.style.display = "none";
+    } else {
+      // Set spacer height sama dengan banner
+      spacer.style.height = banner.offsetHeight + "px";
+    }
+
+    closeBtn?.addEventListener("click", () => {
+      banner.style.display = "none";
+      spacer.style.display = "none";
+      sessionStorage.setItem("maintenanceBannerClosed", "true");
+    });
+
+    // Update spacer height jika resize
+    window.addEventListener("resize", () => {
+      spacer.style.height = banner.offsetHeight + "px";
+    });
+  }
+</script>
+
+<style>
+  .maintenance-banner {
+    animation: slideDown 0.5s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+</style>
+
+<section class="py-12 px-4 relative overflow-hidden my-10">
   <div class="max-w-6xl mx-auto relative z-10">
     <div class="grid md:grid-cols-2 gap-5">
       <!-- VISI CARD -->

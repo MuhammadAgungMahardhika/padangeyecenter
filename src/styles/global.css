@@ -367,8 +367,8 @@ input[name="theme-toggle"] {
 @layer components {
   .bg-pec-5-5 {
     @apply bg-gradient-to-br
-      from-orange-500/12
-      to-green-500/12;
+      from-orange-500/5
+      to-green-500/5;
     background-color: var(--bg-gradient-via);
     background-image: linear-gradient(
       to bottom right,

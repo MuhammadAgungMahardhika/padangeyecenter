@@ -17,8 +17,7 @@ export const services = [
   },
   {
     title: "LASIK",
-    description:
-      "Koreksi penglihatan tanpa kacamata menggunakan teknologi laser terkini",
+    description: "Segera Hadir",
     link: "/layanan/lasik",
     color: "gradient",
     icon: "spark",
