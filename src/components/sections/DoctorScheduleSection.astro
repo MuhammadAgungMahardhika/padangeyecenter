@@ -1,28 +1,45 @@
 ---
 // src/components/sections/DoctorScheduleSection.astro
 import { doctors } from '../../data/doctors';
+
+// Get unique specializations
+const specializations = ['Semua', ...new Set(doctors.map(d => d.specialization))];
 ---
 
 <section class="py-12 md:py-20 overflow-hidden" id="doctor-schedule">
-  <div class="w-full max-w-7xl mx-auto">
+  <div class="w-full max-w-7xl mx-auto px-4">
     <!-- Section Header -->
-      <!-- Section Header -->
-      <div class="text-center mb-12">
-        <div class="inline-block mb-4">
-          <span class="px-4 py-2 bg-gradient-to-r from-orange-100 to-green-100 rounded-full text-sm font-semibold text-gray-700">
-         Tim Profesional
-          </span>
-        </div>
-        <h2 class="text-4xl font-bold mb-3">
-          <span class="bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent">
-            Jadwal Dokter Spesialis
-          </span>
-        </h2>
-        <p class="text-gray-600 text-lg">
-           {doctors.length} dokter spesialis mata berpengalaman
-        </p>
+    <div class="text-center mb-8">
+      <div class="inline-block mb-4">
+        <span class="px-4 py-2 bg-gradient-to-r from-orange-100 to-green-100 rounded-full text-sm font-semibold text-gray-700">
+          Tim Profesional
+        </span>
       </div>
- 
+      <h2 class="text-4xl font-bold mb-3">
+        <span class="bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent">
+          Jadwal Dokter Spesialis
+        </span>
+      </h2>
+      <p class="text-gray-600 text-lg">
+        <span id="total-doctors">{doctors.length}</span> dokter spesialis berpengalaman
+      </p>
+    </div>
+
+    <!-- Filter Specialization -->
+    <div class="flex flex-wrap justify-center gap-2 mb-8">
+      {specializations.map((spec, index) => (
+        <button
+          class={`filter-btn px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+            index === 0 
+              ? 'bg-gradient-to-r from-orange-500 to-green-500 text-white shadow-lg' 
+              : 'bg-white text-gray-700 border-2 border-gray-200 hover:border-orange-300'
+          }`}
+          data-filter={spec === 'Semua' ? 'all' : spec}
+        >
+          {spec}
+        </button>
+      ))}
+    </div>
 
     <!-- Carousel Container -->
     <div class="relative w-full">
@@ -35,6 +52,7 @@ import { doctors } from '../../data/doctors';
           <div 
             class="doctor-carousel-card absolute"
             data-index={index}
+            data-specialization={doctor.specialization}
             style="
               width: 280px;
               left: 50%;
@@ -71,27 +89,27 @@ import { doctors } from '../../data/doctors';
                   </div>
 
                   <!-- Name -->
-                    <div class="absolute bottom-0 left-3 right-0 z-10">
-                        <h3 class="text-base font-bold text-white/50 truncate
-                                    [text-shadow:
-                                    -1px_-1px_0_rgba(0,0,0,0.8),
-                                        1px_-1px_0_rgba(0,0,0,0.8),
-                                    -1px_ 1px_0_rgba(0,0,0,0.8),
-                                        1px_ 1px_0_rgba(0,0,0,0.8)
-                                    ]">
-                            {doctor.name}
-                        </h3>
-
-                        <p class="text-xs text-white/50 truncate
-                                    [text-shadow:
-                                    -1px_-1px_0_rgba(0,0,0,0.8),
+                  <div class="absolute bottom-0 left-3 right-0 z-10">
+                    <h3 class="text-base font-bold text-white/50 truncate
+                                [text-shadow:
+                                -1px_-1px_0_rgba(0,0,0,0.8),
                                     1px_-1px_0_rgba(0,0,0,0.8),
-                                    -1px_ 1px_0_rgba(0,0,0,0.8),
+                                -1px_ 1px_0_rgba(0,0,0,0.8),
                                     1px_ 1px_0_rgba(0,0,0,0.8)
-                                    ]">
-                            {doctor.title}
-                        </p>
-                    </div>
+                                ]">
+                      {doctor.name}
+                    </h3>
+
+                    <p class="text-xs text-white/50 truncate
+                                [text-shadow:
+                                -1px_-1px_0_rgba(0,0,0,0.8),
+                                1px_-1px_0_rgba(0,0,0,0.8),
+                                -1px_ 1px_0_rgba(0,0,0,0.8),
+                                1px_ 1px_0_rgba(0,0,0,0.8)
+                                ]">
+                      {doctor.title}
+                    </p>
+                  </div>
                 </div>
 
                 <!-- Card Content -->
@@ -144,8 +162,7 @@ import { doctors } from '../../data/doctors';
                   </div>
 
                   <!-- CTA Button -->
-                  
-                   <a href={`/dokter/${doctor.id}`}
+                  <a href={`/dokter/${doctor.id}`}
                     class="block w-full text-center px-3 py-2 bg-gradient-to-r from-orange-500 to-green-500 hover:from-orange-600 hover:to-green-600 text-white text-xs font-bold rounded-lg shadow-lg transition-all duration-300"
                   >
                     Lihat Detail
@@ -184,15 +201,25 @@ import { doctors } from '../../data/doctors';
 
     </div>
 
-    <!-- Dots Indicator -->
-    <div class="flex justify-center gap-2 mt-20 px-4">
-      {doctors.map((_, index) => (
-        <button 
-          class="carousel-dot w-2 h-2 rounded-full transition-all duration-300 bg-gray-300 dark:bg-gray-600"
-          data-index={index}
-          aria-label={`Dokter ${index + 1}`}
-        ></button>
-      ))}
+    <!-- Pagination Dots with Numbers -->
+    <div class="flex items-center justify-center gap-3 mt-20 px-4">
+      <button id="dots-prev" class="p-1 hover:bg-gray-100 rounded transition-colors" aria-label="Previous page">
+        <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+
+      <div id="dots-container" class="flex justify-center gap-2">
+        <!-- Dots will be generated by JavaScript -->
+      </div>
+
+      <button id="dots-next" class="p-1 hover:bg-gray-100 rounded transition-colors" aria-label="Next page">
+        <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+
+      <span id="page-indicator" class="text-xs text-gray-600 ml-2 font-mono">1 / 1</span>
     </div>
 
     <!-- Bottom Info -->
@@ -275,8 +302,13 @@ import { doctors } from '../../data/doctors';
     }
   }
 
+  .carousel-dot {
+    transition: all 0.3s;
+  }
+
   .carousel-dot.active {
-    @components w-6 bg-gradient-to-r from-orange-500 to-green-500;
+    width: 1.5rem;
+    background: linear-gradient(to right, rgb(249 115 22), rgb(34 197 94));
   }
 
   .line-clamp-2 {
@@ -285,64 +317,191 @@ import { doctors } from '../../data/doctors';
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  .filter-btn.active {
+    background: linear-gradient(to right, rgb(249 115 22), rgb(34 197 94));
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  }
 </style>
 
 <script is:inline>
-  const totalCards = document.querySelectorAll('.doctor-carousel-card').length;
+  let allCards = Array.from(document.querySelectorAll('.doctor-carousel-card'));
+  let filteredCards = [...allCards];
   let currentIndex = 0;
+  let currentPage = 0;
+  const DOTS_PER_PAGE = 10;
 
-  const cards = Array.from(document.querySelectorAll('.doctor-carousel-card'));
-  const dots = Array.from(document.querySelectorAll('.carousel-dot'));
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const dotsContainer = document.getElementById('dots-container');
+  const pageIndicator = document.getElementById('page-indicator');
+  const dotsPrev = document.getElementById('dots-prev');
+  const dotsNext = document.getElementById('dots-next');
   const prevBtn = document.getElementById('prev-carousel');
   const nextBtn = document.getElementById('next-carousel');
+  const totalDoctorsEl = document.getElementById('total-doctors');
+
+  function filterCards(specialization) {
+    if (specialization === 'all') {
+      filteredCards = [...allCards];
+    } else {
+      filteredCards = allCards.filter(card => 
+        card.dataset.specialization === specialization
+      );
+    }
+    
+    currentIndex = 0;
+    currentPage = 0;
+    
+    // Update total count
+    if (totalDoctorsEl) {
+      totalDoctorsEl.textContent = filteredCards.length;
+    }
+    
+    updateCarousel();
+    renderDots();
+  }
+
+  function renderDots() {
+    const totalPages = Math.ceil(filteredCards.length / DOTS_PER_PAGE);
+    const startIdx = currentPage * DOTS_PER_PAGE;
+    const endIdx = Math.min(startIdx + DOTS_PER_PAGE, filteredCards.length);
+    
+    dotsContainer.innerHTML = '';
+    
+    for (let i = startIdx; i < endIdx; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot w-2 h-2 rounded-full transition-all duration-300 bg-gray-300 dark:bg-gray-600';
+      dot.dataset.index = i;
+      dot.setAttribute('aria-label', `Dokter ${i + 1}`);
+      
+      if (i === currentIndex) {
+        dot.classList.add('active');
+      }
+      
+      dot.addEventListener('click', () => {
+        currentIndex = i;
+        updateCarousel();
+        renderDots();
+      });
+      
+      dotsContainer.appendChild(dot);
+    }
+    
+    // Update page indicator
+    if (pageIndicator) {
+      pageIndicator.textContent = `${currentPage + 1} / ${totalPages}`;
+    }
+    
+    // Update navigation buttons
+    if (dotsPrev) {
+      dotsPrev.disabled = currentPage === 0;
+      dotsPrev.style.opacity = currentPage === 0 ? '0.3' : '1';
+    }
+    
+    if (dotsNext) {
+      dotsNext.disabled = currentPage >= totalPages - 1;
+      dotsNext.style.opacity = currentPage >= totalPages - 1 ? '0.3' : '1';
+    }
+  }
 
   function updateCarousel() {
-    cards.forEach((card, index) => {
-      let position = index - currentIndex;
+    // Hide all cards
+    allCards.forEach(card => {
+      card.style.display = 'none';
+      card.removeAttribute('data-position');
+    });
+    
+    // Show and position filtered cards
+    filteredCards.forEach((card, index) => {
+      card.style.display = 'block';
       
-      if (position > totalCards / 2) {
-        position -= totalCards;
-      } else if (position < -totalCards / 2) {
-        position += totalCards;
+      let position = index - currentIndex;
+      const totalFiltered = filteredCards.length;
+      
+      if (position > totalFiltered / 2) {
+        position -= totalFiltered;
+      } else if (position < -totalFiltered / 2) {
+        position += totalFiltered;
       }
 
       card.setAttribute('data-position', position);
     });
+  }
 
-    dots.forEach((dot, index) => {
-      if (index === currentIndex) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
+  function nextCard() {
+    if (filteredCards.length === 0) return;
+    currentIndex = (currentIndex + 1) % filteredCards.length;
+    
+    // Check if we need to change page
+    const newPage = Math.floor(currentIndex / DOTS_PER_PAGE);
+    if (newPage !== currentPage) {
+      currentPage = newPage;
+    }
+    
+    updateCarousel();
+    renderDots();
+  }
+
+  function prevCard() {
+    if (filteredCards.length === 0) return;
+    currentIndex = (currentIndex - 1 + filteredCards.length) % filteredCards.length;
+    
+    // Check if we need to change page
+    const newPage = Math.floor(currentIndex / DOTS_PER_PAGE);
+    if (newPage !== currentPage) {
+      currentPage = newPage;
+    }
+    
+    updateCarousel();
+    renderDots();
+  }
+
+  // Filter buttons
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filterCards(btn.dataset.filter);
+    });
+  });
+
+  // Carousel navigation
+  if (nextBtn) nextBtn.addEventListener('click', nextCard);
+  if (prevBtn) prevBtn.addEventListener('click', prevCard);
+
+  // Dots pagination
+  if (dotsPrev) {
+    dotsPrev.addEventListener('click', () => {
+      if (currentPage > 0) {
+        currentPage--;
+        currentIndex = currentPage * DOTS_PER_PAGE;
+        updateCarousel();
+        renderDots();
       }
     });
   }
 
-  function nextCard() {
-    currentIndex = (currentIndex + 1) % totalCards;
-    updateCarousel();
-  }
-
-  function prevCard() {
-    currentIndex = (currentIndex - 1 + totalCards) % totalCards;
-    updateCarousel();
-  }
-
-  if (nextBtn) nextBtn.addEventListener('click', nextCard);
-  if (prevBtn) prevBtn.addEventListener('click', prevCard);
-
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      currentIndex = index;
-      updateCarousel();
+  if (dotsNext) {
+    dotsNext.addEventListener('click', () => {
+      const totalPages = Math.ceil(filteredCards.length / DOTS_PER_PAGE);
+      if (currentPage < totalPages - 1) {
+        currentPage++;
+        currentIndex = currentPage * DOTS_PER_PAGE;
+        updateCarousel();
+        renderDots();
+      }
     });
-  });
+  }
 
+  // Keyboard navigation
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') prevCard();
     else if (e.key === 'ArrowRight') nextCard();
   });
 
+  // Touch swipe
   let touchStartX = 0;
   const carouselWrapper = document.getElementById('carousel-wrapper');
 
@@ -360,5 +519,7 @@ import { doctors } from '../../data/doctors';
     });
   }
 
+  // Initialize
   updateCarousel();
+  renderDots();
 </script>
