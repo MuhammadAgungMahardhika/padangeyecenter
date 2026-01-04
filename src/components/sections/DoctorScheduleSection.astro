@@ -5,8 +5,7 @@ import { doctors } from '../../data/doctors';
 // Get unique specializations
 const specializations = ['Semua', ...new Set(doctors.map(d => d.specialization))];
 ---
-
-<section class="py-12 md:py-20 overflow-hidden" id="doctor-schedule">
+<section class="py-10 overflow-hidden" id="doctor-schedule">
   <div class="w-full max-w-7xl mx-auto px-4">
     <!-- Section Header -->
     <div class="text-center mb-8">
@@ -50,7 +49,7 @@ const specializations = ['Semua', ...new Set(doctors.map(d => d.specialization))
         style="height: 480px; perspective: 1200px;">
         {doctors.map((doctor, index) => (
           <div 
-            class="doctor-carousel-card absolute"
+            class="doctor-carousel-card absolute "
             data-index={index}
             data-specialization={doctor.specialization}
             style="
@@ -62,7 +61,7 @@ const specializations = ['Semua', ...new Set(doctors.map(d => d.specialization))
               transform-style: preserve-3d;
             "
           >
-            <div class="relative group">
+            <div class="relative group ">
               <div class="relative bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-2xl border-2 border-gray-100 dark:border-gray-700">
             
                 <!-- Shine Effect -->
@@ -112,34 +111,58 @@ const specializations = ['Semua', ...new Set(doctors.map(d => d.specialization))
                   </div>
                 </div>
 
-                <!-- Card Content -->
-                <div class="p-3 bg-white dark:bg-gray-900">
-                  <!-- Education -->
-                  <div class="mb-3 space-y-1.5">
-                    <div class="flex items-center gap-1.5">
-                      <div class="p-1 bg-orange-100 dark:bg-orange-900/30 rounded">
-                        <svg class="w-3 h-3 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/>
-                        </svg>
+                {doctor.education?.length > 0 && (
+                  <div class="p-3 bg-white dark:bg-gray-900">
+                    {/* Education */}
+                    <div class="mb-3 space-y-1.5">
+                      <div class="flex items-center gap-1.5">
+                        <div class="p-1 bg-orange-100 dark:bg-orange-900/30 rounded">
+                          <svg
+                            class="w-3 h-3 text-orange-600 dark:text-orange-400"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M12 14l9-5-9-5-9 5 9 5z"
+                            />
+                          </svg>
+                        </div>
+                        <span class="text-xs font-semibold text-gray-700 dark:text-gray-300">
+                          Pendidikan
+                        </span>
                       </div>
-                      <span class="text-xs font-semibold text-gray-700 dark:text-gray-300">Pendidikan</span>
-                    </div>
-                    
-                    <div class="flex items-start gap-1.5 pl-5">
-                      <svg class="w-2.5 h-2.5 mt-1 text-green-600 dark:text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
-                      </svg>
-                      <span class="text-xs text-gray-700 dark:text-gray-300 leading-tight line-clamp-2">
-                        {doctor.education[0]}
-                      </span>
+
+                      <div class="flex items-start gap-1.5 pl-5">
+                        <svg
+                          class="w-2.5 h-2.5 mt-1 text-green-600 dark:text-green-400 flex-shrink-0"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="3"
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+
+                        <span class="text-xs text-gray-700 dark:text-gray-300 leading-tight line-clamp-2">
+                          {doctor.education[0]}
+                        </span>
+                      </div>
                     </div>
                   </div>
-
+                )}
                   <!-- Divider -->
                   <div class="border-t border-gray-100 dark:border-gray-800 my-2"></div>
 
                   <!-- Schedule -->
-                  <div class="space-y-1.5 mb-3">
+                  <div class="space-y-1.5 mb-3 px-4">
                     <div class="flex items-center gap-1.5">
                       <div class="p-1 bg-green-100 dark:bg-green-900/30 rounded">
                         <svg class="w-3 h-3 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -163,13 +186,11 @@ const specializations = ['Semua', ...new Set(doctors.map(d => d.specialization))
 
                   <!-- CTA Button -->
                   <a href={`/dokter/${doctor.id}`}
-                    class="block w-full text-center px-3 py-2 bg-gradient-to-r from-orange-500 to-green-500 hover:from-orange-600 hover:to-green-600 text-white text-xs font-bold rounded-lg shadow-lg transition-all duration-300"
-                  >
+                    class="block w-full text-center px-3 py-2 bg-gradient-to-r from-orange-500 to-green-500 hover:from-orange-600 hover:to-green-600 text-white text-xs font-bold rounded-lg shadow-lg transition-all duration-300">
                     Lihat Detail
                   </a>
-                </div>
-
               </div>
+
             </div>
           </div>
         ))}
@@ -202,7 +223,7 @@ const specializations = ['Semua', ...new Set(doctors.map(d => d.specialization))
     </div>
 
     <!-- Pagination Dots with Numbers -->
-    <div class="flex items-center justify-center gap-3 mt-20 px-4">
+    <div class="flex items-center justify-center gap-3  px-4">
       <button id="dots-prev" class="p-1 hover:bg-gray-100 rounded transition-colors" aria-label="Previous page">
         <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
@@ -327,199 +348,173 @@ const specializations = ['Semua', ...new Set(doctors.map(d => d.specialization))
 </style>
 
 <script is:inline>
-  let allCards = Array.from(document.querySelectorAll('.doctor-carousel-card'));
-  let filteredCards = [...allCards];
-  let currentIndex = 0;
-  let currentPage = 0;
-  const DOTS_PER_PAGE = 10;
+  function initDoctorSchedule() {
+    const allCards = Array.from(document.querySelectorAll('.doctor-carousel-card'));
+    if (allCards.length === 0) return;
 
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const dotsContainer = document.getElementById('dots-container');
-  const pageIndicator = document.getElementById('page-indicator');
-  const dotsPrev = document.getElementById('dots-prev');
-  const dotsNext = document.getElementById('dots-next');
-  const prevBtn = document.getElementById('prev-carousel');
-  const nextBtn = document.getElementById('next-carousel');
-  const totalDoctorsEl = document.getElementById('total-doctors');
+    let filteredCards = [...allCards];
+    let currentIndex = 0;
+    let currentPage = 0;
+    const DOTS_PER_PAGE = 10;
 
-  function filterCards(specialization) {
-    if (specialization === 'all') {
-      filteredCards = [...allCards];
-    } else {
-      filteredCards = allCards.filter(card => 
-        card.dataset.specialization === specialization
-      );
-    }
-    
-    currentIndex = 0;
-    currentPage = 0;
-    
-    // Update total count
-    if (totalDoctorsEl) {
-      totalDoctorsEl.textContent = filteredCards.length;
-    }
-    
-    updateCarousel();
-    renderDots();
-  }
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const dotsContainer = document.getElementById('dots-container');
+    const pageIndicator = document.getElementById('page-indicator');
+    const dotsPrev = document.getElementById('dots-prev');
+    const dotsNext = document.getElementById('dots-next');
+    const prevBtn = document.getElementById('prev-carousel');
+    const nextBtn = document.getElementById('next-carousel');
+    const totalDoctorsEl = document.getElementById('total-doctors');
+    const carouselWrapper = document.getElementById('carousel-wrapper');
 
-  function renderDots() {
-    const totalPages = Math.ceil(filteredCards.length / DOTS_PER_PAGE);
-    const startIdx = currentPage * DOTS_PER_PAGE;
-    const endIdx = Math.min(startIdx + DOTS_PER_PAGE, filteredCards.length);
-    
-    dotsContainer.innerHTML = '';
-    
-    for (let i = startIdx; i < endIdx; i++) {
-      const dot = document.createElement('button');
-      dot.className = 'carousel-dot w-2 h-2 rounded-full transition-all duration-300 bg-gray-300 dark:bg-gray-600';
-      dot.dataset.index = i;
-      dot.setAttribute('aria-label', `Dokter ${i + 1}`);
-      
-      if (i === currentIndex) {
-        dot.classList.add('active');
-      }
-      
-      dot.addEventListener('click', () => {
-        currentIndex = i;
-        updateCarousel();
-        renderDots();
-      });
-      
-      dotsContainer.appendChild(dot);
-    }
-    
-    // Update page indicator
-    if (pageIndicator) {
-      pageIndicator.textContent = `${currentPage + 1} / ${totalPages}`;
-    }
-    
-    // Update navigation buttons
-    if (dotsPrev) {
-      dotsPrev.disabled = currentPage === 0;
-      dotsPrev.style.opacity = currentPage === 0 ? '0.3' : '1';
-    }
-    
-    if (dotsNext) {
-      dotsNext.disabled = currentPage >= totalPages - 1;
-      dotsNext.style.opacity = currentPage >= totalPages - 1 ? '0.3' : '1';
-    }
-  }
+    function filterCards(specialization) {
+      filteredCards =
+        specialization === 'all'
+          ? [...allCards]
+          : allCards.filter(card => card.dataset.specialization === specialization);
 
-  function updateCarousel() {
-    // Hide all cards
-    allCards.forEach(card => {
-      card.style.display = 'none';
-      card.removeAttribute('data-position');
-    });
-    
-    // Show and position filtered cards
-    filteredCards.forEach((card, index) => {
-      card.style.display = 'block';
-      
-      let position = index - currentIndex;
-      const totalFiltered = filteredCards.length;
-      
-      if (position > totalFiltered / 2) {
-        position -= totalFiltered;
-      } else if (position < -totalFiltered / 2) {
-        position += totalFiltered;
+      currentIndex = 0;
+      currentPage = 0;
+
+      if (totalDoctorsEl) {
+        totalDoctorsEl.textContent = filteredCards.length;
       }
 
-      card.setAttribute('data-position', position);
-    });
-  }
-
-  function nextCard() {
-    if (filteredCards.length === 0) return;
-    currentIndex = (currentIndex + 1) % filteredCards.length;
-    
-    // Check if we need to change page
-    const newPage = Math.floor(currentIndex / DOTS_PER_PAGE);
-    if (newPage !== currentPage) {
-      currentPage = newPage;
+      updateCarousel();
+      renderDots();
     }
-    
-    updateCarousel();
-    renderDots();
-  }
 
-  function prevCard() {
-    if (filteredCards.length === 0) return;
-    currentIndex = (currentIndex - 1 + filteredCards.length) % filteredCards.length;
-    
-    // Check if we need to change page
-    const newPage = Math.floor(currentIndex / DOTS_PER_PAGE);
-    if (newPage !== currentPage) {
-      currentPage = newPage;
-    }
-    
-    updateCarousel();
-    renderDots();
-  }
+    function renderDots() {
+      if (!dotsContainer) return;
 
-  // Filter buttons
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      filterCards(btn.dataset.filter);
-    });
-  });
-
-  // Carousel navigation
-  if (nextBtn) nextBtn.addEventListener('click', nextCard);
-  if (prevBtn) prevBtn.addEventListener('click', prevCard);
-
-  // Dots pagination
-  if (dotsPrev) {
-    dotsPrev.addEventListener('click', () => {
-      if (currentPage > 0) {
-        currentPage--;
-        currentIndex = currentPage * DOTS_PER_PAGE;
-        updateCarousel();
-        renderDots();
-      }
-    });
-  }
-
-  if (dotsNext) {
-    dotsNext.addEventListener('click', () => {
       const totalPages = Math.ceil(filteredCards.length / DOTS_PER_PAGE);
-      if (currentPage < totalPages - 1) {
-        currentPage++;
-        currentIndex = currentPage * DOTS_PER_PAGE;
-        updateCarousel();
-        renderDots();
+      const startIdx = currentPage * DOTS_PER_PAGE;
+      const endIdx = Math.min(startIdx + DOTS_PER_PAGE, filteredCards.length);
+
+      dotsContainer.innerHTML = '';
+
+      for (let i = startIdx; i < endIdx; i++) {
+        const dot = document.createElement('button');
+        dot.className =
+          'carousel-dot w-2 h-2 rounded-full transition-all duration-300 bg-gray-300 dark:bg-gray-600';
+        dot.dataset.index = i;
+
+        if (i === currentIndex) {
+          dot.classList.add('active');
+        }
+
+        dot.addEventListener('click', () => {
+          currentIndex = i;
+          updateCarousel();
+          renderDots();
+        });
+
+        dotsContainer.appendChild(dot);
       }
+
+      if (pageIndicator) {
+        pageIndicator.textContent = `${currentPage + 1} / ${totalPages}`;
+      }
+
+      if (dotsPrev) dotsPrev.disabled = currentPage === 0;
+      if (dotsNext) dotsNext.disabled = currentPage >= totalPages - 1;
+    }
+
+    function updateCarousel() {
+      allCards.forEach(card => {
+        card.style.display = 'none';
+        card.removeAttribute('data-position');
+      });
+
+      filteredCards.forEach((card, index) => {
+        card.style.display = 'block';
+
+        let position = index - currentIndex;
+        const total = filteredCards.length;
+
+        if (position > total / 2) position -= total;
+        if (position < -total / 2) position += total;
+
+        card.setAttribute('data-position', position);
+      });
+    }
+
+    function nextCard() {
+      if (!filteredCards.length) return;
+      currentIndex = (currentIndex + 1) % filteredCards.length;
+      currentPage = Math.floor(currentIndex / DOTS_PER_PAGE);
+      updateCarousel();
+      renderDots();
+    }
+
+    function prevCard() {
+      if (!filteredCards.length) return;
+      currentIndex = (currentIndex - 1 + filteredCards.length) % filteredCards.length;
+      currentPage = Math.floor(currentIndex / DOTS_PER_PAGE);
+      updateCarousel();
+      renderDots();
+    }
+
+    /* =====================
+       EVENT LISTENERS
+    ====================== */
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        filterCards(btn.dataset.filter);
+      });
     });
+
+    if (nextBtn) nextBtn.onclick = nextCard;
+    if (prevBtn) prevBtn.onclick = prevCard;
+
+    if (dotsPrev) {
+      dotsPrev.onclick = () => {
+        if (currentPage > 0) {
+          currentPage--;
+          currentIndex = currentPage * DOTS_PER_PAGE;
+          updateCarousel();
+          renderDots();
+        }
+      };
+    }
+
+    if (dotsNext) {
+      dotsNext.onclick = () => {
+        const totalPages = Math.ceil(filteredCards.length / DOTS_PER_PAGE);
+        if (currentPage < totalPages - 1) {
+          currentPage++;
+          currentIndex = currentPage * DOTS_PER_PAGE;
+          updateCarousel();
+          renderDots();
+        }
+      };
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') prevCard();
+      if (e.key === 'ArrowRight') nextCard();
+    });
+
+    if (carouselWrapper) {
+      let startX = 0;
+
+      carouselWrapper.addEventListener('touchstart', e => {
+        startX = e.changedTouches[0].screenX;
+      });
+
+      carouselWrapper.addEventListener('touchend', e => {
+        const diff = startX - e.changedTouches[0].screenX;
+        if (Math.abs(diff) > 50) diff > 0 ? nextCard() : prevCard();
+      });
+    }
+
+    updateCarousel();
+    renderDots();
   }
 
-  // Keyboard navigation
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') prevCard();
-    else if (e.key === 'ArrowRight') nextCard();
-  });
-
-  // Touch swipe
-  let touchStartX = 0;
-  const carouselWrapper = document.getElementById('carousel-wrapper');
-
-  if (carouselWrapper) {
-    carouselWrapper.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    });
-
-    carouselWrapper.addEventListener('touchend', (e) => {
-      const touchEndX = e.changedTouches[0].screenX;
-      const diff = touchStartX - touchEndX;
-      if (Math.abs(diff) > 50) {
-        diff > 0 ? nextCard() : prevCard();
-      }
-    });
-  }
-
-  // Initialize
-  updateCarousel();
-  renderDots();
+  /* 🔥 INI KUNCI UTAMANYA */
+  document.addEventListener('astro:page-load', initDoctorSchedule);
 </script>

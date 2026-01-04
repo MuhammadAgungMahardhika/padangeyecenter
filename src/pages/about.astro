@@ -1,8 +1,9 @@
 ---
+import HistorySection from "../components/sections/HistorySection.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const title = "About";
-const description = "About your blog.";
+const title = "Tentang Kami - Padang Eye Center";
+const description = "Mengenal lebih dekat Padang Eye Center";
 const permalink = `${Astro.site.href}about`;
 ---
 
@@ -11,85 +12,46 @@ const permalink = `${Astro.site.href}about`;
   description={description}
   permalink={permalink}
   current="about">
-  <div class="container">
-    <h1>About</h1>
-    <figure class="about-image">
-      <img
-        src="/assets/about-illustration.webp"
-        alt="Illustration of a notebook"
-        width="330"
-      />
-      <figcaption>
-        Illustration by
-        <a
-          href="https://icons8.com/illustrations/author/5c07e68d82bcbc0092519bb6"
-          target="_blank"
-          rel="noopener">Icons 8</a
-        >
-        from
-        <a
-          href="https://icons8.com/illustrations"
-          target="_blank"
-          rel="noopener">Ouch!</a
-        >
-      </figcaption>
-    </figure>
-    <p>
-      Text placeholder via <a href="https://jeffsum.com/" target="_blank"
-        >Jeffsum</a
-      >.
-    </p>
-    <p>
-      So you two dig up, dig up dinosaurs? What do they got in there? King Kong?
-      My dad once told me, laugh and the world laughs with you, Cry, and I'll
-      give you something to cry about you little bastard! Life finds a way. God
-      creates dinosaurs. God destroys dinosaurs. God creates Man. Man destroys
-      God. Man creates Dinosaurs.
-    </p>
-    <p>
-      You really think you can fly that thing? You know what? It is beets. I've
-      crashed into a beet truck. Forget the fat lady! You're obsessed with the
-      fat lady! Drive us out of here! Is this my espresso machine? Wh-what
-      is-h-how did you get my espresso machine?
-    </p>
-    <p>
-      Hey, you know how I'm, like, always trying to save the planet? Here's my
-      chance. Hey, take a look at the earthlings. Goodbye! I was part of
-      something special. Just my luck, no ice. You're a very talented young man,
-      with your own clever thoughts and ideas. Do you need a manager?
-    </p>
-    <p>
-      Jaguar shark! So tell me - does it really exist? This thing comes fully
-      loaded. AM/FM radio, reclining bucket seats, and... power windows. Yes,
-      Yes, without the oops! You're a very talented young man, with your own
-      clever thoughts and ideas. Do you need a manager?
-    </p>
-    <p>
-      Yes, Yes, without the oops! Do you have any idea how long it takes those
-      cups to decompose. They're using our own satellites against us. And the
-      clock is ticking. Do you have any idea how long it takes those cups to
-      decompose. My dad once told me, laugh and the world laughs with you, Cry,
-      and I'll give you something to cry about you little bastard!
-    </p>
+  <div class="max-w-7xl mx-auto px-4 py-12 md:py-20">
+    <div class="grid lg:grid-cols-5 gap-8 lg:gap-12">
+      <!-- Left: About Content (Sticky) -->
+      <div class="lg:col-span-2">
+        <div class="lg:sticky lg:top-8">
+          <h1 class="text-4xl md:text-5xl font-bold mb-6">
+            <span
+              class="bg-gradient-to-r from-green-600 to-orange-600 bg-clip-text text-transparent">
+              Tentang Kami
+            </span>
+          </h1>
+
+          <div class="space-y-4">
+            <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+              Padang Eye Center adalah pusat pelayanan kesehatan mata terpercaya
+              di Sumatera Barat yang telah melayani masyarakat sejak tahun 2008.
+            </p>
+
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Kami berkomitmen memberikan pelayanan kesehatan mata berkualitas
+              tinggi dengan menggunakan teknologi modern dan didukung oleh tim
+              dokter spesialis mata yang berpengalaman dan profesional.
+            </p>
+
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Dengan fasilitas lengkap dan standar pelayanan internasional, kami
+              terus berinovasi untuk memberikan solusi terbaik bagi kesehatan
+              mata Anda dan keluarga.
+            </p>
+          </div>
+
+          <!-- Divider (visible on mobile only) -->
+          <hr class="lg:hidden hr-wave" />
+        </div>
+      </div>
+
+      <!-- Right: History Timeline -->
+      <div class="lg:col-span-3">
+        <HistorySection />
+      </div>
+    </div>
   </div>
 </BaseLayout>
-
-<style>
-  .about-image {
-    float: right;
-    margin: -3em -7em 2em 2em;
-    max-width: 300px;
-  }
-
-  .about-image img {
-    border-radius: 8px;
-    margin-bottom: 1.5em;
-  }
-
-  @media (max-width: 1020px) {
-    .about-image {
-      float: none;
-      margin: 0 auto 2em;
-    }
-  }
-</style>

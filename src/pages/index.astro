@@ -1,158 +1,107 @@
 ---
-import ServiceSection from '../components/sections/ServiceSection.astro';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceSection from "../components/sections/ServiceSection.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import CTASection from "../components/sections/CTASection.astro";
 import VisiMissionSection from "../components/sections/VisiMissionSection.astro";
-import MaintenanceSection from '../components/sections/MaintenanceSection.astro';
-import DoctorScheduleSection from '../components/sections/DoctorScheduleSection.astro';
-const title = 'Padang Eye Center - Pusat Kesehatan Mata Terpercaya';
-const description = 'Klinik mata terpercaya di Padang dengan layanan lengkap dan dokter spesialis mata berpengalaman.';
+import MaintenanceSection from "../components/sections/MaintenanceSection.astro";
+import DoctorScheduleSection from "../components/sections/DoctorScheduleSection.astro";
+import PromoSection from "../components/sections/PromoSection.astro";
+const title = "Padang Eye Center - Pusat Kesehatan Mata Terpercaya";
+const description =
+  "Klinik mata terpercaya di Padang dengan layanan lengkap dan dokter spesialis mata berpengalaman.";
 const permalink = Astro.site.href;
-const promos = [
-  {
-    id: 1,
-    badge: "Diskon 25%",
-    badgeColor: "orange",
-    title: "Pemeriksaan Lengkap",
-    description: "Dapatkan pemeriksaan mata komprehensif dengan harga spesial",
-    price: "Rp 150K",
-    oldPrice: "Rp 200K",
-    features: [
-      "Pemeriksaan Refraksi",
-      "Pemeriksaan Funduskopi",
-      "Konsultasi Gratis"
-    ],
-    link: "/promo/pemeriksaan",
-    buttonText: "Ambil Promo",
-    gradient: "from-orange-50 to-white",
-    border: "border-orange-100",
-    buttonGradient: "from-orange-500 to-orange-600"
-  },
-  {
-    id: 2,
-    badge: "Paket Hemat",
-    badgeColor: "green",
-    title: "Paket Keluarga",
-    description: "Pemeriksaan untuk sekeluarga dengan harga lebih ekonomis",
-    price: "Rp 500K",
-    note: "(4 orang)",
-    features: [
-      "Untuk 4 Anggota Keluarga",
-      "Pemeriksaan Lengkap",
-      "Hemat Hingga 30%"
-    ],
-    link: "/promo/keluarga",
-    buttonText: "Ambil Promo",
-    gradient: "from-green-50 to-white",
-    border: "border-green-100",
-    buttonGradient: "from-green-500 to-green-600"
-  },
-  {
-    id: 3,
-    badge: "Paket Hemat",
-    badgeColor: "green",
-    title: "Paket Keluarga",
-    description: "Pemeriksaan untuk sekeluarga dengan harga lebih ekonomis",
-    price: "Rp 500K",
-    note: "(4 orang)",
-    features: [
-      "Untuk 4 Anggota Keluarga",
-      "Pemeriksaan Lengkap",
-      "Hemat Hingga 30%"
-    ],
-    link: "/promo/keluarga",
-    buttonText: "Ambil Promo",
-    gradient: "from-green-50 to-white",
-    border: "border-green-100",
-    buttonGradient: "from-orange-500 to-orange-600"
-  },
-];
-const services = [
-  {
-    title: "Pemeriksaan Mata",
-    description:
-      "Screening komprehensif untuk deteksi dini gangguan penglihatan dengan teknologi modern",
-    link: "/layanan/pemeriksaan",
-    color: "orange",
-    icon: "eye",
-  },
-  {
-    title: "Operasi Katarak",
-    description:
-      "Prosedur modern dengan teknologi Phacoemulsification untuk hasil optimal",
-    link: "/layanan/katarak",
-    color: "green",
-    icon: "shield",
-  },
-  {
-    title: "LASIK",
-    description:
-      "Koreksi penglihatan tanpa kacamata menggunakan teknologi laser terkini",
-    link: "/layanan/lasik",
-    color: "gradient",
-    icon: "spark",
-  },
-];
 ---
+
 <BaseLayout title={title} description={description} permalink={permalink}>
   <!-- HERO SECTION with 3D Effect -->
   <div class="relative min-h-screen flex overflow-hidden">
     <!-- Animated Background -->
-    <div class="absolute inset-0 ">
+    <div class="absolute inset-0">
       <!-- Floating Shapes -->
-      <div class="absolute top-20 left-10 w-72 h-72 bg-orange-400/10 rounded-full blur-3xl animate-float"></div>
-      <div class="absolute bottom-20 right-10 w-96 h-96 bg-green-400/10 rounded-full blur-3xl animate-float-delayed"></div>
-      <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-orange-300/5 rounded-full blur-2xl animate-pulse"></div>
+      <div
+        class="absolute top-20 left-10 w-72 h-72 bg-orange-400/10 rounded-full blur-3xl animate-float">
+      </div>
+      <div
+        class="absolute bottom-20 right-10 w-96 h-96 bg-green-400/10 rounded-full blur-3xl animate-float-delayed">
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 w-64 h-64 bg-orange-300/5 rounded-full blur-2xl animate-pulse">
+      </div>
     </div>
 
     <!-- Content -->
     <div class="relative z-10 max-w-7xl mx-auto px-4 py-10">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
-        
         <!-- LEFT CONTENT -->
         <div class="space-y-8 animate-fade-in-up">
-          <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-500/10 to-green-500/10 rounded-full border border-orange-200/50 backdrop-blur-sm">
+          <div
+            class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-500/10 to-green-500/10 rounded-full border border-orange-200/50 backdrop-blur-sm">
             <span class="relative flex h-3 w-3">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
+              <span
+                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"
+              ></span>
+              <span
+                class="relative inline-flex rounded-full h-3 w-3 bg-orange-500"
+              ></span>
             </span>
-            <span class="text-sm font-medium bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent">
-              Terpercaya Sejak 2009
+            <span
+              class="text-sm font-medium bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent">
+              <a href="/about">Terpercaya Sejak 2008 </a>
             </span>
           </div>
 
           <div class="space-y-4">
             <h1 class="text-6xl lg:text-7xl font-bold leading-tight">
-              <span class="bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent">
+              <span
+                class="bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent">
                 Padang
               </span>
-              <br/>
-              <span class="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+              <br />
+              <span
+                class="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
                 Eye Center
               </span>
             </h1>
-            
+
             <p class="text-xl text-gray-600 leading-relaxed max-w-xl">
-              Pusat layanan kesehatan mata terlengkap dengan teknologi modern dan tim dokter spesialis berpengalaman di Sumatera Barat.
+              Pusat layanan kesehatan mata terlengkap dengan teknologi modern
+              dan tim dokter spesialis berpengalaman di Sumatera Barat.
             </p>
           </div>
 
           <div class="flex flex-wrap gap-4">
-           <!-- Button Primary -->
-          <a href="/layanan" class="btn-primary-pec">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-            </svg>
-            Layanan Kami
-          </a>
+            <!-- Button Primary -->
+            <a href="/layanan" class="btn-primary-pec">
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+              </svg>
+              Layanan Kami
+            </a>
 
-          <!-- Button Outline -->
-          <a href="/jadwal" class="btn-outline-pec">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-            </svg>
-            Buat Janji
-          </a>
+            <!-- Button Outline -->
+            <a href="/jadwal" class="btn-outline-pec">
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                ></path>
+              </svg>
+              Buat Janji
+            </a>
           </div>
         </div>
 
@@ -160,9 +109,12 @@ const services = [
         <div class="relative animate-fade-in">
           <div class="relative">
             <!-- 3D Card Effect -->
-            <div class="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-green-500/20 rounded-3xl blur-2xl transform rotate-6"></div>
-            
-            <div class="relative bg-white p-2 rounded-3xl shadow-2xl transform hover:scale-105 hover:rotate-2 transition-all duration-500">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-green-500/20 rounded-3xl blur-2xl transform rotate-6">
+            </div>
+
+            <div
+              class="relative bg-white p-2 rounded-3xl shadow-2xl transform hover:scale-105 hover:rotate-2 transition-all duration-500">
               <img
                 src="/assets/images/pec-khatib.jpeg"
                 alt="Padang Eye Center"
@@ -170,13 +122,23 @@ const services = [
                 width="600"
                 height="500"
               />
-              
+
               <!-- Floating Badge -->
-              <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl animate-float">
+              <div
+                class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl animate-float">
                 <div class="flex items-center gap-4">
-                  <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  <div
+                    class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
+                    <svg
+                      class="w-6 h-6 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"></path>
                     </svg>
                   </div>
                   <div>
@@ -187,7 +149,8 @@ const services = [
               </div>
 
               <!-- Floating Badge 2 -->
-              <div class="absolute -top-6 -right-6 bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-2xl shadow-xl animate-float-delayed">
+              <div
+                class="absolute -top-6 -right-6 bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-2xl shadow-xl animate-float-delayed">
                 <div class="text-center">
                   <div class="text-3xl font-bold text-white">98%</div>
                   <div class="text-sm text-white/90">Sukses Rate</div>
@@ -198,111 +161,37 @@ const services = [
         </div>
       </div>
 
-       <VisiMissionSection/>
-    </div>   
-  </div>
-
-  <MaintenanceSection/>
-  <DoctorScheduleSection/>
-   <!-- PROMO CARDS SECTION -->
-  <div class="py-20 px-4 ">
-    <div class="max-w-7xl mx-auto">
-      <!-- Section Header -->
-      <div class="text-center mb-12">
-        <div class="inline-block mb-4">
-          <span class="px-4 py-2 bg-gradient-to-r from-orange-100 to-green-100 rounded-full text-sm font-semibold text-gray-700">
-            Penawaran Spesial
-          </span>
-        </div>
-        <h2 class="text-4xl font-bold mb-3">
-          <span class="bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent">
-            Promo Bulan Ini
-          </span>
-        </h2>
-        <p class="text-gray-600 text-lg">
-          Dapatkan penawaran terbaik untuk kesehatan mata Anda
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {promos.map((promo) => (
-          <div
-            class={`group relative bg-gradient-to-br ${promo.gradient} rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border ${promo.border}`}
-          >
-            <!-- Badge -->
-            <div class="absolute top-4 right-4 z-10">
-              <div class={`bg-gradient-to-r ${promo.badgeColor === 'orange'
-                ? 'from-orange-500 to-orange-600'
-                : 'from-green-500 to-green-600'
-              } text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg`}>
-                {promo.badge}
-              </div>
-            </div>
-
-            <div class="p-8 pb-4">
-              <h3 class="text-2xl font-bold text-gray-800 mb-2">
-                {promo.title}
-              </h3>
-
-              <p class="text-gray-600 mb-4">
-                {promo.description}
-              </p>
-
-              <!-- Price -->
-              <div class="flex items-baseline gap-2 mb-4">
-                <span class="text-3xl font-bold text-orange-600">
-                  {promo.price}
-                </span>
-                {promo.oldPrice && (
-                  <span class="text-lg text-gray-400 line-through">
-                    {promo.oldPrice}
-                  </span>
-                )}
-                {promo.note && (
-                  <span class="text-sm text-gray-500">
-                    {promo.note}
-                  </span>
-                )}
-              </div>
-
-              <!-- Features -->
-              <ul class="space-y-2 mb-6">
-                {promo.features.map((feature) => (
-                  <li class="flex items-center gap-2 text-sm text-gray-600">
-                    <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href={promo.link}
-                class={`btn-secondary-pec`}
-              >
-                {promo.buttonText}
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
+      <VisiMissionSection />
     </div>
   </div>
+
+  <MaintenanceSection />
+  <DoctorScheduleSection />
+  <PromoSection />
   <!-- SERVICES SECTION -->
-  <ServiceSection/>
-  <CTASection/>
+  <ServiceSection />
+  <CTASection />
 </BaseLayout>
 
 <style>
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
   }
-  
+
   @keyframes float-delayed {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-30px); }
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-30px);
+    }
   }
 
   @keyframes fade-in-up {
@@ -317,8 +206,12 @@ const services = [
   }
 
   @keyframes fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   .animate-float {
