@@ -1,7 +1,150 @@
 ---
-import ThemeToggleButton from './ThemeToggleButton.svelte';
-const { current = '' } = Astro.props;
+import LanguageDropdown from "./buttons/LanguageDropdown.astro";
+import ThemeToggleButton from "./ThemeToggleButton.svelte";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const currentLocale = Astro.currentLocale || "id";
+const { current = "" } = Astro.props;
+
+// i18n labels
+const labels = {
+  id: {
+    home: "Beranda",
+    about: "Tentang",
+    blog: "Blog",
+    recruitment: "Rekrutmen",
+  },
+  en: {
+    home: "Home",
+    about: "About",
+    blog: "Blog",
+    recruitment: "Recruitment",
+  },
+};
+
+// Navigation items
+const navItems = [
+  { key: "", labelKey: "home", path: "/" },
+  { key: "about", labelKey: "about", path: "/about" },
+  { key: "blog", labelKey: "blog", path: "/blog" },
+  { key: "recruitment", labelKey: "recruitment", path: "/recruitment" },
+];
 ---
+
+<nav>
+  <!-- Mobile Hamburger Button (Kiri) -->
+  <button
+    id="mobile-menu-btn"
+    class="mobile-menu-btn"
+    aria-label="Toggle menu"
+    aria-expanded="false">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+
+  <!-- Desktop Navigation -->
+  <div class="desktop-nav">
+    {
+      navItems.map((item) => (
+        <a
+          class={current === item.key ? "selected" : ""}
+          href={getRelativeLocaleUrl(currentLocale, item.path)}>
+          {labels[currentLocale][item.labelKey]}
+        </a>
+      ))
+    }
+  </div>
+
+  <!-- Controls (Theme + Language) -->
+  <div class="controls-container">
+    <ThemeToggleButton client:load />
+    <LanguageDropdown currentLocale={currentLocale} />
+  </div>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="mobile-menu" hidden>
+  <div class="mobile-menu-content">
+    {
+      navItems.map((item) => (
+        <a
+          class={`mobile-menu-item ${current === item.key ? "selected" : ""}`}
+          href={getRelativeLocaleUrl(currentLocale, item.path)}>
+          {labels[currentLocale][item.labelKey]}
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<script is:inline>
+  function initMobileMenu() {
+    const menuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuItems = document.querySelectorAll(".mobile-menu-item");
+
+    if (!menuBtn || !mobileMenu) return;
+
+    let isOpen = false;
+
+    function toggleMenu() {
+      isOpen = !isOpen;
+
+      if (isOpen) {
+        mobileMenu.removeAttribute("hidden");
+        menuBtn.classList.add("active");
+        menuBtn.setAttribute("aria-expanded", "true");
+        document.body.style.overflow = "hidden";
+
+        // Trigger animation
+        setTimeout(function () {
+          mobileMenu.classList.add("open");
+        }, 10);
+      } else {
+        mobileMenu.classList.remove("open");
+        menuBtn.classList.remove("active");
+        menuBtn.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+
+        setTimeout(function () {
+          mobileMenu.setAttribute("hidden", "");
+        }, 300);
+      }
+    }
+
+    menuBtn.addEventListener("click", toggleMenu);
+
+    // Close when clicking menu item
+    menuItems.forEach(function (item) {
+      item.addEventListener("click", function () {
+        if (isOpen) toggleMenu();
+      });
+    });
+
+    // Close when clicking overlay
+    mobileMenu.addEventListener("click", function (e) {
+      if (e.target === mobileMenu) {
+        toggleMenu();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && isOpen) {
+        toggleMenu();
+      }
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMobileMenu);
+  } else {
+    initMobileMenu();
+  }
+
+  document.addEventListener("astro:after-swap", initMobileMenu);
+</script>
 
 <style>
   nav {
@@ -11,28 +154,36 @@ const { current = '' } = Astro.props;
     font-family: var(--font-family-sans);
     font-weight: 700;
     justify-content: flex-end;
-    text-transform: uppercase;
+    gap: 10px;
   }
 
-  a {
+  /* Desktop Navigation */
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .desktop-nav a {
     color: inherit;
     text-decoration: none;
     padding: 10px 5px;
     display: block;
     position: relative;
-    margin-left: 20px;
+    margin-left: 15px;
     min-width: 70px;
     text-align: center;
+    white-space: nowrap;
   }
 
-  a:not(.selected) {
+  .desktop-nav a:not(.selected) {
     opacity: 0.7;
   }
 
-  a::before {
-    content: '';
+  .desktop-nav a::before {
+    content: "";
     position: absolute;
-    transition: transform .3s ease;
+    transition: transform 0.3s ease;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -41,32 +192,152 @@ const { current = '' } = Astro.props;
     transform: scaleX(0);
   }
 
-  a:hover::before,
-  .selected::before {
+  .desktop-nav a:hover::before,
+  .desktop-nav .selected::before {
     transform: scaleX(1);
   }
 
-  .selected::before {
+  .desktop-nav .selected::before {
     background: var(--primary-color);
   }
 
-  .theme-toggle-container {
-    width: 75px;
+  /* Mobile Menu Button */
+  .mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    margin-right: auto; /* Push to left */
   }
 
-  @media screen and (max-width: 520px) {
-    .theme-toggle-container {
-      margin-right: 1em;
+  .hamburger-line {
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-main);
+    transition: all 0.3s ease;
+  }
+
+  .mobile-menu-btn.active .hamburger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .mobile-menu-btn.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-btn.active .hamburger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Mobile Menu Overlay */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .mobile-menu.open {
+    opacity: 1;
+  }
+
+  .mobile-menu-content {
+    position: absolute;
+    top: 0;
+    left: 0; /* Slide from left */
+    bottom: 0;
+    width: 280px;
+    max-width: 85vw;
+    background: var(--background-body);
+    padding: 80px 20px 20px;
+    transform: translateX(-100%); /* Start from left */
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .mobile-menu.open .mobile-menu-content {
+    transform: translateX(0);
+  }
+
+  .mobile-menu-item {
+    display: block;
+    padding: 15px 20px;
+    color: var(--text-main);
+    text-decoration: none;
+    font-family: var(--font-family-sans);
+    font-weight: 700;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    margin-bottom: 5px;
+  }
+
+  :root.theme-dark .mobile-menu-item {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .mobile-menu-item:hover {
+    background: var(--text-primary);
+    color: white;
+    transform: translateX(5px);
+  }
+
+  .mobile-menu-item.selected {
+    background: var(--text-secondary);
+    color: white;
+    border-left: 4px solid var(--text-primary);
+  }
+
+  /* Controls Container */
+  .controls-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto; /* Push to right */
+  }
+
+  /* Responsive Breakpoints */
+  @media screen and (max-width: 900px) {
+    .desktop-nav a {
+      margin-left: 10px;
+      min-width: 60px;
+      font-size: 0.9em;
     }
   }
 
-</style>
+  @media screen and (max-width: 768px) {
+    nav {
+      justify-content: space-between;
+    }
 
-<nav>
-  <a class={current === "" ? "selected" : ""} href='/'>home</a>
-  <a class={current === "about" ? "selected" : ""} href='/about'>about</a>
-  <a class={current === "blog" ? "selected" : ""} href='/blog'>blog</a>
-  <div class="theme-toggle-container">
-    <ThemeToggleButton client:load />
-  </div>
-</nav>
+    .desktop-nav {
+      display: none;
+    }
+
+    .mobile-menu-btn {
+      display: flex;
+    }
+
+    .controls-container {
+      margin-left: 0;
+    }
+  }
+
+  @media screen and (max-width: 520px) {
+    .controls-container {
+      margin-right: 0;
+    }
+  }
+</style>

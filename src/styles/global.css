@@ -3,6 +3,7 @@
 :root {
   --background-body: #fff;
   --text-main: #36393b;
+  --text-muted: #4b5563; /* ≈ gray-600 */
   --text-primary: #ea580c;
   --text-secondary: #16a34a;
   --primary-color: #548e9b;
@@ -14,6 +15,7 @@
 :root.theme-dark {
   --background-body: #202122;
   --text-main: #fff;
+  --text-muted: #d1d5db; /* ≈ gray-300 */
   --text-secondary: #ccc;
   --primary-color: #548e9b;
   --bg-gradient-via: #171717;

@@ -1,0 +1,57 @@
+---
+import HistorySection from "../../components/sections/HistorySection.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Tentang Kami - Padang Eye Center";
+const description = "Mengenal lebih dekat Padang Eye Center";
+const permalink = `${Astro.site.href}about`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  permalink={permalink}
+  current="about">
+  <div class="max-w-7xl mx-auto px-4 py-12 md:py-20">
+    <div class="grid lg:grid-cols-5 gap-8 lg:gap-12">
+      <!-- Left: About Content (Sticky) -->
+      <div class="lg:col-span-2">
+        <div class="lg:sticky lg:top-8">
+          <h1 class="text-4xl md:text-5xl font-bold mb-6">
+            <span
+              class="bg-gradient-to-r from-green-600 to-orange-600 bg-clip-text text-transparent">
+              Tentang Kami
+            </span>
+          </h1>
+
+          <div class="space-y-4">
+            <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+              Padang Eye Center adalah pusat pelayanan kesehatan mata terpercaya
+              di Sumatera Barat yang telah melayani masyarakat sejak tahun 2008.
+            </p>
+
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Kami berkomitmen memberikan pelayanan kesehatan mata berkualitas
+              tinggi dengan menggunakan teknologi modern dan didukung oleh tim
+              dokter spesialis mata yang berpengalaman dan profesional.
+            </p>
+
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Dengan fasilitas lengkap dan standar pelayanan internasional, kami
+              terus berinovasi untuk memberikan solusi terbaik bagi kesehatan
+              mata Anda dan keluarga.
+            </p>
+          </div>
+
+          <!-- Divider (visible on mobile only) -->
+          <hr class="lg:hidden hr-wave" />
+        </div>
+      </div>
+
+      <!-- Right: History Timeline -->
+      <div class="lg:col-span-3">
+        <HistorySection />
+      </div>
+    </div>
+  </div>
+</BaseLayout>

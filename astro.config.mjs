@@ -7,6 +7,14 @@ import rehypeExternalLinks from "rehype-external-links";
 import tailwindcss from "@tailwindcss/vite";
 // https://astro.build/config
 export default defineConfig({
+  i18n: {
+    locales: ["id", "en"],
+    defaultLocale: "id",
+    routing: {
+      prefixDefaultLocale: false,
+      redirectToDefaultLocale: true,
+    },
+  },
   site: "https://astro-blog-template.netlify.app",
   integrations: [mdx(), svelte()],
   vite: {
