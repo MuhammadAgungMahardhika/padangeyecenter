@@ -2,7 +2,6 @@
 import ServiceSection from "../components/sections/ServiceSection.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CTASection from "../components/sections/CTASection.astro";
-import VisiMissionSection from "../components/sections/VisiMissionSection.astro";
 import MaintenanceSection from "../components/sections/MaintenanceSection.astro";
 import DoctorScheduleSection from "../components/sections/DoctorScheduleSection.astro";
 import PromoSection from "../components/sections/PromoSection.astro";
@@ -23,61 +22,3 @@ const permalink = Astro.site.href;
   <ServiceSection />
   <CTASection />
 </BaseLayout>
-
-<style>
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
-  }
-
-  @keyframes float-delayed {
-    0%,
-    100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-30px);
-    }
-  }
-
-  @keyframes fade-in-up {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .animate-float-delayed {
-    animation: float-delayed 8s ease-in-out infinite;
-  }
-
-  .animate-fade-in-up {
-    animation: fade-in-up 0.8s ease-out;
-  }
-
-  .animate-fade-in {
-    animation: fade-in 1s ease-out;
-  }
-</style>
