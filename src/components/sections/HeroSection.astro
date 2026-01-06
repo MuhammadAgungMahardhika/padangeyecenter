@@ -1,5 +1,9 @@
 ---
 import VisiMissionSection from "./VisiMissionSection.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div class="relative min-h-screen flex overflow-hidden">
@@ -34,7 +38,7 @@ import VisiMissionSection from "./VisiMissionSection.astro";
           </span>
           <span
             class="text-sm font-medium bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent">
-            <a href="/about">Terpercaya Sejak 2008 </a>
+            <a href="/about">{t("hero.badge")}</a>
           </span>
         </div>
 
@@ -53,8 +57,7 @@ import VisiMissionSection from "./VisiMissionSection.astro";
 
           <p
             class="text-xl text-[color:var(--text-muted)] leading-relaxed max-w-xl">
-            Pusat layanan kesehatan mata terlengkap dengan teknologi modern dan
-            tim dokter spesialis berpengalaman di Sumatera Barat.
+            {t("hero.subtitle")}
           </p>
         </div>
 
@@ -72,7 +75,7 @@ import VisiMissionSection from "./VisiMissionSection.astro";
                 stroke-width="2"
                 d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
             </svg>
-            Layanan Kami
+            {t("hero.cta.services")}
           </a>
 
           <!-- Button Outline -->
@@ -89,7 +92,7 @@ import VisiMissionSection from "./VisiMissionSection.astro";
                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
               ></path>
             </svg>
-            Buat Janji
+            {t("hero.cta.appointment")}
           </a>
         </div>
       </div>
@@ -132,7 +135,9 @@ import VisiMissionSection from "./VisiMissionSection.astro";
                 </div>
                 <div>
                   <div class="text-2xl font-bold text-gray-800">10K+</div>
-                  <div class="text-sm text-gray-600">Pasien Puas</div>
+                  <div class="text-sm text-gray-600">
+                    {t("hero.stats.patients")}
+                  </div>
                 </div>
               </div>
             </div>
@@ -142,14 +147,15 @@ import VisiMissionSection from "./VisiMissionSection.astro";
               class="absolute -top-6 -right-6 bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-2xl shadow-xl animate-float-delayed">
               <div class="text-center">
                 <div class="text-3xl font-bold text-white">98%</div>
-                <div class="text-sm text-white/90">Sukses Rate</div>
+                <div class="text-sm text-white/90">
+                  {t("hero.stats.success")}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
     <VisiMissionSection />
   </div>
 </div>

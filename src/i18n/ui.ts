@@ -22,6 +22,8 @@ export const ui = {
     "hero.subtitle": "Pusat Kesehatan Mata Terpercaya",
     "hero.cta.services": "Layanan Kami",
     "hero.cta.appointment": "Buat Janji",
+    "hero.stats.patients": "Pasien Puas",
+    "hero.stats.success": "Sukses Rate",
 
     // Services Section
     "services.title": "Layanan Unggulan",
@@ -81,7 +83,8 @@ export const ui = {
     "hero.subtitle": "Trusted Eye Health Center",
     "hero.cta.services": "Our Services",
     "hero.cta.appointment": "Make Appointment",
-
+    "hero.stats.patients": "Happy Patients",
+    "hero.stats.success": "Success Rate",
     // Services Section
     "services.title": "Our Services",
     "services.subtitle": "Comprehensive eye care with the latest technology",
