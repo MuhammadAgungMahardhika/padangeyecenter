@@ -38,7 +38,7 @@ export const homepageContent = {
       title: "Siap Merawat Kesehatan Mata Anda?",
       description:
         "Hubungi kami untuk konsultasi dan jadwalkan pemeriksaan mata Anda",
-      phone: "(0751) 123-456",
+      phone: "(0751) 4681000",
       whatsapp: "WhatsApp",
     },
   },
@@ -79,7 +79,7 @@ export const homepageContent = {
       title: "Ready to Care for Your Eye Health?",
       description:
         "Contact us for consultation and schedule your eye examination",
-      phone: "(0751) 123-456",
+      phone: "(0751) 4681000",
       whatsapp: "WhatsApp",
     },
   },

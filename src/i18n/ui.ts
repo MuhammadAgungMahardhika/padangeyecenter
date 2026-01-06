@@ -51,6 +51,7 @@ export interface TranslationKeys {
   // CTA Section
   "cta.title": string;
   "cta.description": string;
+  "cta.phoneNumber": string;
   "cta.phone": string;
   "cta.whatsapp": string;
 
@@ -129,7 +130,8 @@ export const ui: UITranslations = {
     "cta.title": "Siap Merawat Kesehatan Mata Anda?",
     "cta.description":
       "Hubungi kami untuk konsultasi dan jadwalkan pemeriksaan mata Anda",
-    "cta.phone": "Telepon",
+    "cta.phoneNumber": "627514681000",
+    "cta.phone": "(0751) 4681000",
     "cta.whatsapp": "WhatsApp Kami",
 
     // Footer
@@ -195,7 +197,8 @@ export const ui: UITranslations = {
     "cta.title": "Ready to Care for Your Eye Health?",
     "cta.description":
       "Contact us for consultation and schedule your eye examination",
-    "cta.phone": "Phone",
+    "cta.phoneNumber": "627514681000",
+    "cta.phone": "(62751) 4681000",
     "cta.whatsapp": "WhatsApp Us",
 
     // Footer
