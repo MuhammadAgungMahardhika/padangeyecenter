@@ -1,3 +1,9 @@
+---
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
 <span
   class="text-rotate
     text-primary
@@ -7,7 +13,7 @@
     lg:text-3xl
     xl:text-4xl">
   <span class="justify-items-center">
-    <span>PROSES PENGEMBANGAN</span>
-    <span>STAY TUNE !</span>
+    <span>{lang === "id" ? "PROSES PENGEMBANGAN" : "In Develop"} </span>
+    <span>{lang === "id" ? "TUNGGU PERKEMBANGAN !" : "STAY TUNE !"}</span>
   </span>
 </span>

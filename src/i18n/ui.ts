@@ -1,5 +1,5 @@
 // src/i18n/ui.ts
-
+import { about } from "./about";
 export const languages = {
   en: "English",
   id: "Indonesia",
@@ -26,7 +26,17 @@ export interface TranslationKeys {
   "hero.stats.patients": string;
   "hero.stats.success": string;
 
-  // Services Section
+  // Promo Section
+  "promo.badge": string;
+  "promo.title": string;
+  "promo.subtitle": string;
+  "promo.badge.discount": string;
+  "promo.badge.package": string;
+  "promo.badge.limited": string;
+  "promo.cta": string;
+
+  // Services Section.
+  "services.badge": string;
   "services.title": string;
   "services.subtitle": string;
   "services.cta": string;
@@ -37,14 +47,6 @@ export interface TranslationKeys {
   "doctors.education": string;
   "doctors.schedule": string;
   "doctors.cta": string;
-
-  // Promo Section
-  "promo.title": string;
-  "promo.subtitle": string;
-  "promo.badge.discount": string;
-  "promo.badge.package": string;
-  "promo.badge.limited": string;
-  "promo.cta": string;
 
   // CTA Section
   "cta.title": string;
@@ -66,6 +68,13 @@ export interface TranslationKeys {
   "common.close": string;
   "common.open": string;
   "common.search": string;
+
+  // #2 About page
+  // about Section
+  "about.title": string;
+  "about.p1": string;
+  "about.p2": string;
+  "about.p3": string;
 }
 
 // UI translations type - each language must implement TranslationKeys
@@ -94,7 +103,8 @@ export const ui: UITranslations = {
     "hero.stats.success": "Sukses Rate",
 
     // Services Section
-    "services.title": "Layanan Unggulan",
+    "services.badge": "Layanan Kami",
+    "services.title": "Dapatkan layanan terbaik untuk mata anda",
     "services.subtitle": "Perawatan mata komprehensif dengan teknologi terkini",
     "services.cta": "Pelajari lebih lanjut",
 
@@ -107,6 +117,7 @@ export const ui: UITranslations = {
     "doctors.cta": "Lihat Detail",
 
     // Promo Section
+    "promo.badge": "Penawaran Spesial",
     "promo.title": "Promo Bulan Ini",
     "promo.subtitle": "Dapatkan penawaran terbaik untuk kesehatan mata Anda",
     "promo.badge.discount": "Diskon",
@@ -135,6 +146,10 @@ export const ui: UITranslations = {
     "common.close": "Tutup",
     "common.open": "Buka",
     "common.search": "Cari",
+
+    // #2 About page
+    // about Section
+    ...about.id,
   },
   en: {
     // Navigation
@@ -155,8 +170,17 @@ export const ui: UITranslations = {
     "hero.stats.patients": "Happy Patients",
     "hero.stats.success": "Success Rate",
 
+    // Promo Section
+    "promo.badge": "Special offer",
+    "promo.title": "This Month Promo",
+    "promo.subtitle": "Get the best deals for your eye health",
+    "promo.badge.discount": "Discount",
+    "promo.badge.package": "Package Deal",
+    "promo.badge.limited": "Limited",
+    "promo.cta": "Get Promo",
     // Services Section
-    "services.title": "Our Services",
+    "services.badge": "Our Services",
+    "services.title": "Get the best services for your eye health",
     "services.subtitle": "Comprehensive eye care with the latest technology",
     "services.cta": "Learn more",
 
@@ -166,14 +190,6 @@ export const ui: UITranslations = {
     "doctors.education": "Education",
     "doctors.schedule": "Practice Schedule",
     "doctors.cta": "View Detail",
-
-    // Promo Section
-    "promo.title": "This Month Promo",
-    "promo.subtitle": "Get the best deals for your eye health",
-    "promo.badge.discount": "Discount",
-    "promo.badge.package": "Package Deal",
-    "promo.badge.limited": "Limited",
-    "promo.cta": "Get Promo",
 
     // CTA Section
     "cta.title": "Ready to Care for Your Eye Health?",
@@ -196,6 +212,10 @@ export const ui: UITranslations = {
     "common.close": "Close",
     "common.open": "Open",
     "common.search": "Search",
+
+    // #2 About page
+    // about Section
+    ...about.en,
   },
 } as const;
 

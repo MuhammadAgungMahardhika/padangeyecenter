@@ -1,0 +1,31 @@
+---
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div class="lg:sticky lg:top-8">
+  <h1 class="text-4xl md:text-5xl font-bold mb-6">
+    <span
+      class="bg-gradient-to-r from-green-600 to-orange-600 bg-clip-text text-transparent">
+      {t("about.title")}
+    </span>
+  </h1>
+
+  <div class="space-y-4">
+    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+      {t("about.p1")}
+    </p>
+
+    <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+      {t("about.p2")}
+    </p>
+
+    <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+      {t("about.p3")}
+    </p>
+  </div>
+
+  <!-- Divider (visible on mobile only) -->
+  <hr class="lg:hidden hr-wave" />
+</div>
