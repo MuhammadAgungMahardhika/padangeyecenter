@@ -1,5 +1,8 @@
 ---
 import { promos } from '../../data/promos';
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 <!-- PROMO CARDS SECTION -->
 <section class="py-10 px-4 ">
@@ -13,11 +16,11 @@ import { promos } from '../../data/promos';
         </div>
         <h2 class="text-4xl font-bold mb-3">
           <span class="bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent">
-            Promo Bulan Ini
+            {t("promo.title")}
           </span>
         </h2>
         <p class="text-gray-600 text-lg">
-          Dapatkan penawaran terbaik untuk kesehatan mata Anda
+         {t("promo.subtitle")}
         </p>
       </div>
 

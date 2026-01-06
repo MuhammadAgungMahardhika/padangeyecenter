@@ -1,6 +1,7 @@
 ---
 import VisiMissionSection from "./VisiMissionSection.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import LocationBade from "../buttons/LocationBade.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -55,10 +56,12 @@ const t = useTranslations(lang);
             </span>
           </h1>
 
-          <p
-            class="text-xl text-[color:var(--text-muted)] leading-relaxed max-w-xl">
-            {t("hero.subtitle")}
-          </p>
+          <div class="space-y-3 max-w-xl">
+            <p class="text-xl text-[color:var(--text-muted)] leading-relaxed">
+              {t("hero.subtitle")}
+            </p>
+            <LocationBade />
+          </div>
         </div>
 
         <div class="flex flex-wrap gap-4">

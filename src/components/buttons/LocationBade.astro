@@ -1,0 +1,52 @@
+---
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+---
+
+<!-- Location Badge with Link -->
+<a
+  href="https://maps.app.goo.gl/ieygYe6v6hrvehz78"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="group inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-orange-50 to-green-50 hover:from-orange-100 hover:to-green-100 border border-orange-200/50 rounded-full transition-all duration-300 hover:shadow-md">
+  <!-- Location Icon -->
+  <span class="relative">
+    <svg
+      class="absolute animate-ping w-4 h-4 text-orange-600 group-hover:scale-110 transition-transform"
+      fill="currentColor"
+      viewBox="0 0 24 24">
+      <path
+        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+      ></path>
+    </svg>
+    <svg
+      class="w-4 h-4 text-orange-600 group-hover:scale-110 transition-transform"
+      fill="currentColor"
+      viewBox="0 0 24 24">
+      <path
+        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+      ></path>
+    </svg>
+  </span>
+
+  <!-- Text -->
+  <span
+    class="text-sm font-medium bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent">
+    {lang === "id" ? "Padang, Sumatera Barat" : "Padang, West Sumatra"}
+  </span>
+
+  <!-- External Link Icon -->
+  <svg
+    class="w-3.5 h-3.5 text-orange-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24">
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+    ></path>
+  </svg>
+</a>

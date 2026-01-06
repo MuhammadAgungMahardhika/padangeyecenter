@@ -2,7 +2,9 @@
 import { ClientRouter } from "astro:transitions";
 import "../styles/fonts.css";
 import "../styles/global.css";
-
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 export interface Props {
   title: string;
   description: string;

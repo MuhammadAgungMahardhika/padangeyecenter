@@ -1,8 +1,10 @@
 ---
 // VisionMissionSection.astro
-import { visionMissionData } from "../../data/visionMission";
+import { getVisionMissionData } from "../../data/visionMission";
+import { getLangFromUrl } from "../../i18n/utils";
 
-const { vision, mission } = visionMissionData;
+const lang = getLangFromUrl(Astro.url);
+const { vision, mission } = getVisionMissionData(lang);
 ---
 
 <!-- Spacer (tinggi otomatis via JS) -->

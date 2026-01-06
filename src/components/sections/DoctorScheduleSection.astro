@@ -1,7 +1,9 @@
 ---
 // src/components/sections/DoctorScheduleSection.astro
 import { doctors } from '../../data/doctors';
-
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 // Get unique specializations
 const specializations = ['Semua', ...new Set(doctors.map(d => d.specialization))];
 ---
@@ -16,11 +18,11 @@ const specializations = ['Semua', ...new Set(doctors.map(d => d.specialization))
       </div>
       <h2 class="text-4xl font-bold mb-3">
         <span class="bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent">
-          Jadwal Dokter Spesialis
+          {t("doctors.title")}
         </span>
       </h2>
       <p class="text-gray-600 text-lg">
-        <span id="total-doctors">{doctors.length}</span> dokter spesialis berpengalaman
+        <span id="total-doctors">{doctors.length}</span> {t("doctors.subtitle")} 
       </p>
     </div>
 

@@ -3,11 +3,77 @@
 export const languages = {
   en: "English",
   id: "Indonesia",
-};
+} as const;
 
 export const defaultLang = "id";
 
-export const ui = {
+// Define the translation keys interface
+export interface TranslationKeys {
+  // Navigation
+  "nav.home": string;
+  "nav.about": string;
+  "nav.services": string;
+  "nav.doctors": string;
+  "nav.contact": string;
+  "nav.blog": string;
+  "nav.recruitment": string;
+
+  // Hero Section
+  "hero.badge": string;
+  "hero.subtitle": string;
+  "hero.cta.services": string;
+  "hero.cta.appointment": string;
+  "hero.stats.patients": string;
+  "hero.stats.success": string;
+
+  // Services Section
+  "services.title": string;
+  "services.subtitle": string;
+  "services.cta": string;
+
+  // Doctors Section
+  "doctors.title": string;
+  "doctors.subtitle": string;
+  "doctors.education": string;
+  "doctors.schedule": string;
+  "doctors.cta": string;
+
+  // Promo Section
+  "promo.title": string;
+  "promo.subtitle": string;
+  "promo.badge.discount": string;
+  "promo.badge.package": string;
+  "promo.badge.limited": string;
+  "promo.cta": string;
+
+  // CTA Section
+  "cta.title": string;
+  "cta.description": string;
+  "cta.phone": string;
+  "cta.whatsapp": string;
+
+  // Footer
+  "footer.copyright": string;
+  "footer.contact": string;
+  "footer.address": string;
+  "footer.phone": string;
+  "footer.email": string;
+
+  // Common
+  "common.read-more": string;
+  "common.back": string;
+  "common.loading": string;
+  "common.close": string;
+  "common.open": string;
+  "common.search": string;
+}
+
+// UI translations type - each language must implement TranslationKeys
+export type UITranslations = {
+  [K in keyof typeof languages]: TranslationKeys;
+};
+
+export const ui: UITranslations = {
   id: {
     // Navigation
     "nav.home": "Beranda",
@@ -17,9 +83,11 @@ export const ui = {
     "nav.contact": "Kontak",
     "nav.blog": "Blog",
     "nav.recruitment": "Rekrutmen",
+
     // Hero Section
     "hero.badge": "Terpercaya Sejak 2009",
-    "hero.subtitle": "Pusat Kesehatan Mata Terpercaya",
+    "hero.subtitle":
+      "Pusat layanan kesehatan mata terlengkap dengan teknologi modern dan tim dokter spesialis berpengalaman di Sumatera Barat, Indonesia.",
     "hero.cta.services": "Layanan Kami",
     "hero.cta.appointment": "Buat Janji",
     "hero.stats.patients": "Pasien Puas",
@@ -51,7 +119,7 @@ export const ui = {
     "cta.description":
       "Hubungi kami untuk konsultasi dan jadwalkan pemeriksaan mata Anda",
     "cta.phone": "Telepon",
-    "cta.whatsapp": "WhatsApp",
+    "cta.whatsapp": "WhatsApp Kami",
 
     // Footer
     "footer.copyright": "© 2024 Padang Eye Center. Hak cipta dilindungi.",
@@ -80,11 +148,13 @@ export const ui = {
 
     // Hero Section
     "hero.badge": "Trusted Since 2009",
-    "hero.subtitle": "Trusted Eye Health Center",
+    "hero.subtitle":
+      "The most complete eye health service center with modern technology and a team of experienced specialist doctors in West Sumatra, Indonesia.",
     "hero.cta.services": "Our Services",
     "hero.cta.appointment": "Make Appointment",
     "hero.stats.patients": "Happy Patients",
     "hero.stats.success": "Success Rate",
+
     // Services Section
     "services.title": "Our Services",
     "services.subtitle": "Comprehensive eye care with the latest technology",
@@ -110,7 +180,7 @@ export const ui = {
     "cta.description":
       "Contact us for consultation and schedule your eye examination",
     "cta.phone": "Phone",
-    "cta.whatsapp": "WhatsApp",
+    "cta.whatsapp": "WhatsApp Us",
 
     // Footer
     "footer.copyright": "© 2024 Padang Eye Center. All rights reserved.",
@@ -128,3 +198,6 @@ export const ui = {
     "common.search": "Search",
   },
 } as const;
+
+// Type helper for translation keys
+export type TranslationKey = keyof TranslationKeys;
