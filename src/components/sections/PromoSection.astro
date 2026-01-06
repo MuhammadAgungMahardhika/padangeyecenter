@@ -21,17 +21,37 @@ import { promos } from '../../data/promos';
         </p>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {promos.map((promo) => (
+     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        (promos && promos.length > 0
+          ? promos
+          : Array.from({ length: 3 }, () => ({
+              badge: "COMING SOON",
+              badgeColor: "orange",
+              title: "Segera Hadir",
+              description: "Promo spesial sedang kami siapkan untuk Anda",
+              price: "-",
+              oldPrice: null,
+              note: null,
+              features: ["Informasi akan segera diumumkan"],
+              link: "#",
+              buttonText: "Segera Hadir",
+              gradient: "from-orange-50 to-green-50",
+              border: "border-orange-100",
+            }))
+        ).map((promo) => (
           <div
-            class={`group relative  bg-gradient-to-br ${promo.gradient} rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border ${promo.border}`}
+            class={`group relative bg-gradient-to-br ${promo.gradient} rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border ${promo.border}`}
           >
             <!-- Badge -->
             <div class="absolute top-4 right-4 z-10">
-              <div class={`bg-gradient-to-r ${promo.badgeColor === 'orange'
-                ? 'from-orange-500 to-orange-600'
-                : 'from-green-500 to-green-600'
-              } text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg`}>
+              <div
+                class={`bg-gradient-to-r ${
+                  promo.badgeColor === "orange"
+                    ? "from-orange-500 to-orange-600"
+                    : "from-green-500 to-green-600"
+                } text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg`}
+              >
                 {promo.badge}
               </div>
             </div>
@@ -66,23 +86,32 @@ import { promos } from '../../data/promos';
               <ul class="space-y-2 mb-6">
                 {promo.features.map((feature) => (
                   <li class="flex items-center gap-2 text-sm text-gray-600">
-                    <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    <svg
+                      class="w-4 h-4 text-green-500"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
                     </svg>
                     {feature}
                   </li>
                 ))}
               </ul>
 
-              <a
-                href={promo.link}
-                class={`btn-secondary-pec`}
-              >
+              <a href={promo.link} class="btn-secondary-pec">
                 {promo.buttonText}
               </a>
             </div>
           </div>
-        ))}
-      </div>
+        ))
+      }
+    </div>
+
     </div>
 </section>

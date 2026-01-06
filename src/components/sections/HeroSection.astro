@@ -1,0 +1,155 @@
+---
+import VisiMissionSection from "./VisiMissionSection.astro";
+---
+
+<div class="relative min-h-screen flex overflow-hidden">
+  <!-- Animated Background -->
+  <div class="absolute inset-0">
+    <!-- Floating Shapes -->
+    <div
+      class="absolute top-20 left-10 w-72 h-72 bg-orange-400/10 rounded-full blur-3xl animate-float">
+    </div>
+    <div
+      class="absolute bottom-20 right-10 w-96 h-96 bg-green-400/10 rounded-full blur-3xl animate-float-delayed">
+    </div>
+    <div
+      class="absolute top-1/2 left-1/2 w-64 h-64 bg-orange-300/5 rounded-full blur-2xl animate-pulse">
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 py-10">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- LEFT CONTENT -->
+      <div class="space-y-8 animate-fade-in-up">
+        <div
+          class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-500/10 to-green-500/10 rounded-full border border-orange-200/50 backdrop-blur-sm">
+          <span class="relative flex h-3 w-3">
+            <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"
+            ></span>
+            <span
+              class="relative inline-flex rounded-full h-3 w-3 bg-orange-500"
+            ></span>
+          </span>
+          <span
+            class="text-sm font-medium bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent">
+            <a href="/about">Terpercaya Sejak 2008 </a>
+          </span>
+        </div>
+
+        <div class="space-y-4">
+          <h1 class="text-6xl lg:text-7xl font-bold leading-tight">
+            <span
+              class="bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent">
+              Padang
+            </span>
+            <br />
+            <span
+              class="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+              Eye Center
+            </span>
+          </h1>
+
+          <p
+            class="text-xl text-[color:var(--text-muted)] leading-relaxed max-w-xl">
+            Pusat layanan kesehatan mata terlengkap dengan teknologi modern dan
+            tim dokter spesialis berpengalaman di Sumatera Barat.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-4">
+          <!-- Button Primary -->
+          <a href="/layanan" class="btn-primary-pec">
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            </svg>
+            Layanan Kami
+          </a>
+
+          <!-- Button Outline -->
+          <a href="/jadwal" class="btn-outline-pec">
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              ></path>
+            </svg>
+            Buat Janji
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT IMAGE with 3D Effect -->
+      <div class="relative animate-fade-in">
+        <div class="relative">
+          <!-- 3D Card Effect -->
+          <div
+            class="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-green-500/20 rounded-3xl blur-2xl transform rotate-6">
+          </div>
+
+          <div
+            class="relative bg-white p-2 rounded-3xl shadow-2xl transform hover:scale-105 hover:rotate-2 transition-all duration-500">
+            <img
+              src="/assets/images/pec-khatib.jpeg"
+              alt="Padang Eye Center"
+              class="rounded-2xl w-full h-auto"
+              width="600"
+              height="500"
+            />
+
+            <!-- Floating Badge -->
+            <div
+              class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl animate-float">
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
+                  <svg
+                    class="w-6 h-6 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div class="text-2xl font-bold text-gray-800">10K+</div>
+                  <div class="text-sm text-gray-600">Pasien Puas</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Badge 2 -->
+            <div
+              class="absolute -top-6 -right-6 bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-2xl shadow-xl animate-float-delayed">
+              <div class="text-center">
+                <div class="text-3xl font-bold text-white">98%</div>
+                <div class="text-sm text-white/90">Sukses Rate</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <VisiMissionSection />
+  </div>
+</div>
