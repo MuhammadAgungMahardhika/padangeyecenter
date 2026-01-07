@@ -1,34 +1,15 @@
 ---
+// src/components/Nav.astro
 import LanguageDropdown from "./buttons/LanguageDropdown.astro";
 import ThemeToggleButton from "./ThemeToggleButton.svelte";
 import { getRelativeLocaleUrl } from "astro:i18n";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { navigationItems } from "../config/navigation";
 
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const currentLocale = Astro.currentLocale || "id";
 const { current = "" } = Astro.props;
-
-// i18n labels
-const labels = {
-  id: {
-    home: "Beranda",
-    about: "Tentang",
-    blog: "Blog",
-    recruitment: "Rekrutmen",
-  },
-  en: {
-    home: "Home",
-    about: "About",
-    blog: "Blog",
-    recruitment: "Recruitment",
-  },
-};
-
-// Navigation items
-const navItems = [
-  { key: "", labelKey: "home", path: "/" },
-  { key: "about", labelKey: "about", path: "/about" },
-  { key: "blog", labelKey: "blog", path: "/blog" },
-  { key: "recruitment", labelKey: "recruitment", path: "/recruitment" },
-];
 ---
 
 <nav>
@@ -46,11 +27,11 @@ const navItems = [
   <!-- Desktop Navigation -->
   <div class="desktop-nav">
     {
-      navItems.map((item) => (
+      navigationItems.map((item) => (
         <a
           class={current === item.key ? "selected" : ""}
           href={getRelativeLocaleUrl(currentLocale, item.path)}>
-          {labels[currentLocale][item.labelKey]}
+          {t(item.labelKey)}
         </a>
       ))
     }
@@ -67,11 +48,11 @@ const navItems = [
 <div id="mobile-menu" class="mobile-menu" hidden>
   <div class="mobile-menu-content">
     {
-      navItems.map((item) => (
+      navigationItems.map((item) => (
         <a
           class={`mobile-menu-item ${current === item.key ? "selected" : ""}`}
           href={getRelativeLocaleUrl(currentLocale, item.path)}>
-          {labels[currentLocale][item.labelKey]}
+          {t(item.labelKey)}
         </a>
       ))
     }
