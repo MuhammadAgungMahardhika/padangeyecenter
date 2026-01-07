@@ -17,4 +17,13 @@ export const about = {
     "about.p3":
       "With complete facilities and international-standard services, we continue to innovate to provide the best solutions for the eye health of you and your family.",
   },
+  ar: {
+    "about.title": "من نحن",
+    "about.p1":
+      "مركز بادانغ لطب العيون هو مركز موثوق للرعاية الصحية للعيون في سومطرة الغربية، وقد خدم المجتمع منذ عام 2008.",
+    "about.p2":
+      "نلتزم بتقديم خدمات رعاية صحية عالية الجودة للعيون باستخدام أحدث التقنيات، وبدعم من فريق من أطباء العيون المتخصصين ذوي الخبرة والكفاءة.",
+    "about.p3":
+      "من خلال مرافق متكاملة ومعايير خدمة دولية، نواصل الابتكار لتقديم أفضل الحلول لصحة عيونكم وصحة عائلاتكم.",
+  },
 } as const;

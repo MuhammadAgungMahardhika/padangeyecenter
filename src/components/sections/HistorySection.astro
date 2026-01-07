@@ -1,11 +1,16 @@
 ---
-import { padangEyeCenterTimeline } from "../../data/history";
+// src/components/sections/HistorySection.astro
+import { getHistoryTimeline } from "../../data/history";
+import { getLangFromUrl } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const timeline = getHistoryTimeline(lang);
 ---
 
 <ul
   class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
   {
-    padangEyeCenterTimeline.map((item, index) => (
+    timeline.map((item, index) => (
       <li>
         {index !== 0 && <hr />}
 
@@ -34,7 +39,7 @@ import { padangEyeCenterTimeline } from "../../data/history";
           <p>{item.description}</p>
         </div>
 
-        {index !== padangEyeCenterTimeline.length - 1 && <hr />}
+        {index !== timeline.length - 1 && <hr />}
       </li>
     ))
   }

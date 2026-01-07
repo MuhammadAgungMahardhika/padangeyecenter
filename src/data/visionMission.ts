@@ -1,5 +1,8 @@
-// src/data/visionMission.ts
+import type { Language } from "../i18n/ui";
 
+/**
+ * Single language data shape
+ */
 export interface VisionMissionData {
   vision: {
     title: string;
@@ -13,9 +16,12 @@ export interface VisionMissionData {
   };
 }
 
-// Type untuk multilingual data
+/**
+ * Multilingual data
+ * → otomatis mengikuti languages di ui.ts
+ */
 export type MultilingualVisionMission = {
-  [key in "id" | "en"]: VisionMissionData;
+  [key in Language]: VisionMissionData;
 };
 
 export const visionMissionData: MultilingualVisionMission = {
@@ -37,6 +43,7 @@ export const visionMissionData: MultilingualVisionMission = {
       icon: "check-circle",
     },
   },
+
   en: {
     vision: {
       title: "Vision",
@@ -55,9 +62,30 @@ export const visionMissionData: MultilingualVisionMission = {
       icon: "check-circle",
     },
   },
+
+  ar: {
+    vision: {
+      title: "الرؤية",
+      description:
+        "أن نصبح مستشفى موثوقًا ورائدًا في مجال خدمات صحة العيون مع تطبيق قيم رضا المرضى",
+      icon: "eye",
+    },
+    mission: {
+      title: "الرسالة",
+      items: [
+        "تقديم خدمات متكاملة في تخصصات العيون الدقيقة",
+        "توفير كوادر طبية مهنية وكفؤة",
+        "تعزيز روح التعاون لتحقيق أهداف المؤسسة",
+        "إقامة شراكات مع مؤسسات ذات صلة محليًا ودوليًا",
+      ],
+      icon: "check-circle",
+    },
+  },
 };
 
-// Helper function untuk get data by language
-export function getVisionMissionData(lang: "id" | "en"): VisionMissionData {
+/**
+ * Helper function
+ */
+export function getVisionMissionData(lang: Language): VisionMissionData {
   return visionMissionData[lang];
 }

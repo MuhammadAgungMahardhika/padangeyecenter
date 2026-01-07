@@ -3,8 +3,9 @@ import { about } from "./about";
 export const languages = {
   en: "English",
   id: "Indonesia",
+  ar: "العربية",
 } as const;
-
+export type Language = keyof typeof languages;
 export const defaultLang = "id";
 
 // Define the translation keys interface
@@ -71,7 +72,6 @@ export interface TranslationKeys {
   "common.search": string;
 
   // #2 About page
-  // about Section
   "about.title": string;
   "about.p1": string;
   "about.p2": string;
@@ -150,7 +150,6 @@ export const ui: UITranslations = {
     "common.search": "Cari",
 
     // #2 About page
-    // about Section
     ...about.id,
   },
   en: {
@@ -217,8 +216,73 @@ export const ui: UITranslations = {
     "common.search": "Search",
 
     // #2 About page
-    // about Section
     ...about.en,
+  },
+  ar: {
+    // Navigation
+    "nav.home": "الرئيسية",
+    "nav.about": "من نحن",
+    "nav.services": "الخدمات",
+    "nav.doctors": "الأطباء",
+    "nav.contact": "اتصل بنا",
+    "nav.blog": "المدونة",
+    "nav.recruitment": "التوظيف",
+
+    // Hero Section
+    "hero.badge": "موثوق منذ 2009",
+    "hero.subtitle":
+      "مركز متكامل لخدمات صحة العيون بأحدث التقنيات وفريق من الأطباء المتخصصين ذوي الخبرة في سومطرة الغربية، إندونيسيا.",
+    "hero.cta.services": "خدماتنا",
+    "hero.cta.appointment": "حجز موعد",
+    "hero.stats.patients": "مرضى راضون",
+    "hero.stats.success": "نسبة النجاح",
+
+    // Promo Section
+    "promo.badge": "عرض خاص",
+    "promo.title": "عروض هذا الشهر",
+    "promo.subtitle": "احصل على أفضل العروض لصحة عينيك",
+    "promo.badge.discount": "خصم",
+    "promo.badge.package": "باقة",
+    "promo.badge.limited": "لفترة محدودة",
+    "promo.cta": "احصل على العرض",
+
+    // Services Section
+    "services.badge": "خدماتنا",
+    "services.title": "احصل على أفضل رعاية لصحة عينيك",
+    "services.subtitle": "رعاية شاملة للعيون بأحدث التقنيات",
+    "services.cta": "اعرف المزيد",
+
+    // Doctors Section
+    "doctors.title": "جدول الأطباء المختصين",
+    "doctors.subtitle": "أطباء عيون ذوو خبرة جاهزون لخدمتك",
+    "doctors.education": "التعليم",
+    "doctors.schedule": "جدول الممارسة",
+    "doctors.cta": "عرض التفاصيل",
+
+    // CTA Section
+    "cta.title": "هل أنت مستعد للعناية بصحة عينيك؟",
+    "cta.description": "تواصل معنا للاستشارة وتحديد موعد لفحص عينيك",
+    "cta.phoneNumber": "627514681000",
+    "cta.phone": "(0751) 4681000",
+    "cta.whatsapp": "تواصل عبر واتساب",
+
+    // Footer
+    "footer.copyright": "© 2024 مركز بادانغ لطب العيون. جميع الحقوق محفوظة.",
+    "footer.contact": "تواصل معنا",
+    "footer.address": "العنوان",
+    "footer.phone": "الهاتف",
+    "footer.email": "البريد الإلكتروني",
+
+    // Common
+    "common.read-more": "اقرأ المزيد",
+    "common.back": "رجوع",
+    "common.loading": "جارٍ التحميل...",
+    "common.close": "إغلاق",
+    "common.open": "فتح",
+    "common.search": "بحث",
+
+    // #2 About page
+    ...about.ar,
   },
 } as const;
 

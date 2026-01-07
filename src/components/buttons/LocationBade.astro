@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import { getLangFromUrl } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 ---
@@ -33,7 +33,7 @@ const lang = getLangFromUrl(Astro.url);
   <!-- Text -->
   <span
     class="text-sm font-medium bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent">
-    {lang === "id" ? "Padang, Sumatera Barat" : "Padang, West Sumatra"}
+    {lang === "id" ? "Lokasi Kami" : "Our Location"}
   </span>
 
   <!-- External Link Icon -->

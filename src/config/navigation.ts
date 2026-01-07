@@ -6,7 +6,6 @@ export interface NavItem {
   labelKey: TranslationKey;
   path: string;
 }
-
 export const navigationItems: NavItem[] = [
   {
     key: "",
@@ -18,14 +17,19 @@ export const navigationItems: NavItem[] = [
     labelKey: "nav.about",
     path: "/about",
   },
+  // {
+  //   key: "services",
+  //   labelKey: "nav.services",
+  //   path: "/services",
+  // },
   {
     key: "blog",
     labelKey: "nav.blog",
     path: "/blog",
   },
-  {
-    key: "recruitment",
-    labelKey: "nav.recruitment",
-    path: "/recruitment",
-  },
+  // {
+  //   key: "recruitment",
+  //   labelKey: "nav.recruitment",
+  //   path: "/recruitment",
+  // },
 ];

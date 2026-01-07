@@ -9,11 +9,12 @@ interface Props {
 const { currentLocale } = Astro.props;
 
 // Get current path without locale
-const currentPath = Astro.url.pathname.replace(/^\/(id|en)/, "") || "/";
+const currentPath = Astro.url.pathname.replace(/^\/(id|en|ar)/, "") || "/";
 
 const languages = [
   { code: "id", name: "Indonesia", flag: "🇮🇩", native: "Bahasa Indonesia" },
   { code: "en", name: "English", flag: "🇬🇧", native: "English" },
+  { code: "ar", name: "Arabic", flag: "🇸🇦", native: "العربية" },
 ];
 
 const currentLanguage =
