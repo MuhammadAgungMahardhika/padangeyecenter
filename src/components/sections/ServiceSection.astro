@@ -8,65 +8,104 @@ const t = useTranslations(lang);
 const services = getServices(lang as any);
 ---
 
-<section class="py-20 relative bg-transparent overflow-hidden">
-  <div class="max-w-7xl mx-auto px-6 mb-12 relative z-10">
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
-      <div>
+<section class="services-section py-24 relative overflow-hidden">
+  <!-- Decorative Elements Only -->
+  <div
+    class="decorative-blob decorative-blob-1 absolute top-20 left-10 w-96 h-96 rounded-full blur-3xl animate-pulse">
+  </div>
+  <div
+    class="decorative-blob decorative-blob-2 absolute bottom-20 right-10 w-96 h-96 rounded-full blur-3xl animate-pulse"
+    style="animation-delay: 1s;">
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 mb-16 relative z-10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+      <div class="space-y-4">
+        <!-- Section Badge -->
+        <div class="flex items-center gap-3">
+          <div class="badge-line h-[2px] w-16 rounded-full"></div>
+          <span class="badge-text text-xs font-bold uppercase tracking-[0.3em]">
+            Our Services
+          </span>
+        </div>
+
+        <!-- Title -->
         <h2
-          class="text-6xl md:text-7xl font-[1000] tracking-tighter leading-none uppercase text-gray-900 dark:text-white">
-          {t("services.title").split(" ")[0]}<br />
-          <span
-            class="bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent"
-            >{t("services.title").split(" ").slice(1).join(" ")}</span
-          >
+          class="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] uppercase">
+          <span class="title-main block">
+            {t("services.title").split(" ")[0]}
+          </span>
+          <span class="title-gradient block">
+            {t("services.title").split(" ").slice(1).join(" ")}
+          </span>
         </h2>
       </div>
+
+      <!-- Subtitle -->
       <p
-        class="text-lg italic font-bold uppercase tracking-tighter leading-tight max-w-[280px]"
-        style="color: var(--text-secondary);">
+        class="subtitle-text text-lg font-semibold uppercase tracking-tight leading-snug max-w-[320px]">
         {t("services.subtitle")}
       </p>
     </div>
   </div>
 
-  <div class="relative group/nav">
+  <!-- Cards Carousel -->
+  <div class="relative group/carousel">
+    <!-- Scrollable Container -->
     <div
       id="serviceScroll"
-      class="flex gap-4 overflow-x-auto snap-x snap-mandatory px-[5vw] md:px-[calc((100vw-1200px)/2)] no-scrollbar scroll-smooth pb-12">
+      class="flex gap-6 overflow-x-auto snap-x snap-mandatory px-6 md:px-[calc((100vw-1280px)/2)] no-scrollbar scroll-smooth pb-12">
       {services.map((svc) => <ServiceCard {...svc} />)}
     </div>
 
+    <!-- Navigation Buttons -->
     <div
-      class="absolute top-1/2 -translate-y-1/2 w-full hidden md:flex justify-between px-6 pointer-events-none z-30">
+      class="absolute top-1/2 -translate-y-1/2 w-full hidden md:flex justify-between px-4 pointer-events-none z-30">
       <button
         id="sPrev"
-        class="pointer-events-auto w-14 h-14 rounded-full border border-black/10 dark:border-white/20 bg-white/80 dark:bg-white/5 backdrop-blur-xl flex items-center justify-center text-gray-800 dark:text-white hover:bg-orange-600 hover:text-white transition-all shadow-xl">
+        class="nav-button nav-prev pointer-events-auto w-14 h-14 rounded-full backdrop-blur-xl border flex items-center justify-center transition-all duration-300 shadow-xl group"
+        aria-label="Previous service">
         <svg
-          class="w-6 h-6"
+          class="nav-icon w-6 h-6 transition-transform duration-300"
           fill="none"
           stroke="currentColor"
-          viewBox="0 0 24 24"
-          ><path stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg
-        >
+          viewBox="0 0 24 24">
+          <path
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15 19l-7-7 7-7"></path>
+        </svg>
       </button>
       <button
         id="sNext"
-        class="pointer-events-auto w-14 h-14 rounded-full border border-black/10 dark:border-white/20 bg-white/80 dark:bg-white/5 backdrop-blur-xl flex items-center justify-center text-gray-800 dark:text-white hover:bg-green-600 hover:text-white transition-all shadow-xl">
+        class="nav-button nav-next pointer-events-auto w-14 h-14 rounded-full backdrop-blur-xl border flex items-center justify-center transition-all duration-300 shadow-xl group"
+        aria-label="Next service">
         <svg
-          class="w-6 h-6"
+          class="nav-icon w-6 h-6 transition-transform duration-300"
           fill="none"
           stroke="currentColor"
-          viewBox="0 0 24 24"
-          ><path stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg
-        >
+          viewBox="0 0 24 24">
+          <path
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M9 5l7 7-7 7"></path>
+        </svg>
       </button>
     </div>
-
-    <div class="flex justify-center gap-3 mt-4">
+    <!-- Progress Dots -->
+    <div class="flex justify-center gap-2 mt-6 relative z-20">
       {
         services.map((_, i) => (
-          <div
-            class={`s-dot h-[3px] w-8 rounded-full bg-gray-300 dark:bg-white transition-all duration-500 ${i === 0 ? "opacity-100 bg-orange-600 w-16" : "opacity-30"}`}
+          <button
+            class={`progress-dot h-1 rounded-full transition-all duration-500 cursor-pointer ${
+              i === 0
+                ? "progress-dot-active w-12 opacity-100"
+                : "w-8 opacity-30"
+            }`}
+            data-index={i}
+            aria-label={`Go to service ${i + 1}`}
           />
         ))
       }
@@ -75,7 +114,70 @@ const services = getServices(lang as any);
 </section>
 
 <style>
-  /* HIDE SCROLLBAR COMPLETELY */
+  /* Section Background menggunakan background-body */
+  .section-bg {
+    background-color: var(--background-body);
+  }
+
+  /* Decorative Blobs */
+  .decorative-blob-1 {
+    background-color: rgba(234, 88, 12, 0.05);
+  }
+
+  .decorative-blob-2 {
+    background-color: rgba(22, 163, 74, 0.05);
+  }
+
+  :root.theme-dark .decorative-blob-1,
+  :root.theme-dark .decorative-blob-2 {
+    opacity: 0.3;
+  }
+
+  /* Badge menggunakan text-primary dan text-secondary */
+  .badge-line {
+    background: linear-gradient(
+      to right,
+      var(--text-primary),
+      var(--text-secondary)
+    );
+  }
+
+  .badge-text {
+    color: var(--text-muted);
+  }
+
+  /* Title menggunakan text-main */
+  .title-main {
+    color: var(--text-main);
+  }
+
+  /* Title Gradient menggunakan text-primary dan text-secondary */
+  .title-gradient {
+    background: linear-gradient(
+      to right,
+      var(--text-primary),
+      var(--text-secondary)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Subtitle menggunakan text-muted */
+  .subtitle-text {
+    color: var(--text-muted);
+  }
+
+  /* Fade Edges menggunakan background-body */
+  .fade-left {
+    background: linear-gradient(to right, var(--background-body), transparent);
+  }
+
+  .fade-right {
+    background: linear-gradient(to left, var(--background-body), transparent);
+  }
+
+  /* Hide Scrollbar */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
@@ -83,37 +185,182 @@ const services = getServices(lang as any);
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  /* Smooth scrolling behavior */
+  #serviceScroll {
+    scroll-behavior: smooth;
+  }
+
+  /* Navigation Button */
+  .nav-button {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: var(--text-main);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  :root.theme-dark .nav-button {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .nav-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Nav button hover menggunakan text-primary dan text-secondary */
+  .nav-prev:hover {
+    background-color: var(--text-primary);
+    border-color: var(--text-primary);
+    color: white;
+  }
+
+  .nav-next:hover {
+    background-color: var(--text-secondary);
+    border-color: var(--text-secondary);
+    color: white;
+  }
+
+  .nav-prev:hover .nav-icon {
+    transform: translateX(-4px);
+  }
+
+  .nav-next:hover .nav-icon {
+    transform: translateX(4px);
+  }
+
+  .nav-button:active {
+    transform: scale(0.95);
+  }
+
+  /* Progress Dots menggunakan text-muted */
+  .progress-dot {
+    background-color: var(--text-muted);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .progress-dot:hover {
+    opacity: 1 !important;
+    width: 2.5rem;
+  }
+
+  /* Active dot menggunakan text-primary */
+  .progress-dot-active {
+    background: linear-gradient(
+      to right,
+      var(--text-primary),
+      var(--text-secondary)
+    );
+  }
+
+  /* RTL Support for Arabic */
+  [dir="rtl"] #serviceScroll {
+    direction: rtl;
+  }
+
+  [dir="rtl"] .nav-button svg {
+    transform: scaleX(-1);
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
 </style>
 
 <script>
-  function initServiceCompact() {
+  function initServiceCarousel() {
     const container = document.getElementById("serviceScroll");
     const nextBtn = document.getElementById("sNext");
     const prevBtn = document.getElementById("sPrev");
-    const dots = document.querySelectorAll(".s-dot");
+    const dots = document.querySelectorAll(".progress-dot");
 
     if (!container || !nextBtn || !prevBtn) return;
 
-    const step = () => {
+    // Calculate card width including gap
+    const getStepSize = () => {
       const card = container.querySelector(".snap-center") as HTMLElement;
-      return card ? card.offsetWidth + 16 : 400;
+      return card ? card.offsetWidth + 24 : 444;
     };
 
-    nextBtn.onclick = () =>
-      container.scrollBy({ left: step(), behavior: "smooth" });
-    prevBtn.onclick = () =>
-      container.scrollBy({ left: -step(), behavior: "smooth" });
+    // Navigation handlers
+    nextBtn.onclick = () => {
+      container.scrollBy({ left: getStepSize(), behavior: "smooth" });
+    };
 
-    container.onscroll = () => {
-      const index = Math.round(container.scrollLeft / step());
-      dots.forEach((dot, i) => {
-        dot.classList.toggle("opacity-100", i === index);
-        dot.classList.toggle("bg-orange-600", i === index);
-        dot.classList.toggle("w-16", i === index);
-        dot.classList.toggle("opacity-30", i !== index);
-        dot.classList.toggle("w-8", i !== index);
+    prevBtn.onclick = () => {
+      container.scrollBy({ left: -getStepSize(), behavior: "smooth" });
+    };
+
+    // Dot click handlers
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        const scrollPosition = index * getStepSize();
+        container.scrollTo({ left: scrollPosition, behavior: "smooth" });
       });
-    };
+    });
+
+    // Update active dot on scroll
+    let scrollTimeout: number;
+    container.addEventListener("scroll", () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        const scrollLeft = container.scrollLeft;
+        const stepSize = getStepSize();
+        const currentIndex = Math.round(scrollLeft / stepSize);
+
+        dots.forEach((dot, i) => {
+          const isActive = i === currentIndex;
+
+          if (isActive) {
+            dot.classList.add("progress-dot-active", "w-12", "opacity-100");
+            dot.classList.remove("w-8", "opacity-30");
+          } else {
+            dot.classList.remove("progress-dot-active", "w-12", "opacity-100");
+            dot.classList.add("w-8", "opacity-30");
+          }
+        });
+      }, 100);
+    });
+
+    // Keyboard navigation
+    container.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") {
+        prevBtn.click();
+      } else if (e.key === "ArrowRight") {
+        nextBtn.click();
+      }
+    });
+
+    // Touch swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    container.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    container.addEventListener("touchend", (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      if (touchStartX - touchEndX > swipeThreshold) {
+        nextBtn.click();
+      } else if (touchEndX - touchStartX > swipeThreshold) {
+        prevBtn.click();
+      }
+    }
   }
-  document.addEventListener("astro:page-load", initServiceCompact);
+
+  // Initialize on page load and after navigation
+  document.addEventListener("astro:page-load", initServiceCarousel);
 </script>
