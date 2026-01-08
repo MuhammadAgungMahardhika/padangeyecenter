@@ -43,7 +43,7 @@ export const getServices = (lang: Language): Service[] => {
       {
         slug: "lasik",
         category: "Layanan LASIK",
-        description: "Solusi bebas kacamata dengan teknologi terkini.",
+        description: "Segera hadir",
         icon: "spark",
         color: "gradient",
         items: [{ name: "Pre-Lasik Examination" }, { name: "Femto-LASIK" }],
@@ -77,7 +77,7 @@ export const getServices = (lang: Language): Service[] => {
       {
         slug: "lasik",
         category: "LASIK Services",
-        description: "Glasses-free solution with latest technology.",
+        description: "Cooming soon",
         icon: "spark",
         color: "gradient",
         items: [{ name: "Pre-Lasik" }, { name: "Femto-LASIK" }],
