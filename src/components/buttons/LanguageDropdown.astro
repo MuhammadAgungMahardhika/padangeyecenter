@@ -1,14 +1,14 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n";
+import { getRouteUrl } from "../../i18n/path";
+import { routes, type RouteKey } from "../../i18n/routes";
+import { defaultLang, type Language } from "../../i18n/ui"; // Pastikan path ini benar sesuai struktur folder Anda
 
 interface Props {
   currentLocale: string;
 }
 
 const { currentLocale } = Astro.props;
-
-// Get current path without locale
-const currentPath = Astro.url.pathname.replace(/^\/(id|en|ar)/, "") || "/";
+const currentPath = Astro.url.pathname;
 
 const languages = [
   { code: "id", name: "Indonesia", flag: "🇮🇩", native: "Bahasa Indonesia" },
@@ -20,9 +20,62 @@ const currentLanguage =
   languages.find((l) => l.code === currentLocale) || languages[0];
 
 const isRTL = currentLocale === "ar";
+
+/**
+ * Fungsi untuk mencari RouteKey (misal: 'about', 'services')
+ * berdasarkan URL saat ini dan bahasa saat ini.
+ */
+function getCurrentRouteKey(
+  path: string,
+  locale: string
+): RouteKey | undefined {
+  // 1. Bersihkan trailing slash (misal: /id/about/ -> /id/about)
+  let cleanPath = path.replace(/\/$/, "");
+
+  // 2. Hapus prefix bahasa jika bukan default lang (misal: /en/about -> /about)
+  if (locale !== defaultLang) {
+    cleanPath = cleanPath.replace(new RegExp(`^/${locale}`), "");
+  }
+
+  // 3. Hapus leading slash agar sesuai dengan value di routes.ts (misal: /about -> about)
+  const currentSlug = cleanPath.replace(/^\//, "");
+
+  // 4. Loop routes untuk mencari kecocokan slug
+  for (const [key, translations] of Object.entries(routes)) {
+    if (translations[locale as Language] === currentSlug) {
+      return key as RouteKey;
+    }
+  }
+
+  return undefined;
+}
+
+const routeKey = getCurrentRouteKey(currentPath, currentLocale);
+
+/**
+ * Fungsi Helper untuk generate href
+ * Jika routeKey ketemu (halaman statis), pakai getRouteUrl.
+ * Jika tidak (halaman dinamis misal blog detail), lakukan replace manual.
+ */
+function getHref(targetLang: string) {
+  if (routeKey) {
+    return getRouteUrl(targetLang as Language, routeKey);
+  }
+
+  // Fallback untuk halaman dinamis yang tidak ada di routes.ts (misal: /blog/judul-artikel)
+  // Kita coba ganti prefix bahasanya saja
+  let pathWithoutLang = currentPath;
+  if (currentLocale !== defaultLang) {
+    pathWithoutLang = currentPath.replace(`/${currentLocale}`, "") || "/";
+  }
+
+  if (targetLang === defaultLang) {
+    return pathWithoutLang;
+  }
+  return `/${targetLang}${pathWithoutLang === "/" ? "" : pathWithoutLang}`;
+}
 ---
 
-<!-- Language Dropdown -->
 <div
   class={`language-dropdown ${isRTL ? "rtl" : ""}`}
   dir={isRTL ? "rtl" : "ltr"}>
@@ -51,12 +104,11 @@ const isRTL = currentLocale === "ar";
     </svg>
   </button>
 
-  <!-- Dropdown Menu -->
   <div id="lang-dropdown-menu" class="lang-dropdown-menu" role="menu" hidden>
     {
       languages.map((lang) => (
         <a
-          href={getRelativeLocaleUrl(lang.code, currentPath)}
+          href={getHref(lang.code)}
           data-lang={lang.code}
           class={`lang-option ${lang.code === currentLocale ? "active" : ""}`}
           role="menuitem">

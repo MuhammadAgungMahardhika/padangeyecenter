@@ -11,5 +11,5 @@ export const navigationItems: NavItem[] = [
   { key: "home", labelKey: "nav.home" },
   { key: "about", labelKey: "nav.about" },
   { key: "services", labelKey: "nav.services" },
-  { key: "blog", labelKey: "nav.blog" },
+  { key: "article", labelKey: "nav.article" },
 ];

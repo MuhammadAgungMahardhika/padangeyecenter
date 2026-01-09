@@ -16,7 +16,7 @@ export interface TranslationKeys {
   "nav.services": string;
   "nav.doctors": string;
   "nav.contact": string;
-  "nav.blog": string;
+  "nav.article": string;
   "nav.recruitment": string;
 
   // Hero Section
@@ -91,7 +91,7 @@ export const ui: UITranslations = {
     "nav.services": "Layanan",
     "nav.doctors": "Dokter",
     "nav.contact": "Kontak",
-    "nav.blog": "Blog",
+    "nav.article": "Artikel",
     "nav.recruitment": "Rekrutmen",
 
     // Hero Section
@@ -159,7 +159,7 @@ export const ui: UITranslations = {
     "nav.services": "Services",
     "nav.doctors": "Doctors",
     "nav.contact": "Contact",
-    "nav.blog": "Blog",
+    "nav.article": "article",
     "nav.recruitment": "Recruitment",
 
     // Hero Section
@@ -225,7 +225,7 @@ export const ui: UITranslations = {
     "nav.services": "الخدمات",
     "nav.doctors": "الأطباء",
     "nav.contact": "اتصل بنا",
-    "nav.blog": "المدونة",
+    "nav.article": "المدونة",
     "nav.recruitment": "التوظيف",
 
     // Hero Section

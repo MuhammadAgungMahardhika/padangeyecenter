@@ -90,15 +90,15 @@ const theme = colorMap[color as keyof typeof colorMap] || colorMap.orange;
           </h3>
 
           <!-- Description -->
-          <!-- <p
+          <p
             class="description-text text-xs leading-relaxed line-clamp-2 font-medium">
             {description}
-          </p> -->
+          </p>
         </div>
 
         <!-- Service Badges (Scrollable Layout) -->
-        <div class="flex-1 mb-4 relative overflow-hidden">
-          <div class="badges-scroll h-full overflow-y-auto pr-2">
+        <div class="flex-1 relative overflow-hidden">
+          <div class="badges-scroll h-full overflow-y-auto ">
             <div class="badges-container flex flex-wrap gap-1.5 content-start p-2">
               {
                 items.map((item, index) => (
@@ -136,38 +136,7 @@ const theme = colorMap[color as keyof typeof colorMap] || colorMap.orange;
         </div>
 
         <!-- CTA Button -->
-        <div class="mt-auto cta-container">
-          <a
-            href={dynamicLink}
-            class="cta-button group/btn relative flex items-center justify-between w-full p-1 pl-5 rounded-full border transition-all duration-500 overflow-hidden shadow-md">
-            <!-- Button Glow -->
-            <div
-              class="btn-glow absolute inset-0 opacity-0 transition-opacity duration-500 blur-xl"
-              style={`background: linear-gradient(90deg, transparent, rgba(${theme.rgb}, 0.25), transparent);`}>
-            </div>
-
-            <span
-              class="btn-text relative text-[9px] font-bold uppercase tracking-[0.2em] z-10">
-              {t("services.cta")}
-            </span>
-
-            <div
-              class="btn-icon relative w-9 h-9 rounded-full flex items-center justify-center transition-all duration-500 shadow-md z-10"
-              style={`background-color: ${theme.primary};`}>
-              <svg
-                class="w-4 h-4 text-white transition-transform duration-500"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24">
-                <path
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-              </svg>
-            </div>
-          </a>
-        </div>
+      
       </div>
 
       <!-- Decorative Corner Element -->
