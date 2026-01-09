@@ -5,7 +5,7 @@ import ThemeToggleButton from "./ThemeToggleButton.svelte";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import { navigationItems } from "../config/navigation";
-
+import { buildPath } from "../i18n/path";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const currentLocale = Astro.currentLocale || "id";
@@ -28,11 +28,7 @@ const { current = "" } = Astro.props;
   <div class="desktop-nav">
     {
       navigationItems.map((item) => (
-        <a
-          class={current === item.key ? "selected" : ""}
-          href={getRelativeLocaleUrl(currentLocale, item.path)}>
-          {t(item.labelKey)}
-        </a>
+        <a href={buildPath(lang, item.key)}>{t(item.labelKey)}</a>
       ))
     }
   </div>
@@ -51,7 +47,7 @@ const { current = "" } = Astro.props;
       navigationItems.map((item) => (
         <a
           class={`mobile-menu-item ${current === item.key ? "selected" : ""}`}
-          href={getRelativeLocaleUrl(currentLocale, item.path)}>
+          href={buildPath(lang, item.key)}>
           {t(item.labelKey)}
         </a>
       ))

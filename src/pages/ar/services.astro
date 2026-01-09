@@ -1,0 +1,189 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ServiceCard from "../../components/cards/ServiceCard.astro";
+import { getServices } from "../../data/services";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import CTASection from "../../components/sections/CTASection.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const services = getServices(lang as any);
+
+const title = "Layanan Kami - Padang Eye Center";
+const description =
+  "Solusi kesehatan mata komprehensif dengan teknologi terkini";
+const permalink = `${Astro.site?.href}layanan`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  permalink={permalink}
+  current="services">
+  <div class="services-page-wrapper relative overflow-hidden">
+    <!-- Decorative Background Elements -->
+    <div
+      class="decorative-blob decorative-blob-orange absolute top-0 left-0 w-[500px] h-[500px] rounded-full blur-3xl opacity-20 animate-pulse pointer-events-none">
+    </div>
+    <div
+      class="decorative-blob decorative-blob-green absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full blur-3xl opacity-20 animate-pulse pointer-events-none">
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 relative z-10">
+      <!-- Page Header -->
+      <div class="text-center mb-12 md:mb-20">
+        <div class="flex items-center justify-center gap-3 mb-6">
+          <div class="header-line h-[2px] w-16 md:w-20 rounded-full"></div>
+          <span
+            class="header-badge text-xs font-bold uppercase tracking-[0.3em]">
+            {t("services.badge") || "Our Services"}
+          </span>
+          <div class="header-line h-[2px] w-16 md:w-20 rounded-full"></div>
+        </div>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="services-grid-wrapper mb-12 md:mb-20">
+        <div
+          class="services-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-0">
+          {
+            services.map((service) => (
+              <div class="service-card-wrapper">
+                <ServiceCard {...service} />
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Bottom CTA Section -->
+      <CTASection />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  /* Decorative Blobs */
+  .decorative-blob-orange {
+    background: radial-gradient(circle, rgba(234, 88, 12, 0.3), transparent);
+    animation-delay: 0s;
+  }
+
+  .decorative-blob-green {
+    background: radial-gradient(circle, rgba(22, 163, 74, 0.3), transparent);
+    animation-delay: 1.5s;
+  }
+
+  :root.theme-dark .decorative-blob-orange,
+  :root.theme-dark .decorative-blob-green {
+    opacity: 0.15;
+  }
+
+  /* Header Styling */
+  .header-line {
+    background: linear-gradient(
+      to right,
+      var(--text-primary),
+      var(--text-secondary)
+    );
+  }
+
+  .header-badge {
+    color: var(--text-muted);
+  }
+
+  .page-title .title-main {
+    color: var(--text-main);
+  }
+
+  .page-title .title-gradient {
+    background: linear-gradient(
+      to right,
+      var(--text-primary),
+      var(--text-secondary)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .page-subtitle {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  /* Services Grid - Adjusted for ServiceCard component */
+  .services-grid-wrapper {
+    perspective: 1000px;
+  }
+
+  .service-card-wrapper {
+    /* Remove the padding from ServiceCard and add it here for consistent spacing */
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+  }
+
+  /* Override ServiceCard default width for grid layout */
+  .service-card-wrapper :global(.inline-block) {
+    width: 100% !important;
+    display: block !important;
+  }
+
+  /* Bottom CTA Card */
+  .bottom-cta-card {
+    background-color: var(--background-body);
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+
+  :root.theme-dark .bottom-cta-card {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .cta-pattern {
+    color: var(--text-main);
+  }
+
+  .bottom-cta-title {
+    color: var(--text-main);
+  }
+
+  .bottom-cta-text {
+    color: var(--text-muted);
+  }
+
+  /* Animations */
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 0.15;
+    }
+    50% {
+      opacity: 0.25;
+    }
+  }
+
+  /* Responsive Grid Adjustments */
+  @media (max-width: 1280px) {
+    .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Ensure cards fill the grid cells properly */
+  .services-grid > * {
+    min-height: 100%;
+  }
+</style>

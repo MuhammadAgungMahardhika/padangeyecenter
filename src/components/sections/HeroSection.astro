@@ -2,7 +2,7 @@
 import VisiMissionSection from "./VisiMissionSection.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import LocationBade from "../buttons/LocationBade.astro";
-import { getRelativeLocaleUrl } from "astro:i18n";
+import { getRouteUrl } from "../../i18n/path";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -39,7 +39,7 @@ const t = useTranslations(lang);
           </span>
           <span
             class="text-sm font-medium bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent">
-            <a href={getRelativeLocaleUrl(lang, "/about")}>{t("hero.badge")}</a>
+            <a href={getRouteUrl(lang, "about")}>{t("hero.badge")}</a>
           </span>
         </div>
 
@@ -65,9 +65,7 @@ const t = useTranslations(lang);
 
         <div class="flex flex-wrap gap-4">
           <!-- Button Primary -->
-          <a
-            href={getRelativeLocaleUrl(lang, "/layanan")}
-            class="btn-primary-pec">
+          <a href={getRouteUrl(lang, "services")} class="btn-primary-pec">
             <svg
               class="w-5 h-5"
               fill="none"
@@ -83,9 +81,7 @@ const t = useTranslations(lang);
           </a>
 
           <!-- Button Outline -->
-          <a
-            href={getRelativeLocaleUrl(lang, "/jadwal")}
-            class="btn-outline-pec">
+          <a class="btn-outline-pec">
             <svg
               class="w-5 h-5"
               fill="none"

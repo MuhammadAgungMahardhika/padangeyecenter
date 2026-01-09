@@ -26,6 +26,13 @@ export const getServices = (lang: Language): Service[] => {
           { name: "Phacoemulsification" },
           { name: "SICS (Small Incision)" },
           { name: "Lensa Premium (IOL)" },
+          { name: "Phacoemulsification" },
+          { name: "SICS (Small Incision)" },
+          { name: "Lensa Premium (IOL)" },
+          { name: "Phacoemulsification" },
+          { name: "SICS (Small Incision)" },
+          { name: "Lensa Premium (IOL)" },
+          { name: "Phacoemulsification" },
         ],
       },
       {
@@ -47,6 +54,14 @@ export const getServices = (lang: Language): Service[] => {
         icon: "spark",
         color: "gradient",
         items: [{ name: "Pre-Lasik Examination" }, { name: "Femto-LASIK" }],
+      },
+      {
+        slug: "Glaukoma",
+        category: "Layanan Glaukoma",
+        description: "Solusi bedah katarak modern dengan pemulihan cepat.",
+        icon: "shield",
+        color: "green",
+        items: [{ name: "Glaukoma" }],
       },
     ],
     en: [
