@@ -3,13 +3,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import ServiceCard from "../../components/cards/ServiceCard.astro";
 import { getServices } from "../../data/services";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
-import CTASection from "../../components/sections/CTASection.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const services = getServices(lang as any);
 
-const title = "Layanan Kami - Padang Eye Center";
+const title = "Our Services - Padang Eye Center";
 const description =
   "Solusi kesehatan mata komprehensif dengan teknologi terkini";
 const permalink = `${Astro.site?.href}layanan`;
@@ -57,7 +56,42 @@ const permalink = `${Astro.site?.href}layanan`;
       </div>
 
       <!-- Bottom CTA Section -->
-      <CTASection />
+      <div class="text-center">
+        <div
+          class="bottom-cta-card max-w-4xl mx-auto rounded-3xl border backdrop-blur-xl p-6 md:p-10 lg:p-12 relative overflow-hidden">
+          <div class="cta-pattern absolute inset-0 opacity-[0.02]">
+            <div
+              class="absolute inset-0"
+              style="background-image: radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0); background-size: 24px 24px;">
+            </div>
+          </div>
+
+          <div class="relative z-10">
+            <h2
+              class="bottom-cta-title text-2xl md:text-4xl lg:text-5xl font-black tracking-tighter uppercase mb-3 md:mb-4">
+              Butuh Konsultasi?
+            </h2>
+            <p class="bottom-cta-text text-base md:text-lg mb-6 md:mb-8">
+              Tim kami siap membantu Anda menemukan solusi terbaik untuk
+              kesehatan mata Anda
+            </p>
+            <a href="/kontak" class="btn-primary-pec inline-flex">
+              Hubungi Kami
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </BaseLayout>
@@ -77,6 +111,23 @@ const permalink = `${Astro.site?.href}layanan`;
   :root.theme-dark .decorative-blob-orange,
   :root.theme-dark .decorative-blob-green {
     opacity: 0.15;
+  }
+
+  /* Mobile optimization for blobs */
+  @media (max-width: 768px) {
+    .decorative-blob-orange {
+      width: 300px;
+      height: 300px;
+      top: -50px;
+      left: -50px;
+    }
+
+    .decorative-blob-green {
+      width: 350px;
+      height: 350px;
+      bottom: -50px;
+      right: -50px;
+    }
   }
 
   /* Header Styling */
@@ -115,19 +166,34 @@ const permalink = `${Astro.site?.href}layanan`;
   /* Services Grid - Adjusted for ServiceCard component */
   .services-grid-wrapper {
     perspective: 1000px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .services-grid {
+    width: 100%;
+    max-width: 100%;
   }
 
   .service-card-wrapper {
-    /* Remove the padding from ServiceCard and add it here for consistent spacing */
     display: flex;
     justify-content: center;
     align-items: stretch;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   /* Override ServiceCard default width for grid layout */
   .service-card-wrapper :global(.inline-block) {
     width: 100% !important;
+    max-width: 100% !important;
     display: block !important;
+  }
+
+  .service-card-wrapper :global(.service-card) {
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   /* Bottom CTA Card */

@@ -79,6 +79,23 @@ const permalink = `${Astro.site?.href}layanan`;
     opacity: 0.15;
   }
 
+  /* Mobile optimization for blobs */
+  @media (max-width: 768px) {
+    .decorative-blob-orange {
+      width: 300px;
+      height: 300px;
+      top: -50px;
+      left: -50px;
+    }
+
+    .decorative-blob-green {
+      width: 350px;
+      height: 350px;
+      bottom: -50px;
+      right: -50px;
+    }
+  }
+
   /* Header Styling */
   .header-line {
     background: linear-gradient(
@@ -115,19 +132,34 @@ const permalink = `${Astro.site?.href}layanan`;
   /* Services Grid - Adjusted for ServiceCard component */
   .services-grid-wrapper {
     perspective: 1000px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .services-grid {
+    width: 100%;
+    max-width: 100%;
   }
 
   .service-card-wrapper {
-    /* Remove the padding from ServiceCard and add it here for consistent spacing */
     display: flex;
     justify-content: center;
     align-items: stretch;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   /* Override ServiceCard default width for grid layout */
   .service-card-wrapper :global(.inline-block) {
     width: 100% !important;
+    max-width: 100% !important;
     display: block !important;
+  }
+
+  .service-card-wrapper :global(.service-card) {
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   /* Bottom CTA Card */

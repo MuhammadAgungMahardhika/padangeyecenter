@@ -6,57 +6,218 @@ const t = useTranslations(lang);
 ---
 
 <!-- CTA SECTION -->
-<section class="relative py-24 px-4 overflow-hidden">
-  <!-- Animated Background -->
-  <div class="absolute inset-0 bg-pec-5-5">
+<section class="relative py-16 md:py-24 px-4 overflow-hidden">
+  <!-- Animated Background with Gradient -->
+
+  <div class="relative z-10 max-w-4xl mx-auto">
+    <!-- CTA Card -->
     <div
-      class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4xIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-20">
-    </div>
-  </div>
+      class="cta-card rounded-3xl md:rounded-[2.5rem] border backdrop-blur-xl p-8 md:p-12 lg:p-16 relative overflow-hidden shadow-2xl">
+      <!-- Decorative Pattern -->
+      <div class="cta-pattern absolute inset-0 opacity-[0.02]">
+        <div
+          class="absolute inset-0"
+          style="background-image: radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0); background-size: 32px 32px;">
+        </div>
+      </div>
 
-  <div class="relative z-10 max-w-4xl mx-auto text-center">
-    <h2 class="text-4xl text-secondary lg:text-5xl font-bold mb-6">
-      {t("cta.title")}
-    </h2>
-    <p class="text-xl mb-10 text-secondary">
-      {t("cta.description")}
-    </p>
+      <!-- Accent Line -->
+      <div class="accent-gradient absolute top-0 left-0 right-0 h-1 opacity-80">
+      </div>
 
-    <div class="flex flex-wrap gap-4 justify-center">
-      <a
-        href={`tel:${t("cta.phoneNumber")}`}
-        class="btn-secondary-pec transform hover:-translate-y-1 transition-all duration-200">
-        <span class="flex items-center gap-3">
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-            ></path>
-          </svg>
-          {t("cta.phone")}
-        </span>
-      </a>
+      <!-- Content -->
+      <div class="relative z-10 text-center">
+        <!-- Badge -->
+        <div class="flex items-center justify-center gap-3 mb-6">
+          <div class="badge-line h-[2px] w-12 md:w-16 rounded-full"></div>
+          <span
+            class="badge-text text-[10px] md:text-xs font-bold uppercase tracking-[0.25em]">
+            Contact Us
+          </span>
+          <div class="badge-line h-[2px] w-12 md:w-16 rounded-full"></div>
+        </div>
 
-      <a
-        href="https://wa.me/62811665217"
-        target="_blank"
-        rel="noopener"
-        class="btn-secondary-pec transform hover:-translate-y-1 transition-all duration-200">
-        <span class="flex items-center gap-3">
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"
-            ></path>
-          </svg>
-          {t("cta.whatsapp")}
-        </span>
-      </a>
+        <!-- Title -->
+        <h2
+          class="cta-title text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter uppercase mb-4 md:mb-6">
+          <span class="title-main block"
+            >{t("cta.title")?.split(" ")[0] || "Butuh"}</span
+          >
+          <span class="title-gradient block"
+            >{
+              t("cta.title")?.split(" ").slice(1).join(" ") || "Konsultasi?"
+            }</span
+          >
+        </h2>
+
+        <!-- Description -->
+        <p
+          class="cta-description text-base md:text-lg lg:text-xl mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
+          {
+            t("cta.description") ||
+              "Tim kami siap membantu Anda menemukan solusi terbaik untuk kesehatan mata Anda"
+          }
+        </p>
+
+        <!-- CTA Buttons -->
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <!-- Phone Button -->
+          <a
+            href={`tel:${t("cta.phoneNumber")}`}
+            class="btn-secondary-pec w-full sm:w-auto">
+            <span class="flex items-center gap-3">
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.5"
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                </path>
+              </svg>
+              {t("cta.phone") || "Telepon"}
+            </span>
+          </a>
+
+          <!-- WhatsApp Button -->
+          <a
+            href="https://wa.me/62811665217"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-secondary-pec w-full sm:w-auto">
+            <span class="flex items-center gap-3">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z">
+                </path>
+              </svg>
+              {t("cta.whatsapp") || "WhatsApp"}
+            </span>
+          </a>
+        </div>
+
+        <!-- Additional Info -->
+        <p class="info-text text-xs md:text-sm mt-6 md:mt-8 opacity-60">
+          <!-- Tersedia 24/7 untuk darurat -->
+        </p>
+      </div>
+
+      <!-- Decorative Corner -->
+      <div
+        class="corner-decoration absolute bottom-0 right-0 w-32 h-32 opacity-[0.03] pointer-events-none">
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  /* CTA Card */
+  .cta-card {
+    background-color: var(--background-body);
+    border-color: rgba(0, 0, 0, 0.08);
+    transition: all 0.5s ease;
+  }
+
+  :root.theme-dark .cta-card {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .cta-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Pattern */
+  .cta-pattern {
+    color: var(--text-main);
+  }
+
+  /* Accent Gradient */
+  .accent-gradient {
+    background: linear-gradient(
+      90deg,
+      var(--text-primary),
+      var(--text-secondary)
+    );
+  }
+
+  /* Badge */
+  .badge-line {
+    background: linear-gradient(
+      to right,
+      var(--text-primary),
+      var(--text-secondary)
+    );
+  }
+
+  .badge-text {
+    color: var(--text-muted);
+  }
+
+  /* Title */
+  .title-main {
+    color: var(--text-main);
+  }
+
+  .title-gradient {
+    background: linear-gradient(
+      to right,
+      var(--text-primary),
+      var(--text-secondary)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Description */
+  .cta-description {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  /* Info Text */
+  .info-text {
+    color: var(--text-muted);
+  }
+
+  /* Corner Decoration */
+  .corner-decoration {
+    background: radial-gradient(
+      circle at bottom right,
+      var(--text-primary),
+      transparent 70%
+    );
+  }
+
+  :root.theme-dark .corner-decoration {
+    opacity: 0.08 !important;
+  }
+
+  /* Animations */
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 0.15;
+    }
+    50% {
+      opacity: 0.25;
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .cta-card {
+      padding: 2rem 1.5rem;
+    }
+
+    .title-gradient,
+    .title-main {
+      font-size: 2rem;
+    }
+  }
+</style>
