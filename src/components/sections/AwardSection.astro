@@ -1,0 +1,208 @@
+---
+// AwardsSection.astro
+import { getLangFromUrl } from "../../i18n/utils";
+import { awardsTranslations } from "../../data/awards";
+
+const lang = getLangFromUrl(Astro.url);
+const t = awardsTranslations[lang] || awardsTranslations.id;
+---
+
+<section class="overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4">
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-500/10 to-green-500/10 rounded-full border border-orange-200/50 backdrop-blur-sm mb-4">
+        <svg
+          class="w-5 h-5 text-orange-500"
+          fill="currentColor"
+          viewBox="0 0 24 24">
+          <path
+            d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14L2 9.27L8.91 8.26L12 2Z"
+          ></path>
+        </svg>
+        <span
+          class="text-sm font-medium bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent">
+          {t.sectionBadge}
+        </span>
+      </div>
+
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">
+        <span
+          class="bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent">
+          {t.sectionTitle}
+        </span>
+      </h2>
+    </div>
+
+    <!-- Awards Carousel Container -->
+    <div class="relative">
+      <!-- Gradient Overlays -->
+      <div
+        class="absolute left-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
+        style="background: linear-gradient(to right, var(--background-body), transparent);">
+      </div>
+      <div
+        class="absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
+        style="background: linear-gradient(to left, var(--background-body), transparent);">
+      </div>
+
+      <!-- Carousel Track -->
+      <div class="awards-carousel">
+        <div class="awards-track">
+          {/* First set of awards */}
+          {
+            t.awards.map((award) => (
+              <div
+                class="award-card p-6 rounded-2xl shadow-lg border border-gray-200 flex-shrink-0 w-80"
+                style="background-color: var(--background-body); border-color: color-mix(in srgb, var(--text-muted) 20%, transparent);">
+                <div class="flex flex-col items-center text-center">
+                  {award.image ? (
+                    <div class="w-20 h-20 mb-4 flex items-center justify-center">
+                      <img
+                        src={"/assets/images/awards/" + award.image}
+                        alt={award.title}
+                        class="max-w-full max-h-full object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center mb-4">
+                      <svg
+                        class="w-8 h-8 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 24 24">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14L2 9.27L8.91 8.26L12 2Z" />
+                      </svg>
+                    </div>
+                  )}
+
+                  <div
+                    class="text-sm font-medium mb-2"
+                    style="color: var(--text-muted);">
+                    {award.year}
+                  </div>
+                  <h3
+                    class="text-lg font-bold mb-2"
+                    style="color: var(--text-main);">
+                    {award.title}
+                  </h3>
+                  <p class="text-sm" style="color: var(--text-muted);">
+                    {award.organization}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+          {/* Duplicate set for seamless loop */}
+          {
+            t.awards.map((award) => (
+              <div
+                class="award-card p-6 rounded-2xl shadow-lg border border-gray-200 flex-shrink-0 w-80"
+                style="background-color: var(--background-body); border-color: color-mix(in srgb, var(--text-muted) 20%, transparent);">
+                <div class="flex flex-col items-center text-center">
+                  {award.image ? (
+                    <div class="w-20 h-20 mb-4 flex items-center justify-center">
+                      <img
+                        src={award.image}
+                        alt={award.title}
+                        class="max-w-full max-h-full object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center mb-4">
+                      <svg
+                        class="w-8 h-8 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 24 24">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14L2 9.27L8.91 8.26L12 2Z" />
+                      </svg>
+                    </div>
+                  )}
+
+                  <div
+                    class="text-sm font-medium mb-2"
+                    style="color: var(--text-muted);">
+                    {award.year}
+                  </div>
+                  <h3
+                    class="text-lg font-bold mb-2"
+                    style="color: var(--text-main);">
+                    {award.title}
+                  </h3>
+                  <p class="text-sm" style="color: var(--text-muted);">
+                    {award.organization}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .awards-carousel {
+    overflow: hidden;
+    padding: 1rem 0;
+  }
+
+  .awards-track {
+    display: flex;
+    gap: 1.5rem;
+    animation: scroll 30s linear infinite;
+    width: fit-content;
+  }
+
+  .awards-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .award-card {
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .award-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .award-card {
+      width: 280px;
+    }
+
+    .awards-track {
+      animation-duration: 20s;
+    }
+  }
+</style>
+
+<script>
+  // Pause animation on window blur (tab inactive)
+  document.addEventListener("visibilitychange", () => {
+    const track = document.querySelector(".awards-track") as HTMLElement;
+    if (track) {
+      if (document.hidden) {
+        track.style.animationPlayState = "paused";
+      } else {
+        track.style.animationPlayState = "running";
+      }
+    }
+  });
+</script>

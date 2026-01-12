@@ -6,6 +6,7 @@ import MaintenanceSection from "../../components/sections/MaintenanceSection.ast
 import DoctorScheduleSection from "../../components/sections/DoctorScheduleSection.astro";
 import PromoSection from "../../components/sections/PromoSection.astro";
 import HeroSection from "../../components/sections/HeroSection.astro";
+import AwardSection from "../../components/sections/AwardSection.astro";
 const title = "Padang Eye Center - Pusat Kesehatan Mata Terpercaya";
 const description =
   "Klinik mata terpercaya di Padang dengan layanan lengkap dan dokter spesialis mata berpengalaman.";
@@ -16,67 +17,10 @@ const permalink = Astro.site.href;
   <!-- HERO SECTION with 3D Effect -->
   <HeroSection />
   <MaintenanceSection />
-  <!-- <DoctorScheduleSection /> -->
+  <AwardSection />
+  <DoctorScheduleSection />
   <PromoSection />
   <!-- SERVICES SECTION -->
   <ServiceSection />
   <CTASection />
 </BaseLayout>
-
-<style>
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
-  }
-
-  @keyframes float-delayed {
-    0%,
-    100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-30px);
-    }
-  }
-
-  @keyframes fade-in-up {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .animate-float-delayed {
-    animation: float-delayed 8s ease-in-out infinite;
-  }
-
-  .animate-fade-in-up {
-    animation: fade-in-up 0.8s ease-out;
-  }
-
-  .animate-fade-in {
-    animation: fade-in 1s ease-out;
-  }
-</style>

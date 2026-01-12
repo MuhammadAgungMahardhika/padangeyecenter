@@ -44,6 +44,11 @@ export interface TranslationKeys {
   "services.subtitle": string;
   "services.cta": string;
 
+  // Awards Section
+  "awards.badge": string;
+  "awards.title": string;
+  "awards.subtitle": string;
+
   // Doctors Section
   "doctors.title": string;
   "doctors.subtitle": string;
@@ -117,6 +122,10 @@ export const ui: UITranslations = {
     "services.title": "Dapatkan layanan terbaik untuk mata anda",
     "services.subtitle": "Perawatan mata komprehensif dengan teknologi terkini",
     "services.cta": "Pelajari lebih lanjut",
+
+    "awards.badge": "Penghargaan",
+    "awards.title": "Penghargaan & Prestasi",
+    "awards.subtitle": "Komitmen Kami terhadap Keunggulan",
 
     // Doctors Section
     "doctors.title": "Jadwal Dokter Spesialis",
@@ -196,6 +205,10 @@ export const ui: UITranslations = {
     "services.subtitle": "Comprehensive eye care with the latest technology",
     "services.cta": "Learn more",
 
+    "awards.badge": "Awards",
+    "awards.title": "Awards & Achievements",
+    "awards.subtitle": "Our Commitment to Excellence",
+
     // Doctors Section
     "doctors.title": "Specialist Doctor Schedule",
     "doctors.subtitle": "experienced eye specialist doctors ready to serve you",
@@ -265,6 +278,10 @@ export const ui: UITranslations = {
     "services.title": "احصل على أفضل رعاية لصحة عينيك",
     "services.subtitle": "رعاية شاملة للعيون بأحدث التقنيات",
     "services.cta": "اعرف المزيد",
+
+    "awards.badge": "الجوائز",
+    "awards.title": "الجوائز والإنجازات",
+    "awards.subtitle": "التزامنا بالتميز",
 
     // Doctors Section
     "doctors.title": "جدول الأطباء المختصين",
