@@ -3,7 +3,7 @@
 export const homepageContent = {
   id: {
     hero: {
-      badge: "Terpercaya Sejak 2009",
+      badge: "Terpercaya Sejak 2008",
       title: "Padang Eye Center",
       subtitle: "Pusat Kesehatan Mata Terpercaya",
       description:

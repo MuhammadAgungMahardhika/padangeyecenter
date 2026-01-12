@@ -104,7 +104,7 @@ export const ui: UITranslations = {
     "nav.locations": "Lokasi PEC",
 
     // Hero Section
-    "hero.badge": "Terpercaya Sejak 2009",
+    "hero.badge": "Terpercaya Sejak 2008",
     "hero.subtitle":
       "Pusat layanan kesehatan mata terlengkap dengan teknologi modern dan tim dokter spesialis berpengalaman di Sumatera Barat, Indonesia.",
     "hero.cta.services": "Layanan Kami",

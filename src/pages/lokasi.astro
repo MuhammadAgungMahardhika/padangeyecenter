@@ -18,7 +18,7 @@ const permalink = `${Astro.site?.href}lokasi`;
   
   <div class="locations-page-wrapper relative overflow-hidden">
     
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6  relative z-10">
       <!-- Page Header -->
       <div class="text-center">
         <div class="inline-flex items-center gap-2 mb-4">
@@ -62,7 +62,7 @@ const permalink = `${Astro.site?.href}lokasi`;
                   <!-- Image -->
                   <div class="image-wrapper mb-4">
                     <img 
-                      src={"assets/images/" + location.image || '/images/locations/default-hospital.jpg'} 
+                      src={"/assets/images/locations/" + location.image || '/assets/images/locations/default-hospital.jpg'} 
                       alt={location.name}
                       class="location-image"
                     />
@@ -137,7 +137,7 @@ const permalink = `${Astro.site?.href}lokasi`;
                   <!-- Image -->
                   <div class="image-wrapper mb-4">
                     <img 
-                      src={"assets/images/" + location.image || '/images/locations/default-hospital.jpg'} 
+                      src={"/assets/images/locations/" + location.image || '/assets/images/locations/default-hospital.jpg'} 
                       alt={location.name}
                       class="location-image"
                     />

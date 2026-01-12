@@ -109,13 +109,27 @@ const t = useTranslations(lang);
 
           <div
             class="relative bg-white p-2 rounded-3xl shadow-2xl transform hover:scale-105 hover:rotate-2 transition-all duration-500">
-            <img
-              src="/assets/images/pec-khatib.jpeg"
-              alt="Padang Eye Center"
-              class="rounded-2xl w-full h-auto"
-              width="600"
-              height="500"
-            />
+            <div class="relative">
+              <img
+                src="/assets/images/pec-khatib.jpeg"
+                alt="Padang Eye Center"
+                class="rounded-2xl w-full h-auto"
+                width="600"
+                height="500"
+              />
+
+              <!-- Play Button -->
+              <button
+                id="playButton"
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-14 h-14 md:w-20 md:h-20 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 group backdrop-blur-sm">
+                <svg
+                  class="w-7 h-7 md:w-10 md:h-10 text-orange-500 ml-0.5 md:ml-1 group-hover:scale-110 transition-transform"
+                  fill="currentColor"
+                  viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"></path>
+                </svg>
+              </button>
+            </div>
 
             <!-- Floating Badge -->
             <div
@@ -157,10 +171,136 @@ const t = useTranslations(lang);
           </div>
         </div>
       </div>
+
+      <!-- Video Modal -->
+      <div
+        id="videoModal"
+        class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="relative w-full max-w-4xl">
+          <!-- Close Button -->
+          <button
+            id="closeModal"
+            class="absolute -top-12 right-0 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
+            <svg
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+
+          <!-- Video Container -->
+          <div class="bg-black rounded-2xl overflow-hidden shadow-2xl">
+            <div class="relative" style="padding-bottom: 56.25%;">
+              <iframe
+                id="videoFrame"
+                class="absolute top-0 left-0 w-full h-full"
+                src=""
+                title="Padang Eye Center Profile Video"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <VisiMissionSection />
   </div>
 </div>
+<script>
+  function initVideoModal() {
+    const playButton = document.getElementById("playButton");
+    const videoModal = document.getElementById("videoModal");
+    const closeModal = document.getElementById("closeModal");
+    const videoFrame = document.getElementById(
+      "videoFrame"
+    ) as HTMLIFrameElement;
+
+    if (!playButton || !videoModal || !closeModal || !videoFrame) return;
+
+    // Ganti dengan URL video YouTube Anda
+    const videoUrl =
+      "https://www.youtube.com/embed/mczrT2NWGaE?autoplay=1&rel=0&modestbranding=1";
+
+    // Open modal
+    playButton.addEventListener("click", () => {
+      videoModal.classList.remove("hidden");
+      videoModal.classList.add("flex");
+      videoFrame.src = videoUrl;
+    });
+
+    // Close modal
+    const closeVideoModal = () => {
+      videoModal.classList.add("hidden");
+      videoModal.classList.remove("flex");
+      videoFrame.src = "";
+    };
+
+    closeModal.addEventListener("click", closeVideoModal);
+
+    // Close on backdrop click
+    videoModal.addEventListener("click", (e) => {
+      if (e.target === videoModal) {
+        closeVideoModal();
+      }
+    });
+
+    // Close on Escape key
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeVideoModal();
+      }
+    };
+    document.addEventListener("keydown", handleEscape);
+  }
+
+  // Run on initial load
+  initVideoModal();
+
+  // Run after view transitions (for Astro's view transitions)
+  document.addEventListener("astro:page-load", initVideoModal);
+
+  // Run after navigation (fallback)
+  document.addEventListener("DOMContentLoaded", initVideoModal);
+</script>
+
+<style>
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes float-delayed {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float-delayed 3s ease-in-out infinite;
+    animation-delay: 0.5s;
+  }
+</style>
 <style>
   @keyframes float {
     0%,
