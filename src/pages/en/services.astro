@@ -3,12 +3,13 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import ServiceCard from "../../components/cards/ServiceCard.astro";
 import { getServices } from "../../data/services";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import CTASection from "../../components/sections/CTASection.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const services = getServices(lang as any);
 
-const title = "Our Services - Padang Eye Center";
+const title = "Our services - Padang Eye Center";
 const description =
   "Solusi kesehatan mata komprehensif dengan teknologi terkini";
 const permalink = `${Astro.site?.href}layanan`;
@@ -54,44 +55,8 @@ const permalink = `${Astro.site?.href}layanan`;
           }
         </div>
       </div>
-
       <!-- Bottom CTA Section -->
-      <div class="text-center">
-        <div
-          class="bottom-cta-card max-w-4xl mx-auto rounded-3xl border backdrop-blur-xl p-6 md:p-10 lg:p-12 relative overflow-hidden">
-          <div class="cta-pattern absolute inset-0 opacity-[0.02]">
-            <div
-              class="absolute inset-0"
-              style="background-image: radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0); background-size: 24px 24px;">
-            </div>
-          </div>
-
-          <div class="relative z-10">
-            <h2
-              class="bottom-cta-title text-2xl md:text-4xl lg:text-5xl font-black tracking-tighter uppercase mb-3 md:mb-4">
-              Butuh Konsultasi?
-            </h2>
-            <p class="bottom-cta-text text-base md:text-lg mb-6 md:mb-8">
-              Tim kami siap membantu Anda menemukan solusi terbaik untuk
-              kesehatan mata Anda
-            </p>
-            <a href="/kontak" class="btn-primary-pec inline-flex">
-              Hubungi Kami
-              <svg
-                class="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24">
-                <path
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
+      <CTASection />
     </div>
   </div>
 </BaseLayout>

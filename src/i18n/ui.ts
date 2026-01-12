@@ -1,5 +1,6 @@
 // src/i18n/ui.ts
 import { about } from "./about";
+import { location } from "./location";
 export const languages = {
   en: "English",
   id: "Indonesia",
@@ -18,6 +19,7 @@ export interface TranslationKeys {
   "nav.contact": string;
   "nav.article": string;
   "nav.recruitment": string;
+  "nav.locations": string;
 
   // Hero Section
   "hero.badge": string;
@@ -76,6 +78,12 @@ export interface TranslationKeys {
   "about.p1": string;
   "about.p2": string;
   "about.p3": string;
+
+  // # 3 Locations page
+  "location.title": string;
+  "location.subtitle": string;
+  "location.hospital": string;
+  "location.clinic": string;
 }
 
 // UI translations type - each language must implement TranslationKeys
@@ -93,6 +101,7 @@ export const ui: UITranslations = {
     "nav.contact": "Kontak",
     "nav.article": "Artikel",
     "nav.recruitment": "Rekrutmen",
+    "nav.locations": "Lokasi PEC",
 
     // Hero Section
     "hero.badge": "Terpercaya Sejak 2009",
@@ -151,6 +160,8 @@ export const ui: UITranslations = {
 
     // #2 About page
     ...about.id,
+    // #3 Locations page
+    ...location.id,
   },
   en: {
     // Navigation
@@ -161,7 +172,7 @@ export const ui: UITranslations = {
     "nav.contact": "Contact",
     "nav.article": "article",
     "nav.recruitment": "Recruitment",
-
+    "nav.locations": "PEC Locations",
     // Hero Section
     "hero.badge": "Trusted Since 2009",
     "hero.subtitle":
@@ -217,6 +228,8 @@ export const ui: UITranslations = {
 
     // #2 About page
     ...about.en,
+    // #3 Locations page
+    ...location.en,
   },
   ar: {
     // Navigation
@@ -227,6 +240,7 @@ export const ui: UITranslations = {
     "nav.contact": "اتصل بنا",
     "nav.article": "المدونة",
     "nav.recruitment": "التوظيف",
+    "nav.locations": "PEC Locations",
 
     // Hero Section
     "hero.badge": "موثوق منذ 2009",
@@ -283,6 +297,8 @@ export const ui: UITranslations = {
 
     // #2 About page
     ...about.ar,
+    // #3 Locations page
+    ...location.ar,
   },
 } as const;
 

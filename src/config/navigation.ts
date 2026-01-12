@@ -10,6 +10,7 @@ export interface NavItem {
 export const navigationItems: NavItem[] = [
   { key: "home", labelKey: "nav.home" },
   { key: "about", labelKey: "nav.about" },
+  { key: "locations", labelKey: "nav.locations" },
   { key: "services", labelKey: "nav.services" },
   { key: "article", labelKey: "nav.article" },
 ];

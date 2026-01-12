@@ -1,7 +1,7 @@
 //i18n/routes.ts
 import type { Language } from "./ui";
 
-export type RouteKey = "home" | "about" | "services" | "article";
+export type RouteKey = "home" | "about" | "services" | "article" | "locations";
 
 export const routes: Record<RouteKey, Record<Language, string>> = {
   home: {
@@ -23,5 +23,10 @@ export const routes: Record<RouteKey, Record<Language, string>> = {
     id: "article",
     en: "article",
     ar: "article",
+  },
+  locations: {
+    id: "lokasi",
+    en: "locations",
+    ar: "locations",
   },
 };
