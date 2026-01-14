@@ -41,7 +41,7 @@ export const promos: promo[] = [
     gradient: "from-orange-50 to-white",
     border: "border-orange-100",
     buttonGradient: "from-orange-500 to-orange-600",
-    image: "/assets/images/promos/pemeriksaan.jpg", // Opsional: tambahkan gambar
+    image: "pec-khatib.jpeg", // Opsional: tambahkan gambar
   },
   {
     id: 2,
@@ -62,7 +62,7 @@ export const promos: promo[] = [
     gradient: "from-green-50 to-white",
     border: "border-green-100",
     buttonGradient: "from-green-500 to-green-600",
-    image: "/assets/images/promos/keluarga.jpg",
+    image: "pec-khatib.jpeg",
   },
   {
     id: 3,
@@ -84,7 +84,7 @@ export const promos: promo[] = [
     gradient: "from-orange-50 to-white",
     border: "border-orange-100",
     buttonGradient: "from-orange-500 to-orange-600",
-    image: "/assets/images/promos/katarak.jpg",
+    image: "pec-khatib.jpeg",
   },
   {
     id: 4,
@@ -106,7 +106,7 @@ export const promos: promo[] = [
     gradient: "from-green-50 to-white",
     border: "border-green-100",
     buttonGradient: "from-green-500 to-green-600",
-    image: "/assets/images/promos/lasik.jpg",
+    image: "pec-khatib.jpeg",
   },
 ];
 
