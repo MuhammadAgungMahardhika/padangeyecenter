@@ -2,7 +2,7 @@
 import { getServices } from "../../data/services";
 import ServiceCard from "../cards/ServiceCard.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
-
+import { getRouteUrl } from "../../i18n/path";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const services = getServices(lang as any);
@@ -41,11 +41,10 @@ const services = getServices(lang as any);
         </h2>
       </div>
 
-      <!-- Subtitle -->
-      <p
-        class="subtitle-text text-lg font-semibold uppercase tracking-tight leading-snug max-w-[320px]">
-        {t("services.subtitle")}
-      </p>
+      <!-- cta -->
+      <a href={getRouteUrl(lang, "services")} class="btn-outline-pec"
+        >{t("services.cta")}</a
+      >
     </div>
   </div>
 

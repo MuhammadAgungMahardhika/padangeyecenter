@@ -7,7 +7,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = awardsTranslations[lang] || awardsTranslations.id;
 ---
 
-<section class="py-8 overflow-hidden">
+<section class="py-16 overflow-hidden">
   <div class="max-w-7xl mx-auto px-4">
     <!-- Section Header -->
     <div class="text-center">
@@ -36,30 +36,46 @@ const t = awardsTranslations[lang] || awardsTranslations.id;
           {/* First set of awards */}
           {
             t.awards.map((award, index) => (
-              <div class="award-card-wrapper flex-shrink-0 w-[400px]">
-                <div
-                  class="award-card relative rounded-2xl p-6 border backdrop-blur-sm"
-                  style="background: linear-gradient(135deg, color-mix(in srgb, var(--text-primary) 5%, transparent), color-mix(in srgb, var(--text-secondary) 5%, transparent)); border-color: color-mix(in srgb, var(--text-muted) 15%, transparent);">
-                  {/* Decorative Elements */}
-                  <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-orange-500/5 to-transparent rounded-full blur-2xl" />
-                  <div class="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-green-500/5 to-transparent rounded-full blur-xl" />
+              <div class="award-card-wrapper">
+                <div class="award-card group">
+                  {/* Card Background with Gradient Border Effect */}
+                  <div class="card-border-gradient" />
 
-                  <div class="relative flex items-center gap-6">
-                    {/* Image/Icon with elevated effect */}
-                    <div class="flex-shrink-0 relative">
-                      <div class="absolute inset-0 bg-gradient-to-br from-orange-400/20 to-green-400/20 rounded-2xl blur-xl transform rotate-6" />
+                  <div class="card-content">
+                    {/* Image/Icon Container */}
+                    <div class="award-image-container">
                       {award.image ? (
-                        <div
-                          class="relative w-24 h-24 rounded-2xl shadow-2xl p-3 flex items-center justify-center transform -rotate-3 hover:rotate-0 transition-transform duration-500"
-                          style="background-color: var(--background-main);">
+                        <button
+                          class="award-image-wrapper clickable"
+                          data-award-image={
+                            "/assets/images/awards/" + award.image
+                          }
+                          data-award-title={award.title}
+                          data-award-org={award.organization}
+                          data-award-year={award.year}
+                          aria-label={`View ${award.title} certificate`}>
                           <img
                             src={"/assets/images/awards/" + award.image}
                             alt={award.title}
-                            class="w-full h-full object-contain"
+                            class="award-image"
                           />
-                        </div>
+                          <div class="image-overlay">
+                            <svg
+                              class="w-8 h-8 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24">
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                              />
+                            </svg>
+                          </div>
+                        </button>
                       ) : (
-                        <div class="relative w-24 h-24 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl shadow-2xl flex items-center justify-center transform -rotate-3 hover:rotate-0 transition-transform duration-500">
+                        <div class="award-icon-wrapper">
                           <svg
                             class="w-12 h-12 text-white"
                             fill="currentColor"
@@ -70,42 +86,30 @@ const t = awardsTranslations[lang] || awardsTranslations.id;
                       )}
                     </div>
 
-                    {/* Content */}
-                    <div class="flex-1 min-w-0">
-                      <div class="flex items-center gap-2 mb-2">
-                        <span
-                          class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold"
-                          style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(22, 163, 74, 0.1)); color: var(--text-primary);">
-                          {award.year}
-                        </span>
-                        <div class="flex gap-0.5">
-                          {[...Array(5)].map(() => (
-                            <svg
-                              class="w-3 h-3 text-orange-400"
-                              fill="currentColor"
-                              viewBox="0 0 20 20">
-                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                          ))}
-                        </div>
+                    {/* Award Details */}
+                    <div class="award-details">
+                      {/* Year Badge */}
+                      <span class="year-badge">{award.year}</span>
+
+                      {/* Title */}
+                      <h3 class="award-title">{award.title}</h3>
+
+                      {/* Organization */}
+                      <p class="award-organization">{award.organization}</p>
+
+                      {/* Star Rating */}
+                      <div class="star-rating">
+                        {[...Array(5)].map(() => (
+                          <svg
+                            class="star-icon"
+                            fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                        ))}
                       </div>
-
-                      <h3
-                        class="text-lg font-bold mb-1 leading-tight"
-                        style="color: var(--text-main);">
-                        {award.title}
-                      </h3>
-
-                      <p
-                        class="text-sm leading-snug"
-                        style="color: var(--text-muted);">
-                        {award.organization}
-                      </p>
                     </div>
                   </div>
-
-                  {/* Bottom shine effect */}
-                  <div class="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-orange-500/30 to-transparent" />
                 </div>
               </div>
             ))
@@ -113,28 +117,44 @@ const t = awardsTranslations[lang] || awardsTranslations.id;
           {/* Duplicate set for seamless loop */}
           {
             t.awards.map((award) => (
-              <div class="award-card-wrapper flex-shrink-0 w-[400px]">
-                <div
-                  class="award-card relative rounded-2xl p-6 border backdrop-blur-sm"
-                  style="background: linear-gradient(135deg, color-mix(in srgb, var(--text-primary) 5%, transparent), color-mix(in srgb, var(--text-secondary) 5%, transparent)); border-color: color-mix(in srgb, var(--text-muted) 15%, transparent);">
-                  <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-orange-500/5 to-transparent rounded-full blur-2xl" />
-                  <div class="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-green-500/5 to-transparent rounded-full blur-xl" />
+              <div class="award-card-wrapper">
+                <div class="award-card group">
+                  <div class="card-border-gradient" />
 
-                  <div class="relative flex items-center gap-6">
-                    <div class="flex-shrink-0 relative">
-                      <div class="absolute inset-0 bg-gradient-to-br from-orange-400/20 to-green-400/20 rounded-2xl blur-xl transform rotate-6" />
+                  <div class="card-content">
+                    <div class="award-image-container">
                       {award.image ? (
-                        <div
-                          class="relative w-24 h-24 rounded-2xl shadow-2xl p-3 flex items-center justify-center transform -rotate-3 hover:rotate-0 transition-transform duration-500"
-                          style="background-color: var(--background-body);">
+                        <button
+                          class="award-image-wrapper clickable"
+                          data-award-image={
+                            "/assets/images/awards/" + award.image
+                          }
+                          data-award-title={award.title}
+                          data-award-org={award.organization}
+                          data-award-year={award.year}
+                          aria-label={`View ${award.title} certificate`}>
                           <img
                             src={"/assets/images/awards/" + award.image}
                             alt={award.title}
-                            class="w-full h-full object-contain"
+                            class="award-image"
                           />
-                        </div>
+                          <div class="image-overlay">
+                            <svg
+                              class="w-8 h-8 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24">
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                              />
+                            </svg>
+                          </div>
+                        </button>
                       ) : (
-                        <div class="relative w-24 h-24 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl shadow-2xl flex items-center justify-center transform -rotate-3 hover:rotate-0 transition-transform duration-500">
+                        <div class="award-icon-wrapper">
                           <svg
                             class="w-12 h-12 text-white"
                             fill="currentColor"
@@ -145,40 +165,25 @@ const t = awardsTranslations[lang] || awardsTranslations.id;
                       )}
                     </div>
 
-                    <div class="flex-1 min-w-0">
-                      <div class="flex items-center gap-2 mb-2">
-                        <span
-                          class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold"
-                          style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(22, 163, 74, 0.1)); color: var(--text-primary);">
-                          {award.year}
-                        </span>
-                        <div class="flex gap-0.5">
-                          {[...Array(5)].map(() => (
-                            <svg
-                              class="w-3 h-3 text-orange-400"
-                              fill="currentColor"
-                              viewBox="0 0 20 20">
-                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                          ))}
-                        </div>
+                    <div class="award-details">
+                      <span class="year-badge">{award.year}</span>
+
+                      <h3 class="award-title">{award.title}</h3>
+
+                      <p class="award-organization">{award.organization}</p>
+
+                      <div class="star-rating">
+                        {[...Array(5)].map(() => (
+                          <svg
+                            class="star-icon"
+                            fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                        ))}
                       </div>
-
-                      <h3
-                        class="text-lg font-bold mb-1 leading-tight"
-                        style="color: var(--text-main);">
-                        {award.title}
-                      </h3>
-
-                      <p
-                        class="text-sm leading-snug"
-                        style="color: var(--text-muted);">
-                        {award.organization}
-                      </p>
                     </div>
                   </div>
-
-                  <div class="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-orange-500/30 to-transparent" />
                 </div>
               </div>
             ))
@@ -187,9 +192,46 @@ const t = awardsTranslations[lang] || awardsTranslations.id;
       </div>
     </div>
   </div>
+
+  <!-- Modal for Image Preview -->
+  <div
+    id="award-modal"
+    class="modal-overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true">
+    <div class="modal-container">
+      <button class="modal-close" id="modal-close" aria-label="Close modal">
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <div class="modal-content">
+        <div class="modal-image-wrapper">
+          <img id="modal-image" src="" alt="" class="modal-image" />
+        </div>
+
+        <div class="modal-info">
+          <span id="modal-year" class="modal-year-badge"></span>
+          <h3 id="modal-title" class="modal-title"></h3>
+          <p id="modal-org" class="modal-organization"></p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <style>
+  /* Carousel Container */
   .awards-carousel {
     overflow: hidden;
     padding: 2rem 0;
@@ -197,8 +239,8 @@ const t = awardsTranslations[lang] || awardsTranslations.id;
 
   .awards-track {
     display: flex;
-    gap: 1.5rem;
-    animation: scroll 40s linear infinite;
+    gap: 2rem;
+    animation: scroll 45s linear infinite;
     width: fit-content;
   }
 
@@ -215,13 +257,400 @@ const t = awardsTranslations[lang] || awardsTranslations.id;
     }
   }
 
+  /* Award Card Wrapper */
+  .award-card-wrapper {
+    flex-shrink: 0;
+    width: 420px;
+  }
+
+  /* Award Card */
   .award-card {
-    transition: all 0.3s ease;
+    position: relative;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--text-primary) 3%, transparent),
+      color-mix(in srgb, var(--text-secondary) 3%, transparent)
+    );
+    border: 1px solid color-mix(in srgb, var(--text-muted) 12%, transparent);
+    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
   }
 
   .award-card:hover {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px);
+    box-shadow:
+      0 20px 40px -15px rgba(249, 115, 22, 0.15),
+      0 0 0 1px color-mix(in srgb, var(--text-muted) 20%, transparent);
+  }
+
+  /* Gradient Border Effect */
+  .card-border-gradient {
+    position: absolute;
+    inset: -1px;
+    border-radius: 1.5rem;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(249, 115, 22, 0.3),
+      rgba(22, 163, 74, 0.3),
+      transparent
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .award-card:hover .card-border-gradient {
+    opacity: 1;
+  }
+
+  /* Card Content */
+  .card-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  /* Image Container */
+  .award-image-container {
+    flex-shrink: 0;
+  }
+
+  .award-image-wrapper {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    border-radius: 1rem;
+    background-color: var(--background-main);
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+    border: none;
+  }
+
+  .award-image-wrapper.clickable {
+    cursor: pointer;
+  }
+
+  .award-image-wrapper.clickable:hover {
+    transform: scale(1.08) rotate(-2deg);
+  }
+
+  .award-image-wrapper.clickable .image-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 1rem;
+  }
+
+  .award-image-wrapper.clickable:hover .image-overlay {
+    opacity: 1;
+  }
+
+  .award-card:hover .award-image-wrapper:not(.clickable) {
+    transform: scale(1.05) rotate(-2deg);
+  }
+
+  .award-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    filter: contrast(1.05) saturate(1.1);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+
+  .award-icon-wrapper {
+    width: 140px;
+    height: 140px;
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px -5px rgba(249, 115, 22, 0.3);
+    transition: transform 0.3s ease;
+  }
+
+  .award-card:hover .award-icon-wrapper {
+    transform: scale(1.05) rotate(-2deg);
+  }
+
+  .award-icon-wrapper svg {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  /* Award Details */
+  .award-details {
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+    overflow: hidden;
+  }
+
+  .year-badge {
+    display: inline-block;
+    padding: 0.375rem 0.875rem;
+    border-radius: 9999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    background: linear-gradient(
+      135deg,
+      rgba(249, 115, 22, 0.1),
+      rgba(22, 163, 74, 0.1)
+    );
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--text-muted) 15%, transparent);
+  }
+
+  .award-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .award-organization {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  /* Star Rating */
+  .star-rating {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .star-icon {
+    width: 1rem;
+    height: 1rem;
+    color: #f59e0b;
+    transition: transform 0.2s ease;
+  }
+
+  .award-card:hover .star-icon {
+    transform: scale(1.1);
+  }
+
+  /* Modal Styles */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    padding: 1rem;
+  }
+
+  .modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .modal-container {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    background: #ffffff;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .modal-container {
+      background: #1a1a1a;
+    }
+  }
+
+  [data-theme="dark"] .modal-container {
+    background: #1a1a1a;
+  }
+
+  [data-theme="light"] .modal-container {
+    background: #ffffff;
+  }
+
+  .modal-overlay.active .modal-container {
+    transform: scale(1);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease;
+  }
+
+  .modal-close:hover {
+    background: rgba(0, 0, 0, 0.7);
+    transform: rotate(90deg);
+  }
+
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal-image-wrapper {
+    width: 100%;
+    max-width: 900px;
+    max-height: 70vh;
+    margin: 0 auto;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .modal-image-wrapper {
+      background: #2d2d2d;
+    }
+  }
+
+  [data-theme="dark"] .modal-image-wrapper {
+    background: #2d2d2d;
+  }
+
+  [data-theme="light"] .modal-image-wrapper {
+    background: #f3f4f6;
+  }
+
+  .modal-image {
+    width: 100%;
+    height: 100%;
+    max-height: 70vh;
+    display: block;
+    object-fit: contain;
+    padding: 1rem;
+  }
+
+  .modal-info {
+    text-align: center;
+  }
+
+  .modal-year-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    background: linear-gradient(
+      135deg,
+      rgba(249, 115, 22, 0.15),
+      rgba(22, 163, 74, 0.15)
+    );
+    color: #f97316;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(249, 115, 22, 0.3);
+  }
+
+  .modal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .modal-title {
+      color: #ffffff;
+    }
+  }
+
+  [data-theme="dark"] .modal-title {
+    color: #ffffff;
+  }
+
+  [data-theme="light"] .modal-title {
+    color: #1a1a1a;
+  }
+
+  .modal-organization {
+    font-size: 1rem;
+    color: #6b7280;
+    line-height: 1.5;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .modal-organization {
+      color: #9ca3af;
+    }
+  }
+
+  [data-theme="dark"] .modal-organization {
+    color: #9ca3af;
+  }
+
+  [data-theme="light"] .modal-organization {
+    color: #6b7280;
   }
 
   /* Responsive */
@@ -231,8 +660,120 @@ const t = awardsTranslations[lang] || awardsTranslations.id;
     }
 
     .awards-track {
-      animation-duration: 25s;
+      animation-duration: 30s;
+      gap: 1.5rem;
+    }
+
+    .award-card {
+      padding: 1.25rem;
+    }
+
+    .award-image-wrapper,
+    .award-icon-wrapper {
+      width: 90px;
+      height: 90px;
+    }
+
+    .award-icon-wrapper svg {
+      width: 3rem;
+      height: 3rem;
+    }
+
+    .card-content {
       gap: 1rem;
+    }
+
+    .year-badge {
+      padding: 0.25rem 0.625rem;
+      font-size: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .award-title {
+      font-size: 0.9375rem;
+      line-height: 1.3;
+      margin-bottom: 0.375rem;
+    }
+
+    .award-organization {
+      font-size: 0.75rem;
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+
+    .star-icon {
+      width: 0.875rem;
+      height: 0.875rem;
+    }
+
+    .modal-content {
+      padding: 1.5rem;
+    }
+
+    .modal-title {
+      font-size: 1.25rem;
+    }
+
+    .modal-organization {
+      font-size: 0.875rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .award-card-wrapper {
+      width: 300px;
+    }
+
+    .awards-track {
+      gap: 1rem;
+    }
+
+    .award-card {
+      padding: 1rem;
+    }
+
+    .award-image-wrapper,
+    .award-icon-wrapper {
+      width: 75px;
+      height: 75px;
+    }
+
+    .award-icon-wrapper svg {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    .card-content {
+      gap: 0.875rem;
+    }
+
+    .year-badge {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.6875rem;
+    }
+
+    .award-title {
+      font-size: 0.875rem;
+      line-height: 1.25;
+    }
+
+    .award-organization {
+      font-size: 0.6875rem;
+      line-height: 1.35;
+    }
+
+    .star-icon {
+      width: 0.75rem;
+      height: 0.75rem;
+    }
+
+    .modal-content {
+      padding: 1rem;
+      gap: 1rem;
+    }
+
+    .modal-title {
+      font-size: 1.125rem;
     }
   }
 </style>
@@ -240,7 +781,16 @@ const t = awardsTranslations[lang] || awardsTranslations.id;
 <script>
   function initAwardsCarousel() {
     const track = document.querySelector(".awards-track") as HTMLElement;
-    if (!track) return;
+    const modal = document.getElementById("award-modal") as HTMLElement;
+    const modalClose = document.getElementById("modal-close") as HTMLElement;
+    const modalImage = document.getElementById(
+      "modal-image"
+    ) as HTMLImageElement;
+    const modalTitle = document.getElementById("modal-title") as HTMLElement;
+    const modalOrg = document.getElementById("modal-org") as HTMLElement;
+    const modalYear = document.getElementById("modal-year") as HTMLElement;
+
+    if (!track || !modal) return;
 
     // Pause animation on window blur (tab inactive)
     document.addEventListener("visibilitychange", () => {
@@ -250,6 +800,58 @@ const t = awardsTranslations[lang] || awardsTranslations.id;
         } else {
           track.style.animationPlayState = "running";
         }
+      }
+    });
+
+    // Handle image click to open modal
+    const imageButtons = document.querySelectorAll(
+      ".award-image-wrapper.clickable"
+    );
+    imageButtons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        e.preventDefault();
+        const target = e.currentTarget as HTMLElement;
+        const imageSrc = target.dataset.awardImage;
+        const title = target.dataset.awardTitle;
+        const org = target.dataset.awardOrg;
+        const year = target.dataset.awardYear;
+
+        if (imageSrc && title && org && year) {
+          modalImage.src = imageSrc;
+          modalImage.alt = title;
+          modalTitle.textContent = title;
+          modalOrg.textContent = org;
+          modalYear.textContent = year;
+          modal.classList.add("active");
+          modal.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+        }
+      });
+    });
+
+    // Close modal function
+    const closeModal = () => {
+      modal.classList.remove("active");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    };
+
+    // Close button click
+    if (modalClose) {
+      modalClose.addEventListener("click", closeModal);
+    }
+
+    // Click outside modal to close
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Escape key to close
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("active")) {
+        closeModal();
       }
     });
   }

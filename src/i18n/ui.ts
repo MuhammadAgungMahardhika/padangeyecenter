@@ -121,7 +121,7 @@ export const ui: UITranslations = {
     "services.badge": "Layanan Kami",
     "services.title": "Dapatkan layanan terbaik untuk mata anda",
     "services.subtitle": "Perawatan mata komprehensif dengan teknologi terkini",
-    "services.cta": "Pelajari lebih lanjut",
+    "services.cta": "Lihat selengkapnya",
 
     "awards.badge": "Penghargaan",
     "awards.title": "Penghargaan & Prestasi",
@@ -179,7 +179,7 @@ export const ui: UITranslations = {
     "nav.services": "Services",
     "nav.doctors": "Doctors",
     "nav.contact": "Contact",
-    "nav.article": "article",
+    "nav.article": "Article",
     "nav.recruitment": "Recruitment",
     "nav.locations": "PEC Locations",
     // Hero Section
@@ -253,7 +253,7 @@ export const ui: UITranslations = {
     "nav.contact": "اتصل بنا",
     "nav.article": "المدونة",
     "nav.recruitment": "التوظيف",
-    "nav.locations": "PEC Locations",
+    "nav.locations": "فروع PEC",
 
     // Hero Section
     "hero.badge": "موثوق منذ 2009",

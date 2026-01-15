@@ -13,7 +13,7 @@ export const locations = {
     },
     {
       name: "RS Mata Pec Agam",
-      image: "pec-khatib.jpeg",
+      image: null,
       address:
         "Biaro Gadang, Kec. Ampek Angkek, Kabupaten Agam, Sumatera Barat",
       city: "Padang",
@@ -27,7 +27,7 @@ export const locations = {
   clinics: [
     {
       name: "KUM Pec Padang Pariaman",
-      image: "pec-khatib.jpeg",
+      image: null,
       address:
         "Jln. Asam Jawa No.10 & 12, Lubuk Alung, Kec. Lubuk Alung, Kabupaten Padang Pariaman, Sumatera Barat 25581",
       city: "Padang",
@@ -39,7 +39,7 @@ export const locations = {
     },
     {
       name: "KUM Pec Teluk Kuantan",
-      image: "pec-khatib.jpeg",
+      image: null,
       address:
         "Jl. Rusdi S Abrus no. 35, Sinambek. Teluk, Jering, Kec. Kuantan Tengah, Kabupaten Kuantan Singingi, Riau 29566",
       city: "Padang",
@@ -51,7 +51,7 @@ export const locations = {
     },
     {
       name: "KUM Pec Bangkinang",
-      image: "pec-khatib.jpeg",
+      image: null,
       address:
         "Jl. Raya Pekanbaru - Bangkinang No.KM 56, Batu Belah, Kec. Kampar, Kabupaten Kampar, Riau 28461",
       city: "Padang",
