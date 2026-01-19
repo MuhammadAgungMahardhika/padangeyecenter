@@ -1,0 +1,212 @@
+---
+// src/pages/layanan/[slug].astro
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getServices } from "../../data/services";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import type { Language } from "../../i18n/ui";
+
+export async function getStaticPaths() {
+  const languages: Language[] = ["id", "en", "ar"];
+  const paths = [];
+
+  for (const lang of languages) {
+    const services = getServices(lang);
+
+    for (const service of services) {
+      paths.push({
+        params: { slug: service.slug },
+        props: { service, lang },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { service, lang } = Astro.props;
+const t = useTranslations(lang);
+
+const title = `${service.category} - Padang Eye Center`;
+const description = service.description || service.category;
+const permalink = `${Astro.site?.href}layanan/${service.slug}`;
+
+// Icon mapping
+const iconMap = {
+  eye: "👁️",
+  shield: "🛡️",
+  spark: "✨",
+};
+
+// Color mapping
+const colorClasses = {
+  orange: "from-orange-500 to-orange-600",
+  green: "from-green-500 to-green-600",
+  gradient: "from-orange-500 via-green-500 to-blue-500",
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  permalink={permalink}
+  current="services">
+  <div class="service-detail-wrapper relative overflow-hidden py-12 md:py-20">
+    <!-- Decorative Background -->
+    <div
+      class="decorative-blob absolute top-0 left-0 w-[500px] h-[500px] rounded-full blur-3xl opacity-20 animate-pulse pointer-events-none"
+      style={`background: radial-gradient(circle, rgba(234, 88, 12, 0.3), transparent);`}>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 relative z-10">
+      <!-- Back Button -->
+      <a
+        href="/layanan"
+        class="inline-flex items-center gap-2 text-sm mb-8 hover:opacity-70 transition-opacity"
+        style="color: var(--text-muted);">
+        <svg
+          class="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"></path>
+        </svg>
+        {
+          lang === "id"
+            ? "Kembali ke Layanan"
+            : lang === "en"
+              ? "Back to Services"
+              : "العودة إلى الخدمات"
+        }
+      </a>
+
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <div
+          class="inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-6"
+          style={`background: linear-gradient(135deg, ${colorClasses[service.color]}); box-shadow: 0 10px 40px rgba(0,0,0,0.1);`}>
+          <span class="text-4xl">{iconMap[service.icon]}</span>
+        </div>
+
+        <h1
+          class="text-3xl md:text-5xl font-bold mb-4"
+          style="color: var(--text-main);">
+          {service.category}
+        </h1>
+
+        {
+          service.description && (
+            <p
+              class="text-lg md:text-xl max-w-2xl mx-auto"
+              style="color: var(--text-muted);">
+              {service.description}
+            </p>
+          )
+        }
+      </div>
+
+      <!-- Service Items -->
+      <div
+        class="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100 dark:border-gray-700">
+        <h2 class="text-2xl font-bold mb-6" style="color: var(--text-main);">
+          {
+            lang === "id"
+              ? "Layanan yang Tersedia"
+              : lang === "en"
+                ? "Available Services"
+                : "الخدمات المتاحة"
+          }
+        </h2>
+
+        <ul class="space-y-4">
+          {
+            service.items.map((item) => (
+              <li class="flex items-start gap-3 p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                <svg
+                  class="w-6 h-6 flex-shrink-0 mt-0.5"
+                  style={`color: ${service.color === "orange" ? "#ea580c" : service.color === "green" ? "#16a34a" : "#3b82f6"}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                <span class="text-lg" style="color: var(--text-main);">
+                  {item.name}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- CTA Section -->
+      <div
+        class="mt-12 text-center p-8 rounded-3xl border border-gray-200 dark:border-gray-700"
+        style="background-color: var(--background-body);">
+        <h3 class="text-2xl font-bold mb-4" style="color: var(--text-main);">
+          {
+            lang === "id"
+              ? "Tertarik dengan layanan ini?"
+              : lang === "en"
+                ? "Interested in this service?"
+                : "هل أنت مهتم بهذه الخدمة؟"
+          }
+        </h3>
+        <p class="mb-6" style="color: var(--text-muted);">
+          {
+            lang === "id"
+              ? "Hubungi kami untuk informasi lebih lanjut atau buat janji temu"
+              : lang === "en"
+                ? "Contact us for more information or to schedule an appointment"
+                : "اتصل بنا لمزيد من المعلومات أو لتحديد موعد"
+          }
+        </p>
+        <a
+          href="/contact"
+          class="inline-block px-8 py-4 rounded-full text-white font-semibold hover:opacity-90 transition-opacity"
+          style={`background: linear-gradient(135deg, ${colorClasses[service.color]});`}>
+          {
+            lang === "id"
+              ? "Hubungi Kami"
+              : lang === "en"
+                ? "Contact Us"
+                : "اتصل بنا"
+          }
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  :root.theme-dark .decorative-blob {
+    opacity: 0.15;
+  }
+
+  @media (max-width: 768px) {
+    .decorative-blob {
+      width: 300px;
+      height: 300px;
+      top: -50px;
+      left: -50px;
+    }
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 0.15;
+    }
+    50% {
+      opacity: 0.25;
+    }
+  }
+</style>

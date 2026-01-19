@@ -100,8 +100,9 @@ const theme = colorMap[color as keyof typeof colorMap] || colorMap.orange;
             <div class="badges-container flex flex-wrap gap-1.5 content-start p-2">
               {
                 items.map((item, index) => (
-                  <button
-                    class="service-badge group/badge relative overflow-hidden transition-all duration-300"
+                  <a
+                    href={`/layanan/${slug}`}
+                    class="service-badge group/badge relative overflow-hidden transition-all duration-300 no-underline"
                     style={`animation-delay: ${index * 50}ms;`}
                     data-service={item.name}>
                     <!-- Badge Glow -->
@@ -123,7 +124,7 @@ const theme = colorMap[color as keyof typeof colorMap] || colorMap.orange;
 
                     <!-- Ripple Effect -->
                     <div class="ripple absolute inset-0 pointer-events-none" />
-                  </button>
+                  </a>
                 ))
               }
             </div>
@@ -190,6 +191,7 @@ const theme = colorMap[color as keyof typeof colorMap] || colorMap.orange;
   .pattern-bg {
     opacity: 0.02;
     color: var(--text-main);
+    pointer-events: none;
   }
 
   :root.theme-dark .pattern-bg {
@@ -231,6 +233,13 @@ const theme = colorMap[color as keyof typeof colorMap] || colorMap.orange;
   .badges-scroll {
     scrollbar-width: thin;
     scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .badges-container {
+    position: relative;
+    z-index: 2;
   }
 
   :root.theme-dark .badges-scroll {
@@ -264,11 +273,14 @@ const theme = colorMap[color as keyof typeof colorMap] || colorMap.orange;
 
   .badges-container {
     animation: fadeInScale 0.5s ease-out forwards;
+    position: relative;
+    z-index: 2;
   }
 
   /* Scroll Gradient Indicator */
   .scroll-indicator {
     background: linear-gradient(to top, var(--background-body), transparent);
+    pointer-events: none;
   }
 
   .badges-scroll:not(:hover) .scroll-indicator {
@@ -281,6 +293,11 @@ const theme = colorMap[color as keyof typeof colorMap] || colorMap.orange;
     background-color: rgba(0, 0, 0, 0.02);
     cursor: pointer;
     animation: fadeInScale 0.4s ease-out backwards;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
   }
 
   :root.theme-dark .service-badge {
@@ -293,6 +310,7 @@ const theme = colorMap[color as keyof typeof colorMap] || colorMap.orange;
     border-color: rgba(0, 0, 0, 0.15);
     background-color: rgba(0, 0, 0, 0.05);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-decoration: none;
   }
 
   :root.theme-dark .service-badge:hover {
@@ -373,23 +391,33 @@ const theme = colorMap[color as keyof typeof colorMap] || colorMap.orange;
   :root.theme-dark .corner-decoration {
     opacity: 0.08 !important;
   }
+  .service-badge {
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: rgba(0, 0, 0, 0.02);
+  cursor: pointer !important;
+  animation: fadeInScale 0.4s ease-out backwards;
+  text-decoration: none !important;
+  color: inherit;
+  position: relative;
+  z-index: 10 !important;  /* Naikkan z-index */
+  display: inline-flex;
+  pointer-events: auto !important;  /* Pastikan bisa diklik */
+}
+
+/* Pastikan parent container tidak blocking */
+.badges-container a {
+  pointer-events: auto !important;
+  z-index: 10 !important;
+}
+
+/* Badge content harus inherit pointer events */
+.service-badge * {
+  pointer-events: none;
+}
 </style>
 
 <script>
-  // Add click interaction for badges
-  document.querySelectorAll('.service-badge').forEach(badge => {
-    badge.addEventListener('click', function(e) {
-      const serviceName = this.getAttribute('data-service');
-      console.log('Service clicked:', serviceName);
-      
-      // You can add custom behavior here, like:
-      // - Show a tooltip
-      // - Navigate to a specific section
-      // - Open a modal with more details
-      // - Add to a selection list
-    });
-  });
-
   // Show/hide scroll indicator based on scroll position
   document.querySelectorAll('.badges-scroll').forEach(container => {
     const indicator = container.nextElementSibling as HTMLElement;
