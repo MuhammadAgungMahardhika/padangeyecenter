@@ -1,11 +1,13 @@
 ---
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import { getRouteUrl } from "../../i18n/path";
+
 
 interface Props {
   slug: string;
   category: string;
   description: string;
-  items: { name: string }[];
+  items: { slug: string; name: string }[];
   icon: string;
   color: string;
 }
@@ -101,7 +103,7 @@ const theme = colorMap[color as keyof typeof colorMap] || colorMap.orange;
               {
                 items.map((item, index) => (
                   <a
-                    href={`/layanan/${slug}`}
+                    href={getRouteUrl(lang, "services") +`/${item.slug}`}
                     class="service-badge group/badge relative overflow-hidden transition-all duration-300 no-underline"
                     style={`animation-delay: ${index * 50}ms;`}
                     data-service={item.name}>

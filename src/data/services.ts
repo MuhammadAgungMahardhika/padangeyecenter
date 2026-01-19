@@ -1,6 +1,7 @@
 import { type Language } from "../i18n/ui";
 
 export interface ServiceItem {
+  slug: string;
   name: string;
 }
 
@@ -23,11 +24,11 @@ export const getServices = (lang: Language): Service[] => {
         icon: "shield",
         color: "green",
         items: [
-          { name: "Katarak" },
-          { name: "Kornea" },
-          { name: "Laser Vision Correction" },
-          { name: "Lensa" },
-          { name: "FLACS" },
+          { slug: "katarak", name: "Katarak" },
+          { slug: "kornea", name: "Kornea" },
+          { slug: "laser-vision-correction", name: "Laser Vision Correction" },
+          { slug: "lensa", name: "Lensa" },
+          { slug: "flacs", name: "FLACS" },
         ],
       },
       {
@@ -36,7 +37,7 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "eye",
         color: "orange",
-        items: [{ name: "Glaukoma" }],
+        items: [{ slug: "glaukoma", name: "Glaukoma" }],
       },
       {
         slug: "retina",
@@ -45,9 +46,12 @@ export const getServices = (lang: Language): Service[] => {
         icon: "eye",
         color: "orange",
         items: [
-          { name: "Low Vision" },
-          { name: "Diabetes Education & Care" },
-          { name: "Vitreoretina" },
+          { slug: "low-vision", name: "Low Vision" },
+          {
+            slug: "diabetes-education-care",
+            name: "Diabetes Education & Care",
+          },
+          { slug: "vitreoretina", name: "Vitreoretina" },
         ],
       },
       {
@@ -56,7 +60,12 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "shield",
         color: "green",
-        items: [{ name: "Orbital, Oculoplastic and Reconstructive" }],
+        items: [
+          {
+            slug: "orbital-oculoplastic-reconstructive",
+            name: "Orbital, Oculoplastic and Reconstructive",
+          },
+        ],
       },
       {
         slug: "mata-anak-dan-juling",
@@ -65,11 +74,14 @@ export const getServices = (lang: Language): Service[] => {
         icon: "spark",
         color: "gradient",
         items: [
-          { name: "Ambliopia" },
-          { name: "Strabismus" },
-          { name: "Children Eye & Strabismus Center" },
-          { name: "Katarak Pada Anak" },
-          { name: "Myopia Control Care" },
+          { slug: "ambliopia", name: "Ambliopia" },
+          { slug: "strabismus", name: "Strabismus" },
+          {
+            slug: "children-eye-strabismus-center",
+            name: "Children Eye & Strabismus Center",
+          },
+          { slug: "katarak-pada-anak", name: "Katarak Pada Anak" },
+          { slug: "myopia-control-care", name: "Myopia Control Care" },
         ],
       },
       {
@@ -79,8 +91,8 @@ export const getServices = (lang: Language): Service[] => {
         icon: "eye",
         color: "orange",
         items: [
-          { name: "Contact Lens" },
-          { name: "Orthokeratology (Ortho-K)" },
+          { slug: "contact-lens", name: "Contact Lens" },
+          { slug: "orthokeratology", name: "Orthokeratology (Ortho-K)" },
         ],
       },
       {
@@ -89,7 +101,12 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "shield",
         color: "green",
-        items: [{ name: "Infeksi Okular dan Imunologi" }],
+        items: [
+          {
+            slug: "infeksi-okular-imunologi",
+            name: "Infeksi Okular dan Imunologi",
+          },
+        ],
       },
       {
         slug: "neuro-oftalmologi",
@@ -97,7 +114,7 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "eye",
         color: "orange",
-        items: [{ name: "Neuro-Ophthalmology" }],
+        items: [{ slug: "neuro-ophthalmology", name: "Neuro-Ophthalmology" }],
       },
       {
         slug: "mata-kering",
@@ -105,7 +122,7 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "spark",
         color: "gradient",
-        items: [{ name: "Dry Eye" }],
+        items: [{ slug: "dry-eye", name: "Dry Eye" }],
       },
       {
         slug: "eye-check",
@@ -113,7 +130,7 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "eye",
         color: "orange",
-        items: [{ name: "Eye Check" }],
+        items: [{ slug: "eye-check", name: "Eye Check" }],
       },
       {
         slug: "teleoftalmologi",
@@ -121,7 +138,7 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "spark",
         color: "gradient",
-        items: [{ name: "Teleoftalmologi" }],
+        items: [{ slug: "teleoftalmologi", name: "Teleoftalmologi" }],
       },
       {
         slug: "thyroid-eye-center",
@@ -129,7 +146,7 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "shield",
         color: "green",
-        items: [{ name: "Thyroid Eye Center" }],
+        items: [{ slug: "thyroid-eye-center", name: "Thyroid Eye Center" }],
       },
     ],
 
@@ -141,11 +158,11 @@ export const getServices = (lang: Language): Service[] => {
         icon: "shield",
         color: "green",
         items: [
-          { name: "Cataract" },
-          { name: "Cornea" },
-          { name: "Laser Vision Correction" },
-          { name: "Lens" },
-          { name: "FLACS" },
+          { slug: "cataract", name: "Cataract" },
+          { slug: "cornea", name: "Cornea" },
+          { slug: "laser-vision-correction", name: "Laser Vision Correction" },
+          { slug: "lens", name: "Lens" },
+          { slug: "flacs", name: "FLACS" },
         ],
       },
       {
@@ -154,7 +171,7 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "eye",
         color: "orange",
-        items: [{ name: "Glaucoma" }],
+        items: [{ slug: "glaucoma", name: "Glaucoma" }],
       },
       {
         slug: "retina",
@@ -163,9 +180,12 @@ export const getServices = (lang: Language): Service[] => {
         icon: "eye",
         color: "orange",
         items: [
-          { name: "Low Vision" },
-          { name: "Diabetes Education & Care" },
-          { name: "Vitreoretina" },
+          { slug: "low-vision", name: "Low Vision" },
+          {
+            slug: "diabetes-education-care",
+            name: "Diabetes Education & Care",
+          },
+          { slug: "vitreoretina", name: "Vitreoretina" },
         ],
       },
       {
@@ -174,7 +194,12 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "shield",
         color: "green",
-        items: [{ name: "Orbital, Oculoplastic and Reconstructive" }],
+        items: [
+          {
+            slug: "orbital-oculoplastic-reconstructive",
+            name: "Orbital, Oculoplastic and Reconstructive",
+          },
+        ],
       },
       {
         slug: "pediatric-and-strabismus",
@@ -183,11 +208,14 @@ export const getServices = (lang: Language): Service[] => {
         icon: "spark",
         color: "gradient",
         items: [
-          { name: "Amblyopia" },
-          { name: "Strabismus" },
-          { name: "Children Eye & Strabismus Center" },
-          { name: "Pediatric Cataract" },
-          { name: "Myopia Control Care" },
+          { slug: "amblyopia", name: "Amblyopia" },
+          { slug: "strabismus", name: "Strabismus" },
+          {
+            slug: "children-eye-strabismus-center",
+            name: "Children Eye & Strabismus Center",
+          },
+          { slug: "pediatric-cataract", name: "Pediatric Cataract" },
+          { slug: "myopia-control-care", name: "Myopia Control Care" },
         ],
       },
       {
@@ -197,8 +225,8 @@ export const getServices = (lang: Language): Service[] => {
         icon: "eye",
         color: "orange",
         items: [
-          { name: "Contact Lens" },
-          { name: "Orthokeratology (Ortho-K)" },
+          { slug: "contact-lens", name: "Contact Lens" },
+          { slug: "orthokeratology", name: "Orthokeratology (Ortho-K)" },
         ],
       },
       {
@@ -207,7 +235,12 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "shield",
         color: "green",
-        items: [{ name: "Ocular Infection & Immunology" }],
+        items: [
+          {
+            slug: "ocular-infection-immunology",
+            name: "Ocular Infection & Immunology",
+          },
+        ],
       },
       {
         slug: "neuro-ophthalmology",
@@ -215,7 +248,7 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "eye",
         color: "orange",
-        items: [{ name: "Neuro-Ophthalmology" }],
+        items: [{ slug: "neuro-ophthalmology", name: "Neuro-Ophthalmology" }],
       },
       {
         slug: "dry-eye",
@@ -223,7 +256,7 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "spark",
         color: "gradient",
-        items: [{ name: "Dry Eye" }],
+        items: [{ slug: "dry-eye", name: "Dry Eye" }],
       },
       {
         slug: "eye-check",
@@ -231,7 +264,7 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "eye",
         color: "orange",
-        items: [{ name: "Eye Check" }],
+        items: [{ slug: "eye-check", name: "Eye Check" }],
       },
       {
         slug: "teleophthalmology",
@@ -239,7 +272,7 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "spark",
         color: "gradient",
-        items: [{ name: "Teleophthalmology" }],
+        items: [{ slug: "teleophthalmology", name: "Teleophthalmology" }],
       },
       {
         slug: "thyroid-eye-center",
@@ -247,7 +280,7 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "shield",
         color: "green",
-        items: [{ name: "Thyroid Eye Center" }],
+        items: [{ slug: "thyroid-eye-center", name: "Thyroid Eye Center" }],
       },
     ],
 
@@ -259,11 +292,11 @@ export const getServices = (lang: Language): Service[] => {
         icon: "shield",
         color: "green",
         items: [
-          { name: "المياه البيضاء" },
-          { name: "القرنية" },
-          { name: "تصحيح الإبصار بالليزر" },
-          { name: "العدسات" },
-          { name: "FLACS" },
+          { slug: "cataract", name: "المياه البيضاء" },
+          { slug: "cornea", name: "القرنية" },
+          { slug: "laser-vision-correction", name: "تصحيح الإبصار بالليزر" },
+          { slug: "lens", name: "العدسات" },
+          { slug: "flacs", name: "FLACS" },
         ],
       },
       {
@@ -272,7 +305,7 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "eye",
         color: "orange",
-        items: [{ name: "الجلوكوما" }],
+        items: [{ slug: "glaucoma", name: "الجلوكوما" }],
       },
       {
         slug: "retina",
@@ -281,9 +314,12 @@ export const getServices = (lang: Language): Service[] => {
         icon: "eye",
         color: "orange",
         items: [
-          { name: "ضعف البصر" },
-          { name: "التثقيف والرعاية لمرضى السكري" },
-          { name: "جراحة الشبكية والجسم الزجاجي" },
+          { slug: "low-vision", name: "ضعف البصر" },
+          {
+            slug: "diabetes-education-care",
+            name: "التثقيف والرعاية لمرضى السكري",
+          },
+          { slug: "vitreoretina", name: "جراحة الشبكية والجسم الزجاجي" },
         ],
       },
       {
@@ -292,7 +328,12 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "shield",
         color: "green",
-        items: [{ name: "جراحة محجر العين والتجميل وإعادة البناء" }],
+        items: [
+          {
+            slug: "orbital-oculoplastic-reconstructive",
+            name: "جراحة محجر العين والتجميل وإعادة البناء",
+          },
+        ],
       },
       {
         slug: "mata-anak-dan-juling",
@@ -301,11 +342,14 @@ export const getServices = (lang: Language): Service[] => {
         icon: "spark",
         color: "gradient",
         items: [
-          { name: "كسل العين" },
-          { name: "الحول" },
-          { name: "مركز عيون الأطفال والحول" },
-          { name: "المياه البيضاء عند الأطفال" },
-          { name: "علاج التحكم بقصر النظر" },
+          { slug: "amblyopia", name: "كسل العين" },
+          { slug: "strabismus", name: "الحول" },
+          {
+            slug: "children-eye-strabismus-center",
+            name: "مركز عيون الأطفال والحول",
+          },
+          { slug: "pediatric-cataract", name: "المياه البيضاء عند الأطفال" },
+          { slug: "myopia-control-care", name: "علاج التحكم بقصر النظر" },
         ],
       },
       {
@@ -315,8 +359,8 @@ export const getServices = (lang: Language): Service[] => {
         icon: "eye",
         color: "orange",
         items: [
-          { name: "العدسات اللاصقة" },
-          { name: "تقويم القرنية (أورثو-كي)" },
+          { slug: "contact-lens", name: "العدسات اللاصقة" },
+          { slug: "orthokeratology", name: "تقويم القرنية (أورثو-كي)" },
         ],
       },
       {
@@ -325,7 +369,12 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "shield",
         color: "green",
-        items: [{ name: "التهابات العين والمناعة" }],
+        items: [
+          {
+            slug: "ocular-infection-immunology",
+            name: "التهابات العين والمناعة",
+          },
+        ],
       },
       {
         slug: "neuro-oftalmologi",
@@ -333,7 +382,7 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "eye",
         color: "orange",
-        items: [{ name: "طب أعصاب العيون" }],
+        items: [{ slug: "neuro-ophthalmology", name: "طب أعصاب العيون" }],
       },
       {
         slug: "mata-kering",
@@ -341,7 +390,7 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "spark",
         color: "gradient",
-        items: [{ name: "جفاف العين" }],
+        items: [{ slug: "dry-eye", name: "جفاف العين" }],
       },
       {
         slug: "eye-check",
@@ -349,7 +398,7 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "eye",
         color: "orange",
-        items: [{ name: "فحص العين" }],
+        items: [{ slug: "eye-check", name: "فحص العين" }],
       },
       {
         slug: "teleoftalmologi",
@@ -357,7 +406,7 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "spark",
         color: "gradient",
-        items: [{ name: "طب العيون عن بُعد" }],
+        items: [{ slug: "teleophthalmology", name: "طب العيون عن بُعد" }],
       },
       {
         slug: "thyroid-eye-center",
@@ -365,7 +414,12 @@ export const getServices = (lang: Language): Service[] => {
         description: "",
         icon: "shield",
         color: "green",
-        items: [{ name: "مركز اعتلال العين المرتبط بالغدة الدرقية" }],
+        items: [
+          {
+            slug: "thyroid-eye-center",
+            name: "مركز اعتلال العين المرتبط بالغدة الدرقية",
+          },
+        ],
       },
     ],
   };
