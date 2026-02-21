@@ -1,8 +1,9 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getServices } from "../../data/services";
-import { getLangFromUrl, useTranslations } from "../../i18n/utils";
-import { getRouteUrl } from "../../i18n/path";
+// src/pages/layanan/[slug].astro
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getServices } from "../../../data/services";
+import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
+import { getRouteUrl } from "../../../i18n/path";
 
 export async function getStaticPaths() {
   const services = getServices("id"); // ← hanya ID
@@ -29,10 +30,12 @@ const description = service.description || service.category;
 const permalink = `${Astro.site?.href}layanan/${item.slug}`;
 
 const iconMap = { eye: "👁️", shield: "🛡️", spark: "✨" };
-const colorMap = {
-  orange: "#ea580c",
-  green: "#16a34a",
-  gradient: "#3b82f6",
+
+// Color mapping
+const colorClasses = {
+  orange: "from-orange-500 to-orange-600",
+  green: "from-green-500 to-green-600",
+  gradient: "from-orange-500 via-green-500 to-blue-500",
 };
 ---
 
@@ -42,6 +45,12 @@ const colorMap = {
   permalink={permalink}
   current="services">
   <div class="service-detail-wrapper relative overflow-hidden py-12 md:py-20">
+    <!-- Decorative Background -->
+    <div
+      class="decorative-blob absolute top-0 left-0 w-[500px] h-[500px] rounded-full blur-3xl opacity-20 animate-pulse pointer-events-none"
+      style={`background: radial-gradient(circle, rgba(234, 88, 12, 0.3), transparent);`}>
+    </div>
+
     <div class="max-w-4xl mx-auto px-4 relative z-10">
       <!-- Back Button -->
       <a
@@ -59,14 +68,13 @@ const colorMap = {
             stroke-width="2"
             d="M15 19l-7-7 7-7"></path>
         </svg>
-        {t("nav.services")}
       </a>
 
       <!-- Header -->
       <div class="text-center mb-12">
         <div
           class="inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-6"
-          style={`background: linear-gradient(135deg, ${colorMap[service.color]}, ${colorMap[service.color]}99); box-shadow: 0 10px 40px rgba(0,0,0,0.1);`}>
+          style={`background: linear-gradient(135deg, ${colorClasses[service.color]}); box-shadow: 0 10px 40px rgba(0,0,0,0.1);`}>
           <span class="text-4xl">{iconMap[service.icon]}</span>
         </div>
 
@@ -77,34 +85,49 @@ const colorMap = {
         </h1>
 
         <p
-          class="text-lg md:text-xl max-w-2xl mx-auto"
+          class="text-lg md:text-xl max-w-2xl mx-auto mb-2"
           style="color: var(--text-muted);">
           {service.category}
         </p>
+
+        {
+          service.description && (
+            <p
+              class="text-base max-w-2xl mx-auto"
+              style="color: var(--text-muted);">
+              {service.description}
+            </p>
+          )
+        }
       </div>
 
-      <!-- Card -->
-      <div class="service-card rounded-3xl p-8 md:p-12">
+      <!-- Service Content -->
+      <div
+        class="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100 dark:border-gray-700">
+        <h2 class="text-2xl font-bold mb-6" style="color: var(--text-main);">
+        </h2>
+
+        <div class="prose prose-lg dark:prose-invert max-w-none"></div>
+
         <!-- Related Services -->
         {
           service.items.length > 1 && (
-            <div>
+            <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
               <h3
                 class="text-xl font-bold mb-4"
-                style="color: var(--text-main);">
-                Layanan Terkait
-              </h3>
+                style="color: var(--text-main);"
+              />
               <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {service.items
                   .filter((relatedItem) => relatedItem.slug !== item.slug)
                   .map((relatedItem) => (
                     <li>
                       <a
-                        href={`${getRouteUrl(lang, "services")}/${relatedItem.slug}`}
-                        class="related-item flex items-center gap-3 p-4 rounded-xl transition-colors group">
+                        href={`/${lang}/layanan/${relatedItem.slug}`}
+                        class="flex items-start gap-3 p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
                         <svg
-                          class="w-5 h-5 flex-shrink-0 group-hover:scale-110 transition-transform"
-                          style={`color: ${colorMap[service.color]}`}
+                          class="w-5 h-5 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform"
+                          style={`color: ${service.color === "orange" ? "#ea580c" : service.color === "green" ? "#16a34a" : "#3b82f6"}`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24">
@@ -128,26 +151,33 @@ const colorMap = {
           )
         }
       </div>
+
+      <!-- CTA Section -->
     </div>
   </div>
-
-  <style>
-    .service-card {
-      background: var(--background-body);
-      border: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
-      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
-    }
-
-    .related-item:hover {
-      background: var(--background-alt, rgba(0, 0, 0, 0.04));
-    }
-
-    :root.theme-dark .service-card {
-      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4);
-    }
-
-    :root.theme-dark .related-item:hover {
-      background: var(--background-alt, rgba(255, 255, 255, 0.05));
-    }
-  </style>
 </BaseLayout>
+
+<style>
+  :root.theme-dark .decorative-blob {
+    opacity: 0.15;
+  }
+
+  @media (max-width: 768px) {
+    .decorative-blob {
+      width: 300px;
+      height: 300px;
+      top: -50px;
+      left: -50px;
+    }
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 0.15;
+    }
+    50% {
+      opacity: 0.25;
+    }
+  }
+</style>

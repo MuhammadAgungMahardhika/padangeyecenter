@@ -91,7 +91,7 @@ export const getServices = (lang: Language): Service[] => {
         icon: "eye",
         color: "orange",
         items: [
-          { slug: "contact-lens", name: "Contact Lens" },
+          { slug: "contact-lens", name: "Contact Lens RGP" },
           { slug: "orthokeratology", name: "Orthokeratology (Ortho-K)" },
         ],
       },
@@ -225,7 +225,7 @@ export const getServices = (lang: Language): Service[] => {
         icon: "eye",
         color: "orange",
         items: [
-          { slug: "contact-lens", name: "Contact Lens" },
+          { slug: "contact-lens", name: "Contact Lens RGP" },
           { slug: "orthokeratology", name: "Orthokeratology (Ortho-K)" },
         ],
       },

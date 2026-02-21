@@ -27,22 +27,19 @@ const isRTL = currentLocale === "ar";
  */
 function getCurrentRouteKey(
   path: string,
-  locale: string
+  locale: string,
 ): RouteKey | undefined {
-  // 1. Bersihkan trailing slash (misal: /id/about/ -> /id/about)
   let cleanPath = path.replace(/\/$/, "");
 
-  // 2. Hapus prefix bahasa jika bukan default lang (misal: /en/about -> /about)
   if (locale !== defaultLang) {
     cleanPath = cleanPath.replace(new RegExp(`^/${locale}`), "");
   }
 
-  // 3. Hapus leading slash agar sesuai dengan value di routes.ts (misal: /about -> about)
-  const currentSlug = cleanPath.replace(/^\//, "");
+  // ✅ Ambil segment pertama saja (ignore slug dinamis seperti /katarak)
+  const firstSegment = cleanPath.replace(/^\//, "").split("/")[0];
 
-  // 4. Loop routes untuk mencari kecocokan slug
   for (const [key, translations] of Object.entries(routes)) {
-    if (translations[locale as Language] === currentSlug) {
+    if (translations[locale as Language] === firstSegment) {
       return key as RouteKey;
     }
   }
@@ -59,11 +56,24 @@ const routeKey = getCurrentRouteKey(currentPath, currentLocale);
  */
 function getHref(targetLang: string) {
   if (routeKey) {
-    return getRouteUrl(targetLang as Language, routeKey);
+    const baseUrl = getRouteUrl(targetLang as Language, routeKey);
+
+    // Ambil segments setelah route utama (misal: /katarak dari /layanan/katarak)
+    let cleanPath = currentPath.replace(/\/$/, "");
+    if (currentLocale !== defaultLang) {
+      cleanPath = cleanPath.replace(new RegExp(`^/${currentLocale}`), "");
+    }
+    const segments = cleanPath.replace(/^\//, "").split("/");
+    const dynamicSegments = segments.slice(1); // hapus segment pertama (nama route)
+
+    // Gabungkan base URL + dynamic segments
+    if (dynamicSegments.length > 0) {
+      return `${baseUrl}/${dynamicSegments.join("/")}`;
+    }
+    return baseUrl;
   }
 
-  // Fallback untuk halaman dinamis yang tidak ada di routes.ts (misal: /blog/judul-artikel)
-  // Kita coba ganti prefix bahasanya saja
+  // Fallback (tidak berubah)
   let pathWithoutLang = currentPath;
   if (currentLocale !== defaultLang) {
     pathWithoutLang = currentPath.replace(`/${currentLocale}`, "") || "/";
