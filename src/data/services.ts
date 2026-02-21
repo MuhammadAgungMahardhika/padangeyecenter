@@ -3,6 +3,7 @@ import { type Language } from "../i18n/ui";
 export interface ServiceItem {
   slug: string;
   name: string;
+  description?: string;
 }
 
 export interface Service {
@@ -50,6 +51,8 @@ export const getServices = (lang: Language): Service[] => {
           {
             slug: "diabetes-education-care",
             name: "Diabetes Education & Care",
+            description:
+              "Layanan edukasi dan perawatan komprehensif bagi penderita diabetes untuk mencegah dan menangani komplikasi mata akibat diabetes, termasuk retinopati diabetik. Tim kami memberikan pemeriksaan rutin, edukasi gaya hidup, serta penanganan dini untuk menjaga kualitas penglihatan Anda.",
           },
           { slug: "vitreoretina", name: "Vitreoretina" },
         ],
@@ -184,6 +187,8 @@ export const getServices = (lang: Language): Service[] => {
           {
             slug: "diabetes-education-care",
             name: "Diabetes Education & Care",
+            description:
+              "Comprehensive education and care services for diabetic patients to prevent and manage eye complications caused by diabetes, including diabetic retinopathy. Our team provides regular screenings, lifestyle education, and early treatment to preserve your vision quality.",
           },
           { slug: "vitreoretina", name: "Vitreoretina" },
         ],
@@ -318,6 +323,8 @@ export const getServices = (lang: Language): Service[] => {
           {
             slug: "diabetes-education-care",
             name: "التثقيف والرعاية لمرضى السكري",
+            description:
+              "خدمات تثقيفية ورعاية شاملة لمرضى السكري للوقاية من مضاعفات العين الناجمة عن مرض السكري وعلاجها، بما في ذلك اعتلال الشبكية السكري. يقدم فريقنا فحوصات منتظمة وتثقيفاً حول نمط الحياة وعلاجاً مبكراً للحفاظ على جودة بصرك.",
           },
           { slug: "vitreoretina", name: "جراحة الشبكية والجسم الزجاجي" },
         ],

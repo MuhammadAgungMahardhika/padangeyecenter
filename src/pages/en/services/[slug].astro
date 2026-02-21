@@ -1,5 +1,4 @@
 ---
-// src/pages/layanan/[slug].astro
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { getServices } from "../../../data/services";
 import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
@@ -30,12 +29,10 @@ const description = service.description || service.category;
 const permalink = `${Astro.site?.href}layanan/${item.slug}`;
 
 const iconMap = { eye: "👁️", shield: "🛡️", spark: "✨" };
-
-// Color mapping
-const colorClasses = {
-  orange: "from-orange-500 to-orange-600",
-  green: "from-green-500 to-green-600",
-  gradient: "from-orange-500 via-green-500 to-blue-500",
+const colorMap = {
+  orange: "#ea580c",
+  green: "#16a34a",
+  gradient: "#3b82f6",
 };
 ---
 
@@ -45,18 +42,11 @@ const colorClasses = {
   permalink={permalink}
   current="services">
   <div class="service-detail-wrapper relative overflow-hidden py-12 md:py-20">
-    <!-- Decorative Background -->
-    <div
-      class="decorative-blob absolute top-0 left-0 w-[500px] h-[500px] rounded-full blur-3xl opacity-20 animate-pulse pointer-events-none"
-      style={`background: radial-gradient(circle, rgba(234, 88, 12, 0.3), transparent);`}>
-    </div>
-
     <div class="max-w-4xl mx-auto px-4 relative z-10">
       <!-- Back Button -->
       <a
         href={getRouteUrl(lang, "services")}
-        class="inline-flex items-center gap-2 text-sm mb-8 hover:opacity-70 transition-opacity"
-        style="color: var(--text-muted);">
+        class="back-btn inline-flex items-center gap-2 text-sm mb-10">
         <svg
           class="w-4 h-4"
           fill="none"
@@ -68,79 +58,79 @@ const colorClasses = {
             stroke-width="2"
             d="M15 19l-7-7 7-7"></path>
         </svg>
+        {t("nav.services")}
       </a>
 
-      <!-- Header -->
-      <div class="text-center mb-12">
+      <!-- Hero Header -->
+      <div class="hero-header text-center mb-14">
+        <!-- Icon Badge -->
         <div
-          class="inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-6"
-          style={`background: linear-gradient(135deg, ${colorClasses[service.color]}); box-shadow: 0 10px 40px rgba(0,0,0,0.1);`}>
+          class="icon-wrap mx-auto mb-6"
+          style={`--accent: ${colorMap[service.color]};`}>
           <span class="text-4xl">{iconMap[service.icon]}</span>
+          <div class="icon-ring"></div>
         </div>
 
-        <h1
-          class="text-3xl md:text-5xl font-bold mb-4"
-          style="color: var(--text-main);">
+        <!-- Category Pill -->
+        <div
+          class="category-pill inline-flex items-center gap-2 mb-5"
+          style={`--accent: ${colorMap[service.color]};`}>
+          <span class="pill-dot"></span>
+          {service.category}
+        </div>
+
+        <!-- Title -->
+        <h1 class="page-title mb-6">
           {item.name}
         </h1>
 
-        <p
-          class="text-lg md:text-xl max-w-2xl mx-auto mb-2"
-          style="color: var(--text-muted);">
-          {service.category}
-        </p>
-
+        <!-- Description -->
         {
-          service.description && (
-            <p
-              class="text-base max-w-2xl mx-auto"
-              style="color: var(--text-muted);">
-              {service.description}
-            </p>
+          item.description && (
+            <p class="page-desc max-w-2xl mx-auto">{item.description}</p>
           )
         }
       </div>
 
-      <!-- Service Content -->
-      <div
-        class="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100 dark:border-gray-700">
-        <h2 class="text-2xl font-bold mb-6" style="color: var(--text-main);">
-        </h2>
-
-        <div class="prose prose-lg dark:prose-invert max-w-none"></div>
-
+      <!-- Content Card -->
+      <div class="content-card rounded-3xl p-8 md:p-10">
         <!-- Related Services -->
         {
           service.items.length > 1 && (
-            <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
-              <h3
-                class="text-xl font-bold mb-4"
-                style="color: var(--text-main);"
-              />
+            <div>
+              <div class="flex items-center gap-3 mb-6">
+                <div
+                  class="section-line"
+                  style={`--accent: ${colorMap[service.color]};`}
+                />
+                <h3 class="section-title">Layanan Terkait</h3>
+              </div>
+
               <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {service.items
                   .filter((relatedItem) => relatedItem.slug !== item.slug)
                   .map((relatedItem) => (
                     <li>
                       <a
-                        href={`/${lang}/layanan/${relatedItem.slug}`}
-                        class="flex items-start gap-3 p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                        <svg
-                          class="w-5 h-5 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform"
-                          style={`color: ${service.color === "orange" ? "#ea580c" : service.color === "green" ? "#16a34a" : "#3b82f6"}`}
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24">
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M13 7l5 5m0 0l-5 5m5-5H6"
-                          />
-                        </svg>
-                        <span
-                          class="text-base group-hover:translate-x-1 transition-transform"
-                          style="color: var(--text-main);">
+                        href={`${getRouteUrl(lang, "services")}/${relatedItem.slug}`}
+                        class="related-item flex items-center gap-3 p-4 rounded-2xl transition-all group"
+                        style={`--accent: ${colorMap[service.color]};`}>
+                        <div class="related-icon">
+                          <svg
+                            class="w-4 h-4"
+                            style={`color: ${colorMap[service.color]}`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2.5"
+                              d="M13 7l5 5m0 0l-5 5m5-5H6"
+                            />
+                          </svg>
+                        </div>
+                        <span class="related-name text-sm font-semibold">
                           {relatedItem.name}
                         </span>
                       </a>
@@ -151,33 +141,194 @@ const colorClasses = {
           )
         }
       </div>
-
-      <!-- CTA Section -->
     </div>
   </div>
+
+  <style>
+    .service-detail-wrapper {
+      min-height: 70vh;
+    }
+
+    /* Blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    @keyframes drift {
+      0%,
+      100% {
+        transform: translate(0, 0);
+      }
+      50% {
+        transform: translate(30px, -30px);
+      }
+    }
+
+    /* Back Button */
+    .back-btn {
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+      font-weight: 500;
+    }
+
+    .back-btn:hover {
+      color: var(--text-main);
+      transform: translateX(-3px);
+    }
+
+    /* Icon Wrap */
+    .icon-wrap {
+      position: relative;
+      width: 88px;
+      height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 24px;
+      background: linear-gradient(
+        135deg,
+        var(--accent),
+        color-mix(in srgb, var(--accent) 60%, transparent)
+      );
+      box-shadow: 0 12px 40px -8px
+        color-mix(in srgb, var(--accent) 50%, transparent);
+    }
+
+    .icon-ring {
+      position: absolute;
+      inset: -6px;
+      border-radius: 28px;
+      border: 2px solid color-mix(in srgb, var(--accent) 25%, transparent);
+      animation: pulse-ring 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse-ring {
+      0%,
+      100% {
+        opacity: 0.5;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.04);
+      }
+    }
+
+    /* Category Pill */
+    .category-pill {
+      padding: 6px 16px;
+      border-radius: 9999px;
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: blink 2s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%,
+      100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.3;
+      }
+    }
+
+    /* Title */
+    .page-title {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+    }
+
+    /* Description */
+    .page-desc {
+      font-size: 1.0625rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+      text-align: justify;
+    }
+
+    /* Content Card */
+    .content-card {
+      background: var(--background-body);
+      border: 1px solid rgba(0, 0, 0, 0.07);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.6) inset,
+        0 20px 50px -12px rgba(0, 0, 0, 0.08);
+    }
+
+    :root.theme-dark .content-card {
+      border-color: rgba(255, 255, 255, 0.07);
+      box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Section Header */
+    .section-line {
+      width: 4px;
+      height: 22px;
+      border-radius: 9999px;
+      background: var(--accent);
+    }
+
+    .section-title {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    /* Related Items */
+    .related-item {
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      background: transparent;
+    }
+
+    :root.theme-dark .related-item {
+      border-color: rgba(255, 255, 255, 0.06);
+    }
+
+    .related-item:hover {
+      background: color-mix(in srgb, var(--accent) 8%, transparent);
+      border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+      transform: translateX(4px);
+    }
+
+    .related-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--accent) 10%, transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+
+    .related-item:hover .related-icon {
+      background: color-mix(in srgb, var(--accent) 20%, transparent);
+    }
+
+    .related-name {
+      color: var(--text-main);
+      transition: color 0.2s;
+    }
+  </style>
 </BaseLayout>
-
-<style>
-  :root.theme-dark .decorative-blob {
-    opacity: 0.15;
-  }
-
-  @media (max-width: 768px) {
-    .decorative-blob {
-      width: 300px;
-      height: 300px;
-      top: -50px;
-      left: -50px;
-    }
-  }
-
-  @keyframes pulse {
-    0%,
-    100% {
-      opacity: 0.15;
-    }
-    50% {
-      opacity: 0.25;
-    }
-  }
-</style>
