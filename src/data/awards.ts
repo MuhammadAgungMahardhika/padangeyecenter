@@ -24,7 +24,7 @@ export const awardsTranslations = {
       },
       {
         id: "2",
-        year: "2024",
+        year: "2020",
         title:
           "Penghargaan Kecelakaan Nihil dalam melaksanakan Program Keselamatan dan Kesehatan Kerja (K3)",
         organization: "Kementrian Ketenagakerjaan Republik Indonesia",
@@ -70,7 +70,7 @@ export const awardsTranslations = {
       },
       {
         id: "2",
-        year: "2024",
+        year: "2020",
         title:
           "Zero Accident Award for the Implementation of Occupational Safety and Health (OSH) Program",
         organization: "Ministry of Manpower of the Republic of Indonesia",
@@ -115,7 +115,7 @@ export const awardsTranslations = {
       },
       {
         id: "2",
-        year: "2024",
+        year: "2020",
         title: "جائزة الحوادث الصفرية في تطبيق برنامج السلامة والصحة المهنية",
         organization: "وزارة القوى العاملة في جمهورية إندونيسيا",
         image: "22.jpeg",

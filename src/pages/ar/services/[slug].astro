@@ -5,7 +5,7 @@ import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
 import { getRouteUrl } from "../../../i18n/path";
 
 export async function getStaticPaths() {
-  const services = getServices("id"); // ← hanya ID
+  const services = getServices("ar"); // ← hanya ID
   const paths = [];
 
   for (const service of services) {

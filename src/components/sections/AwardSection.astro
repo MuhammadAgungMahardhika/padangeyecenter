@@ -7,7 +7,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = awardsTranslations[lang] || awardsTranslations.id;
 ---
 
-<section class="py-16 overflow-hidden shadow-inner rounded-3xl shadow-black/10">
+<section class="py-16 overflow-hidden">
   <div class="max-w-7xl mx-auto px-4">
     <!-- Section Header -->
     <div class="text-center">
@@ -784,7 +784,7 @@ const t = awardsTranslations[lang] || awardsTranslations.id;
     const modal = document.getElementById("award-modal") as HTMLElement;
     const modalClose = document.getElementById("modal-close") as HTMLElement;
     const modalImage = document.getElementById(
-      "modal-image"
+      "modal-image",
     ) as HTMLImageElement;
     const modalTitle = document.getElementById("modal-title") as HTMLElement;
     const modalOrg = document.getElementById("modal-org") as HTMLElement;
@@ -805,7 +805,7 @@ const t = awardsTranslations[lang] || awardsTranslations.id;
 
     // Handle image click to open modal
     const imageButtons = document.querySelectorAll(
-      ".award-image-wrapper.clickable"
+      ".award-image-wrapper.clickable",
     );
     imageButtons.forEach((button) => {
       button.addEventListener("click", (e) => {
